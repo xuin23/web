@@ -11,23 +11,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringContextUtil implements ApplicationContextAware {
 
-	// Spring应用上下文环境
-	private static ApplicationContext applicationContext = null;
+    // Spring应用上下文环境
+    private static ApplicationContext applicationContext = null;
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		if (null == SpringContextUtil.applicationContext) {
-			SpringContextUtil.applicationContext = applicationContext;
-		}
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        if (null == SpringContextUtil.applicationContext) {
+            SpringContextUtil.applicationContext = applicationContext;
+        }
+    }
 
-	public static ApplicationContext getApplicationContext() {
-		return applicationContext;
-	}
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 
-	@SuppressWarnings("unchecked")
-	public static <T> T getBean(String name) throws BeansException {
-		return (T) applicationContext.getBean(name);
-	}
+    @SuppressWarnings("unchecked")
+    public static <T> T getBean(String name) throws BeansException {
+        return (T) applicationContext.getBean(name);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.cloud.auth.core.cloud;
 
+import com.cloud.auth.core.biz.AuthUserBiz;
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.bean.ResultsBean;
@@ -22,6 +23,18 @@ public class AuthUserProvider {
     @Resource
     private AuthUserService authUserService;
 
+    /**
+     * 用户 业务
+     */
+    @Resource
+    private AuthUserBiz authUserBiz;
+
+    /**
+     * 通过id删除用户信息
+     *
+     * @param id
+     * @return
+     */
     @DeleteMapping(value = "/deleteById/{id}")
     public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
         log.info("用户信息删除 ID={}", id);
@@ -29,15 +42,15 @@ public class AuthUserProvider {
         return ResultsBean.SUCCESS();
     }
 
-    @PostMapping(value = "createOrUpdate")
-    public ResultsBean<String> createOrUpdate(@RequestBody AuthUser authUser) {
-        if (null != authUser.getId()) {
-            log.info("用户信息更新{}", authUser);
-            authUserService.modifyById(authUser, authUser.getId());
-        } else {
-            log.info("新建用户 {}", authUser);
-            authUserService.create(authUser);
-        }
+    /**
+     * 修改或添加用户信息
+     *
+     * @param authUser
+     * @return
+     */
+    @PostMapping(value = "/merge")
+    public ResultsBean<String> merge(@RequestBody AuthUser authUser) {
+        authUserBiz.merge(authUser);
         return ResultsBean.SUCCESS();
     }
 

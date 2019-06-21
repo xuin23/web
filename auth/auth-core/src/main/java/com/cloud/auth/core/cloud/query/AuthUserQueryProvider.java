@@ -26,6 +26,7 @@ public class AuthUserQueryProvider {
 
     /**
      * 列表查询用户信息
+     *
      * @param params
      * @return
      */
@@ -37,6 +38,7 @@ public class AuthUserQueryProvider {
 
     /**
      * 通过id查询用户信息
+     *
      * @param id
      * @return
      */
@@ -48,6 +50,7 @@ public class AuthUserQueryProvider {
 
     /**
      * 通过用户名查询用户信息
+     *
      * @param username
      * @return
      */

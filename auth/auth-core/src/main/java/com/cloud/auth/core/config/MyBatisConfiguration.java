@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
+/**
+ * Mybatis 配置
+ */
 @Configuration
 public class MyBatisConfiguration {
     /**

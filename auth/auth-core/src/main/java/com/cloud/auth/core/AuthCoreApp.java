@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan(basePackages = { "com.cloud" })
+@ComponentScan(basePackages = {"com.cloud"})
 @MapperScan(value = "com.cloud.auth.mapper")
 @SpringBootApplication
 @EnableEurekaClient

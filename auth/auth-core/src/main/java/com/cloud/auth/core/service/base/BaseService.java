@@ -91,6 +91,7 @@ public class BaseService<T> {
      * @param params 查询参数
      * @return
      */
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public PageInfo<Map<String, Object>> findByPageAll(Map<String, Object> params) {
         //页码
         int pageNum = params.get("pageNum") == null ? 1 : Integer.parseInt(params.get("pageNum").toString());

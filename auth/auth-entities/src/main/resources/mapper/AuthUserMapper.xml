@@ -27,9 +27,9 @@
     </delete>
     <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUser"
             useGeneratedKeys="true">
-        insert into WEB.AUTH_USER (USERNAME, PASSWORD, REALNAME, EMAIL, STATUS, CREATE_TIME)
+        insert into WEB.AUTH_USER (USERNAME, PASSWORD, REALNAME, EMAIL, STATUS)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
-                #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+                #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
         update WEB.AUTH_USER
