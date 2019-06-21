@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloud.auth.mapper.AuthUserMapper">
-
     <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthUser">
         <id column="ID" jdbcType="BIGINT" property="id"/>
+        <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
         <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
         <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
         <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
         <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
         <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ID, USERNAME, PASSWORD, REALNAME, EMAIL, STATUS, CREATE_TIME
+        ID, OPTIMISTIC, USERNAME, PASSWORD, REALNAME, EMAIL, STATUS,  UPDATE_TIME, CREATE_TIME
     </sql>
-    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from WEB.AUTH_USER
@@ -34,6 +35,8 @@
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
         update WEB.AUTH_USER
         <set>
+            UPDATE_TIME = now(),
+            OPTIMISTIC = OPTIMISTIC+1,
             <if test="username != null">
                 USERNAME = #{username,jdbcType=VARCHAR},
             </if>
@@ -48,9 +51,6 @@
             </if>
             <if test="status != null">
                 STATUS = #{status,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime != null">
-                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where ID = #{id,jdbcType=BIGINT}

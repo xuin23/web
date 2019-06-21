@@ -2,6 +2,7 @@ package com.cloud.auth.entity;
 
 import java.util.Date;
 
+import com.cloud.auth.common.enums.Status;
 import lombok.Data;
 
 /**
@@ -13,6 +14,11 @@ public class AuthUser {
      * 用户ID
      */
     private Long id;
+
+    /**
+     * 乐观锁版本
+     */
+    private Long optimistic;
 
     /**
      * 角色名
@@ -37,7 +43,12 @@ public class AuthUser {
     /**
      * 状态
      */
-    private String status;
+    private Status status;
+
+    /**
+     * 更新日期
+     */
+    private Date updateTime;
 
     /**
      * 创建日期

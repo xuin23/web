@@ -6,23 +6,13 @@ package com.cloud.auth.common.enums;
  */
 public enum Status {
 
-    TRUE("TRUE", "有效"),
-    FALSE("FALSE", "无效");
+    TRUE("有效"),
+    FALSE("无效");
 
-    private String code;
     private String value;
 
-    private Status(String code, String value) {
-        this.code = code;
+    private Status(String value) {
         this.value = value;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getValue() {

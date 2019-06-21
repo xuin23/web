@@ -32,7 +32,13 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
         </dependency>
-
+        <!--权限公共包-->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>auth-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--公共包-->
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>common</artifactId>

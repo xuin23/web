@@ -81,7 +81,7 @@ public class BaseService<T> {
         if (id == null) {
             return null;
         }
-        return baseMapper.selectById(id);
+        return baseMapper.findById(id);
     }
 
 

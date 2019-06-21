@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>common</artifactId>
+    <description>公共包</description>
 
     <dependencies>
         <dependency>

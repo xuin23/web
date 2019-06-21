@@ -18,7 +18,7 @@ public interface BaseMapper<T> {
      * @param id
      * @return
      */
-    public T selectById(Long id);
+    public T findById(Long id);
 
     /**
      * 插入方法
