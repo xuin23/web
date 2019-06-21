@@ -5,7 +5,7 @@
 * RBAC(ROLE-BASED ACCESS CONTROL) 权限模型实现
 * SpringCloud Feign
 * SpringCloud Eureka
-* SpringCloud Oauth2
+* ~~SpringCloud Oauth2~~
 * SpringCloud GateWay
 * Redis
 * ~~RabbitMq~~
