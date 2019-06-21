@@ -22,6 +22,9 @@ public class ResultsBean<T> implements Serializable {
     private String failCode; // 错误码
     private T object; // 返回对象
 
+    //默认构造函数必须有 否则Feign调用返回结果时会报错
+    public ResultsBean() { }
+
     /**
      * 状态码 实体类
      * @param code

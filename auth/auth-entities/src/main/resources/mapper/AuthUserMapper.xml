@@ -82,7 +82,7 @@
         </where>
     </select>
 
-    <select id="findByUserName" parameterType="string">
+    <select id="findByUserName" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from WEB.AUTH_USER where USERNAME= #{ params.username,jdbcType=VARCHAR}

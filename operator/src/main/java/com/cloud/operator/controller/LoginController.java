@@ -2,7 +2,7 @@ package com.cloud.operator.controller;
 
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
-import com.cloud.operator.remote.LoginClient;
+import com.cloud.operator.remote.AuthUserClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +22,7 @@ public class LoginController {
      * 用户登录客户端
      */
     @Resource
-    private LoginClient loginClient;
+    private AuthUserClient authUserClient;
 
 
     /**
@@ -36,13 +36,15 @@ public class LoginController {
      */
     @PostMapping(value = "/operatorLogin")
     private ResultsBean<Authorization> login(HttpServletRequest request,
-                                             @RequestParam("username") String username,
-                                             @RequestParam("password") String password,
-                                             @RequestParam("securityCode") String securityCode) {
+                                             @RequestParam(value = "username") String username,
+                                             @RequestParam(value = "password") String password,
+                                             @RequestParam(value = "securityCode",required = false) String securityCode) {
         String remoteIp = request.getRemoteAddr();
         log.info("用户名：{}，验证码：{}，ip地址：{}", username, securityCode, remoteIp);
-        ResultsBean<Authorization> resultsBean = loginClient.login(username, password, false, securityCode);
-        log.info("用户登录：{}，返回结果：{}", username, resultsBean);
+        ResultsBean<Authorization> resultsBean = authUserClient.login(username, password, false, securityCode);
+        if (resultsBean.success()) {
+            log.info("用户登录：{}，返回结果：{}", username, resultsBean.getObject());
+        }
         return resultsBean;
     }
 
