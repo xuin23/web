@@ -27,11 +27,6 @@ public class Authorization implements Serializable {
     private String realname;
 
     /**
-     * 状态
-     */
-    private String status;
-
-    /**
      * token
      */
     private String token;

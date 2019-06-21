@@ -27,14 +27,15 @@ public class OperatorLoginProvider {
      *
      * @param username     用户名
      * @param password     密码
+     * @param isSecurity   是否使用验证码
      * @param securityCode 验证码
      * @return
      */
     public ResultsBean<Authorization> login(@RequestParam(value = "username") String username,
                                             @RequestParam(value = "password") String password,
-                                            @RequestParam(value = "securityCode") String securityCode) {
-
-        Authorization authorization = operatorLoginBiz.login(username, password, securityCode);
+                                            @RequestParam(value = "isSecurity") Boolean isSecurity,
+                                            @RequestParam(value = "securityCode",required = false) String securityCode) {
+        Authorization authorization = operatorLoginBiz.login(username, password, isSecurity, securityCode);
         log.info("用户登录：{}，返回结果：{}", username, authorization);
         return ResultsBean.SUCCESS(authorization);
     }

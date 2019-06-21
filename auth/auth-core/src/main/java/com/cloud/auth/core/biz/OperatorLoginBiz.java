@@ -12,8 +12,9 @@ public interface OperatorLoginBiz {
      *
      * @param username     用户名
      * @param password     密码
+     * @param isSecurity   是否使用验证码
      * @param securityCode 验证码
      * @return
      */
-    Authorization login(String username, String password, String securityCode);
+    Authorization login(String username, String password,Boolean isSecurity, String securityCode);
 }

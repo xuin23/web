@@ -36,12 +36,12 @@ public class LoginController {
      */
     @PostMapping(value = "/operatorLogin")
     private ResultsBean<Authorization> login(HttpServletRequest request,
-                                      @RequestParam("username") String username,
-                                      @RequestParam("password") String password,
-                                      @RequestParam("securityCode") String securityCode) {
+                                             @RequestParam("username") String username,
+                                             @RequestParam("password") String password,
+                                             @RequestParam("securityCode") String securityCode) {
         String remoteIp = request.getRemoteAddr();
         log.info("用户名：{}，验证码：{}，ip地址：{}", username, securityCode, remoteIp);
-        ResultsBean<Authorization> resultsBean = loginClient.login(username, password, securityCode);
+        ResultsBean<Authorization> resultsBean = loginClient.login(username, password, false, securityCode);
         log.info("用户登录：{}，返回结果：{}", username, resultsBean);
         return resultsBean;
     }
