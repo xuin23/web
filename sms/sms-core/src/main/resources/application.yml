@@ -1,0 +1,23 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /@pom.artifactId@
+
+spring:
+  application:
+    name: @pom.artifactId@
+  mail:
+    host: smtp.qq.com
+    username:  #邮箱
+    password:  #授权码
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+eureka:
+  client:
+    register-with-eureka: true

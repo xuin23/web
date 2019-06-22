@@ -46,6 +46,8 @@
         <module>auth</module>
         <!--操作员服务-->
         <module>operator</module>
+        <module>sms</module>
+
     </modules>
 
     <dependencyManagement>

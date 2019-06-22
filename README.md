@@ -24,6 +24,7 @@
 * common（公共包）
 * auth（权限服务）
 * operator（操作服务，暴露在外）
+* sms（消息服务）
 
 #### 运行步骤 
 * 安装MySQL 5.7
@@ -33,6 +34,7 @@
 * 启动eureka服务
 * 启动auth-core服务
 * 启动operator服务
+* 启动sms-core服务
 
 #### 清除数据
 * 执行/init/dropDataBase.sql清除本项目创建的数据
