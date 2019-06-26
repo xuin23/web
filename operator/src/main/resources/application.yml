@@ -5,6 +5,8 @@ server:
 spring:
   application:
     name: @pom.artifactId@
+  main:
+    allow-bean-definition-overriding: true
 
 eureka:
   client:
