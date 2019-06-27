@@ -40,12 +40,15 @@
     <modules>
         <!--Eureka服务-->
         <module>eureka</module>
+        <!--配置服务-->
+        <module>config</module>
         <!--公共包-->
         <module>common</module>
         <!--权限操作-->
         <module>auth</module>
         <!--操作员服务-->
         <module>operator</module>
+        <!--消息服务-->
         <module>sms</module>
 
     </modules>
