@@ -1,10 +1,10 @@
 server:
   port: 7999
   servlet:
-    context-path: /@pom.artifactId@
+    context-path: /config
 spring:
   application:
-    name: @pom.artifactId@
+    name: config
   cloud:
     config:
       server:
