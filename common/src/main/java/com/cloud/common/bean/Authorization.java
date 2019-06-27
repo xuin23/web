@@ -22,6 +22,11 @@ public class Authorization implements Serializable {
     private String username;
 
     /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
      * 真实姓名
      */
     private String realname;

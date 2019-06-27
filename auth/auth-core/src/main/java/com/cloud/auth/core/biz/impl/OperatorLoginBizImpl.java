@@ -49,7 +49,7 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         //验证码校验
         securityCodeCheck(username, isSecurity, securityCode);
 
-        AuthUser authUser = authUserService.findByUserName(username);
+        AuthUser authUser = authUserService.findByEmail(username);
         if (null == authUser) {
             throw new RuntimeException("用户名或密码错误");
         }
@@ -59,9 +59,9 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         }
         Authorization auth = new Authorization();
         auth.setId(authUser.getId());
+        auth.setEmail(authUser.getEmail());
         auth.setUsername(authUser.getUsername());
         auth.setRealname(authUser.getRealname());
-        //todo 待添加额外哦权限信息
         //生成token
         String token = DigestUtil.encodeByMd5(authUser.getUsername() + System.currentTimeMillis());
         auth.setToken(token);
