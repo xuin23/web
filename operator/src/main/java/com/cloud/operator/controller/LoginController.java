@@ -3,6 +3,7 @@ package com.cloud.operator.controller;
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
 import com.cloud.common.constant.LoginConstants;
+import com.cloud.operator.remote.EmailClient;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +28,39 @@ public class LoginController {
 
 
     /**
+     * 邮箱客户端
+     */
+    @Resource
+    private EmailClient emailClient;
+
+
+    /**
+     * 发送验证码
+     * @param username 用户名
+     * @return ResultsBean<String>
+     */
+    @PostMapping(value = "/loginSecurityCode")
+    private ResultsBean<String> securityCode(@RequestParam(value = "username") String username) {
+        if (!username.contains("@")) {
+            throw new RuntimeException("请输入邮箱");
+        }
+        log.info("获取验证码：{}", username);
+        ResultsBean<String> resultsBean = emailClient.sendEmail(username);
+        if (!resultsBean.success()) {
+            return ResultsBean.FAIL(resultsBean.getMessage());
+        }
+        log.info("验证码发送完成");
+        return ResultsBean.SUCCESS("验证码发送成功");
+    }
+
+    /**
      * 操作员登录
      *
      * @param request      请求信息
      * @param username     用户名
      * @param password     密码
      * @param securityCode 验证码
-     * @return
+     * @return ResultsBean<Authorization>
      */
     @PostMapping(value = "/operatorLogin")
     private ResultsBean<Authorization> login(HttpServletRequest request,
