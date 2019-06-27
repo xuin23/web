@@ -10,6 +10,9 @@ public interface LoginConstants {
      */
     public static final String TOKEN_CODE = "token";
 
+    /**
+     * 登录认证信息
+     */
     public static final String AUTHORIZATION = "authorization";
 
 }
