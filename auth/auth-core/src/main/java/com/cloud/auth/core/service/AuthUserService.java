@@ -25,10 +25,20 @@ public class AuthUserService extends BaseService<AuthUser> {
      * 通过用户名查询用户信息
      *
      * @param username 用户名
-     * @return
+     * @return AuthUser
      */
     public AuthUser findByUserName(String username) {
         return authUserMapper.findByUserName(username);
+    }
+
+    /**
+     * 通过邮箱查询用户信息
+     *
+     * @param email 邮箱
+     * @return AuthUser
+     */
+    public AuthUser findByEmail(String email) {
+        return authUserMapper.findByEmail(email);
     }
 
 }

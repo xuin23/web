@@ -23,10 +23,12 @@ public class ResultsBean<T> implements Serializable {
     private T object; // 返回对象
 
     //默认构造函数必须有 否则Feign调用返回结果时会报错
-    public ResultsBean() { }
+    public ResultsBean() {
+    }
 
     /**
      * 状态码 实体类
+     *
      * @param code
      * @param object
      */
@@ -53,9 +55,6 @@ public class ResultsBean<T> implements Serializable {
         return RESULT_CODE_SUCCESS == code;
     }
 
-    public boolean fail() {
-        return !success();
-    }
 
     public static <T> ResultsBean<T> SUCCESS(T t) {
         return new ResultsBean<T>(RESULT_CODE_SUCCESS, t);

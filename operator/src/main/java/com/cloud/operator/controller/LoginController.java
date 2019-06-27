@@ -2,6 +2,7 @@ package com.cloud.operator.controller;
 
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
+import com.cloud.common.constant.LoginConstants;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +42,12 @@ public class LoginController {
                                              @RequestParam(value = "securityCode", required = false) String securityCode) {
         String remoteIp = request.getRemoteAddr();
         log.info("用户名：{}，验证码：{}，ip地址：{}", username, securityCode, remoteIp);
-        ResultsBean<Authorization> resultsBean = loginClient.login(username, password, false, securityCode);
+        ResultsBean<Authorization> resultsBean = loginClient.login(username, password, true, securityCode);
         if (resultsBean.success()) {
             log.info("用户登录：{}，返回结果：{}", username, resultsBean.getObject());
         }
+        //保存登录 session
+        request.getSession().setAttribute(LoginConstants.AUTHORIZATION, resultsBean.getObject());
         return resultsBean;
     }
 

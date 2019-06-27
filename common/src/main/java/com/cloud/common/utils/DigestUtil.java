@@ -26,10 +26,9 @@ public class DigestUtil {
             mdTemp.update(strTemp);
             byte[] md = mdTemp.digest();
             int j = md.length;
-            char string[] = new char[j * 2];
+            char[] string = new char[j * 2];
             int k = 0;
-            for (int i = 0; i < j; i++) {
-                byte byte0 = md[i];
+            for (byte byte0 : md) {
                 string[k++] = HEX_CHARS[byte0 >>> 4 & 0xf];
                 string[k++] = HEX_CHARS[byte0 & 0xf];
             }
@@ -37,9 +36,5 @@ public class DigestUtil {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(encodeByMd5("123456"));
     }
 }

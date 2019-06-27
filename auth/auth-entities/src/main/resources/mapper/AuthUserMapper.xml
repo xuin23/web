@@ -12,26 +12,31 @@
         <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
         <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
+
     <sql id="Base_Column_List">
         ID, OPTIMISTIC, USERNAME, PASSWORD, REALNAME, EMAIL, STATUS,  UPDATE_TIME, CREATE_TIME
     </sql>
+
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from WEB.AUTH_USER
         where ID = #{id,jdbcType=BIGINT}
     </select>
+
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
         from WEB.AUTH_USER
         where ID = #{id,jdbcType=BIGINT}
     </delete>
+
     <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUser"
             useGeneratedKeys="true">
         insert into WEB.AUTH_USER (USERNAME, PASSWORD, REALNAME, EMAIL, STATUS)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
                 #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
+
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
         update WEB.AUTH_USER
         <set>
@@ -85,6 +90,12 @@
     <select id="findByUserName" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_USER where USERNAME= #{ params.username,jdbcType=VARCHAR}
+        from WEB.AUTH_USER where USERNAME= #{username,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByEmail" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WEB.AUTH_USER where EMAIL= #{email,jdbcType=VARCHAR}
     </select>
 </mapper>

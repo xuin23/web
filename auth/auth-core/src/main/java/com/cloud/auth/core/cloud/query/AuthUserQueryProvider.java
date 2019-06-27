@@ -27,8 +27,8 @@ public class AuthUserQueryProvider {
     /**
      * 列表查询用户信息
      *
-     * @param params
-     * @return
+     * @param params 参数
+     * @return ResultsBean
      */
     @GetMapping(value = "/findByPageAll")
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
@@ -39,8 +39,8 @@ public class AuthUserQueryProvider {
     /**
      * 通过id查询用户信息
      *
-     * @param id
-     * @return
+     * @param id id
+     * @return ResultsBean<AuthUser>
      */
     @GetMapping(value = "/findById/{id}")
     public ResultsBean<AuthUser> findById(@PathVariable("id") Long id) {
@@ -51,12 +51,24 @@ public class AuthUserQueryProvider {
     /**
      * 通过用户名查询用户信息
      *
-     * @param username
-     * @return
+     * @param username 用户名
+     * @return ResultsBean<AuthUser>
      */
     @GetMapping(value = "/findByUserName")
     public ResultsBean<AuthUser> findByUserName(@RequestParam("username") String username) {
         AuthUser authUser = authUserService.findByUserName(username);
+        return ResultsBean.SUCCESS(authUser);
+    }
+
+    /**
+     * 通过邮箱查询用户信息
+     *
+     * @param email 邮箱
+     * @return ResultsBean<AuthUser>
+     */
+    @GetMapping(value = "/findByEmail")
+    public ResultsBean<AuthUser> findByEmail(@RequestParam("email") String email) {
+        AuthUser authUser = authUserService.findByEmail(email);
         return ResultsBean.SUCCESS(authUser);
     }
 
