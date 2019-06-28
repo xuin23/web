@@ -42,6 +42,8 @@
         <module>eureka</module>
         <!--配置服务-->
         <module>config</module>
+        <!--路由服务-->
+        <module>gateway</module>
         <!--公共包-->
         <module>common</module>
         <!--权限操作-->

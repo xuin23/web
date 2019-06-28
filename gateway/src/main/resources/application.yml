@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  application:
+    name: @pom.artifactId@
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        - id: operator
+          uri: lb://operator
+          predicates:
+            - Path=/operator/**
+#          filters:
+#            - StripPrefix=1
+
