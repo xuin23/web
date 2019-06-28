@@ -25,6 +25,8 @@
 * auth（权限服务）
 * operator（操作服务，暴露在外）
 * sms（消息服务）
+* gateway（路由）
+* ~~config（统一配置）~~
 
 #### 运行步骤 
 * 安装MySQL 5.7
@@ -32,9 +34,17 @@
 * 安装启动Redis
 * 安装启动RabbitMq
 * 启动eureka服务
+* 启动gateway服务
 * 启动auth-core服务
 * 启动operator服务
 * 启动sms-core服务
 
 #### 清除数据
+
 * 执行/init/dropDataBase.sql清除本项目创建的数据
+
+#### 已实现功能
+
+* 用户表 增删改查
+* 发送邮箱验证码
+* 邮箱验证码登录
