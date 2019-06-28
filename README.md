@@ -20,13 +20,13 @@
 
 
 ##### 主要模块
+* ~~config（统一配置）~~
 * eureka（注册中心）
 * common（公共包）
 * auth（权限服务）
-* operator（操作服务，暴露在外）
 * sms（消息服务）
+* operator（操作服务）
 * gateway（路由）
-* ~~config（统一配置）~~
 
 #### 运行步骤 
 * 安装MySQL 5.7
