@@ -10,7 +10,7 @@ import axios from 'axios'
 // axios 默认配置
 axios.defaults.baseURL = 'http://localhost:8080'
 
-Vue.prototype.axios = axios
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 

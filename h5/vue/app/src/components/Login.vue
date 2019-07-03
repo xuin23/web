@@ -54,7 +54,7 @@ export default {
       data.append('username', this.form.username)
       data.append('password', this.form.password)
       data.append('securityCode', this.form.securityCode)
-      this.axios.post('/operator/login/operatorLogin', data).then((response) => {
+      this.$http.post('/operator/login/operatorLogin', data).then((response) => {
         console.log(response)
         let res = response.data
         console.log(res)
@@ -73,7 +73,7 @@ export default {
       let data = new FormData()
       this.buttonDisable = true
       data.append('username', this.form.username)
-      this.axios.post('/operator/login/loginSecurityCode', data).then((response) => {
+      this.$http.post('/operator/login/loginSecurityCode', data).then((response) => {
         let res = response.data
         console.log(res)
         let _this = this
