@@ -1,6 +1,6 @@
 package com.cloud.auth.common.bean;
 
-import com.cloud.auth.common.enums.Status;
+import com.cloud.common.enums.Status;
 import lombok.Data;
 
 import java.io.Serializable;

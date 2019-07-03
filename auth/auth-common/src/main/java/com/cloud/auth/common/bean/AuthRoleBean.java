@@ -1,7 +1,8 @@
 package com.cloud.auth.common.bean;
 
-import com.cloud.auth.common.enums.Status;
 import lombok.Data;
+import com.cloud.common.enums.Status;
+
 
 import java.util.Date;
 
