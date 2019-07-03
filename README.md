@@ -13,10 +13,11 @@
 * Mybatis
 * SpringBoot
 * docker
-###### ~~前端~~(未开工)
-* ~~vue~~
-* ~~Vue Router~~
-* ~~axios~~
+###### 前端(开发中)
+* vue
+* Vue Router
+* ElementUi
+* axios
 
 
 ##### 主要模块
