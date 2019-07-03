@@ -16,22 +16,19 @@
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">登录</el-button>
+                <el-button type="primary" @click="getSecurityCode" v-bind:disabled="buttonDisable">获取验证码</el-button>
               </el-form-item>
             </el-form>
           </el-col>
         </el-row>
       </el-main>
     </el-container>
-    <el-dialog
-      title="提示"
-      :visible.sync="centerDialogVisible"
-      width="30%"
-      center>
+    <el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
       <span>{{ msg }}</span>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
-  </span>
+      <el-button @click="centerDialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
@@ -46,6 +43,7 @@ export default {
         password: '',
         securityCode: ''
       },
+      buttonDisable: false,
       centerDialogVisible: false,
       msg: ''
     }
@@ -63,9 +61,29 @@ export default {
         if (res.code === 200) {
           this.msg = res.object
           this.centerDialogVisible = true
+        } else {
+          this.msg = res.message
+          this.centerDialogVisible = true
         }
-      }).catch((response) => {
-        console.log(response)
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
+    getSecurityCode () {
+      let data = new FormData()
+      this.buttonDisable = true
+      data.append('username', this.form.username)
+      this.axios.post('/operator/login/loginSecurityCode', data).then((response) => {
+        let res = response.data
+        console.log(res)
+        let _this = this
+        if (res.code === 200) {
+          setTimeout(function () {
+            _this.buttonDisable = false
+          }, 1000 * 6)
+        }
+      }).catch((error) => {
+        console.log(error)
       })
     }
   }
