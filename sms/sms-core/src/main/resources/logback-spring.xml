@@ -5,7 +5,7 @@
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
 
     <!-- Example for logging into the build folder of your project -->
-    <property name="LOG_FILE" value="./logs/cloud/${springAppName}/${springAppName}"/>
+    <property name="LOG_FILE" value="./logs/cloud/${springAppName}/${springAppName}.log"/>
 
     <!--控制台日志格式 带颜色 -->
     <property name="CONSOLE_LOG_PATTERN"
