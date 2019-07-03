@@ -5,6 +5,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+
+// axios 默认配置
+axios.defaults.baseURL = 'http://localhost:8080'
+
+Vue.prototype.axios = axios
 
 Vue.config.productionTip = false
 
