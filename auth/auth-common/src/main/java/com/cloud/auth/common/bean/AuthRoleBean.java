@@ -1,17 +1,18 @@
-package com.cloud.auth.entity;
+package com.cloud.auth.common.bean;
+
+import com.cloud.auth.common.enums.Status;
+import lombok.Data;
 
 import java.util.Date;
 
-import com.cloud.common.enums.Status;
-import lombok.Data;
-
 /**
- * 用户信息
+ * 角色bean
  */
 @Data
-public class AuthUser {
+public class AuthRoleBean {
+
     /**
-     * 用户ID
+     * 角色id
      */
     private Long id;
 
@@ -23,22 +24,7 @@ public class AuthUser {
     /**
      * 角色名
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 真实姓名
-     */
-    private String realname;
-
-    /**
-     * 邮箱
-     */
-    private String email;
+    private String name;
 
     /**
      * 状态

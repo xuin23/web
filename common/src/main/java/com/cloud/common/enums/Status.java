@@ -1,4 +1,4 @@
-package com.cloud.auth.common.enums;
+package com.cloud.common.enums;
 
 
 /**
