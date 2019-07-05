@@ -1,4 +1,4 @@
-package com.cloud.sms.biz;
+package com.cloud.message.biz;
 
 /**
  * email 业务

@@ -51,7 +51,7 @@
         <!--操作员服务-->
         <module>operator</module>
         <!--消息服务-->
-        <module>sms</module>
+        <module>message</module>
 
     </modules>
 

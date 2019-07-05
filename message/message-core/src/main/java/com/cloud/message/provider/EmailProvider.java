@@ -1,7 +1,7 @@
-package com.cloud.sms.provider;
+package com.cloud.message.provider;
 
 import com.cloud.common.bean.ResultsBean;
-import com.cloud.sms.biz.EmailBiz;
+import com.cloud.message.biz.EmailBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

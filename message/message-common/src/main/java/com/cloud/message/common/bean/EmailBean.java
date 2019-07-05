@@ -1,4 +1,4 @@
-package com.cloud.sms.common.bean;
+package com.cloud.message.common.bean;
 
 import lombok.Data;
 

@@ -3,21 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>sms</artifactId>
+        <artifactId>web</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sms-common</artifactId>
-    <description>消息-通用类</description>
+    <artifactId>message</artifactId>
+    <description>消息</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-    </dependencies>
+    <packaging>pom</packaging>
 
+    <modules>
+        <module>message-common</module>
+        <module>message-core</module>
+    </modules>
 </project>

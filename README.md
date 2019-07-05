@@ -25,7 +25,7 @@
 * eureka（注册中心）
 * common（公共包）
 * auth（权限服务）
-* sms（消息服务）
+* message（消息服务）
 * operator（操作服务）
 * gateway（路由）
 
@@ -38,7 +38,7 @@
 * 启动gateway服务
 * 启动auth-core服务
 * 启动operator服务
-* 启动sms-core服务
+* message-core服务
 
 #### 清除数据
 

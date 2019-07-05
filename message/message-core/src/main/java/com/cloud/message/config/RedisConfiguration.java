@@ -1,4 +1,4 @@
-package com.cloud.sms.config;
+package com.cloud.message.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

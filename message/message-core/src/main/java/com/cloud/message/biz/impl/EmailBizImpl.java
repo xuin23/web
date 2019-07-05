@@ -1,9 +1,9 @@
-package com.cloud.sms.biz.impl;
+package com.cloud.message.biz.impl;
 
 import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.utils.SecurityCodeUtil;
-import com.cloud.sms.biz.EmailBiz;
-import com.cloud.sms.common.bean.EmailBean;
+import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.common.bean.EmailBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.MailException;

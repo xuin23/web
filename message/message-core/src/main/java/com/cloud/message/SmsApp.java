@@ -1,4 +1,4 @@
-package com.cloud.sms;
+package com.cloud.message;
 
 
 import org.springframework.boot.SpringApplication;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.cloud"})
-@EnableFeignClients(basePackages = {"com.cloud.sms.remote"})
+@EnableFeignClients(basePackages = {"com.cloud.message.remote"})
 public class SmsApp {
     public static void main(String[] args) {
         SpringApplication.run(SmsApp.class, args);

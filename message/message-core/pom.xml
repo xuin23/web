@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>sms</artifactId>
+        <artifactId>message</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sms-core</artifactId>
+    <artifactId>message-core</artifactId>
     <description>消息-核心</description>
 
     <dependencies>
@@ -55,7 +55,7 @@
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>sms-common</artifactId>
+            <artifactId>message-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
