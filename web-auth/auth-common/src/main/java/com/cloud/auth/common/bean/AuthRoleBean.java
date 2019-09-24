@@ -4,13 +4,14 @@ import lombok.Data;
 import com.cloud.common.enums.Status;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 角色bean
  */
 @Data
-public class AuthRoleBean {
+public class AuthRoleBean implements Serializable {
 
     /**
      * 角色id

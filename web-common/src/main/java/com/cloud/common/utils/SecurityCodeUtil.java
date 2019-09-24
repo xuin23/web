@@ -34,19 +34,16 @@ public class SecurityCodeUtil {
     public static String generateSecurityCode(int length, SecurityCodeType type) {
 
         char[] c;
-
-        if (type == SecurityCodeType.CH) {
+        if (SecurityCodeType.CH == type) {
             c = ch;
         } else {
             c = num;
         }
-
         StringBuilder sb = new StringBuilder();
 
         Random random = new Random();
         for (int i = 0; i < length; i++) {
             char st = c[random.nextInt(c.length)];
-
             sb.append(st);
         }
         return sb.toString();

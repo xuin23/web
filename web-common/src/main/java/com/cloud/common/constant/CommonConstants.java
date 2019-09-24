@@ -1,7 +1,7 @@
 package com.cloud.common.constant;
 
 /**
- * 公共产量
+ * 公共常量
  */
 public interface CommonConstants {
 

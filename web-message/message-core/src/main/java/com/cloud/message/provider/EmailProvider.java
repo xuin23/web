@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-    @RequestMapping("/cloud/email")
+@RequestMapping("/cloud/email")
 public class EmailProvider {
 
     /**
@@ -29,7 +29,11 @@ public class EmailProvider {
      */
     @PostMapping("/sendEmail")
     public ResultsBean<String> sendEmail(@RequestParam("username") String username) {
-        emailBiz.sendSecurityCode(username);
+        try {
+            emailBiz.sendSecurityCode(username);
+        } catch (Exception e) {
+            log.error("发送邮箱验证码出错", e);
+        }
         return ResultsBean.SUCCESS();
     }
 

@@ -19,13 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/login")
 public class LoginController {
 
-
     /**
      * 用户登录客户端
      */
     @Resource
     private LoginClient loginClient;
-
 
     /**
      * 邮箱客户端
@@ -33,9 +31,9 @@ public class LoginController {
     @Resource
     private EmailClient emailClient;
 
-
     /**
      * 发送验证码
+     *
      * @param username 用户名
      * @return ResultsBean<String>
      */

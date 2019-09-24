@@ -51,15 +51,26 @@ public class EmailBizImpl implements EmailBiz {
     @Override
     public void sendSecurityCode(String email) {
         //初始化邮箱消息
-        EmailBean bean = new EmailBean();
-        bean.setFrom(from);
-        bean.setTo(email);
-        bean.setSubject("邮箱验证码");
-        bean.setText(generateSecurityCode());
+        EmailBean bean = initData(email);
         //发送邮箱
         sendEmail(bean);
         //验证码缓存
         cacheSecurityCode(bean);
+    }
+
+    /**
+     * 初始化邮箱验证码信息
+     *
+     * @param email 邮箱地址
+     * @return EmailBean
+     */
+    private EmailBean initData(String email) {
+        EmailBean bean = new EmailBean();
+        bean.setFrom(from);
+        bean.setTo(email);
+        bean.setSubject("邮箱验证码");
+        bean.setText(SecurityCodeUtil.generateSecurityCode(6));
+        return bean;
     }
 
 
@@ -75,15 +86,6 @@ public class EmailBizImpl implements EmailBiz {
         redisTemplate.opsForValue().set(key, bean.getText());
         //设置过期时间 5 分钟
         redisTemplate.expire(key, 60 * 5, TimeUnit.SECONDS);
-    }
-
-    /**
-     * 生产验证码
-     *
-     * @return 验证码
-     */
-    private String generateSecurityCode() {
-        return SecurityCodeUtil.generateSecurityCode(6);
     }
 
     /**
@@ -106,6 +108,7 @@ public class EmailBizImpl implements EmailBiz {
             log.info("邮箱发送成功:{}", bean);
         } catch (MailException e) {
             log.error("邮件发送失败:{}", e.getMessage());
+            throw new RuntimeException("邮件发送失败", e);
         }
     }
 }

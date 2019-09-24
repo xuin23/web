@@ -1,15 +1,14 @@
 package com.cloud.auth.core.cloud;
 
-import com.cloud.auth.core.biz.AuthRoleBiz;
-import com.cloud.auth.core.biz.AuthUserBiz;
 import com.cloud.auth.core.service.AuthRoleService;
 import com.cloud.auth.entity.AuthRole;
-import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.bean.ResultsBean;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * 角色 provider
@@ -26,10 +25,28 @@ public class AuthRoleProvider {
     private AuthRoleService authRoleService;
 
     /**
-     * 用户 业务
+     * 列表查询角色信息
+     *
+     * @param params 参数
+     * @return ResultsBean
      */
-    @Resource
-    private AuthRoleBiz authRoleBiz;
+    @GetMapping(value = "/findByPageAll")
+    public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
+        PageInfo<Map<String, Object>> page = authRoleService.findByPageAll(params);
+        return ResultsBean.SUCCESS(page);
+    }
+
+    /**
+     * 通过id查询用户信息
+     *
+     * @param id id
+     * @return ResultsBean<AuthUser>
+     */
+    @GetMapping(value = "/findById/{id}")
+    public ResultsBean<AuthRole> findById(@PathVariable("id") Long id) {
+        AuthRole authRole = authRoleService.findById(id);
+        return ResultsBean.SUCCESS(authRole);
+    }
 
     /**
      * 通过id删除角色信息
@@ -52,7 +69,7 @@ public class AuthRoleProvider {
      */
     @PostMapping(value = "/merge")
     public ResultsBean<String> merge(@RequestBody AuthRole authRole) {
-        authRoleBiz.merge(authRole);
+        authRoleService.merge(authRole);
         return ResultsBean.SUCCESS();
     }
 

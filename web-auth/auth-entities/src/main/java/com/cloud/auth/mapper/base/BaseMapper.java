@@ -15,16 +15,16 @@ public interface BaseMapper<T> {
     /**
      * 根据id查询
      *
-     * @param id
-     * @return
+     * @param id id
+     * @return T
      */
     public T findById(Long id);
 
     /**
      * 插入方法
      *
-     * @param t
-     * @return
+     * @param t t
+     * @return int
      */
     public int insert(T t);
 
@@ -32,7 +32,7 @@ public interface BaseMapper<T> {
     /**
      * 根据id删除
      *
-     * @param id
+     * @param id id
      */
     public int deleteById(Long id);
 
@@ -40,8 +40,8 @@ public interface BaseMapper<T> {
     /**
      * 根据id 更新
      *
-     * @param t
-     * @return
+     * @param t t
+     * @return int
      */
     public int updateById(T t);
 
@@ -49,7 +49,7 @@ public interface BaseMapper<T> {
     /**
      * 列表查询
      *
-     * @param params
+     * @param params 参数
      * @return 分页查询结果
      */
     public List<Map<String, Object>> findByPageAll(@Param("params") Map<String, Object> params);
