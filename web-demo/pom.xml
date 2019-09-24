@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>web-demo</artifactId>
-    <description>各种demo实例</description>
+    <packaging>pom</packaging>
 
     <modules>
         <module>demo-oAuth2</module>

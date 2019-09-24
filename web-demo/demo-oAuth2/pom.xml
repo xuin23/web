@@ -12,6 +12,8 @@
 
     <description>oAuth2权限</description>
     <artifactId>demo-oAuth2</artifactId>
+    <packaging>pom</packaging>
+
 
     <modules>
         <module>oAuth2-server</module>
