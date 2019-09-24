@@ -10,13 +10,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-auth</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>web-demo</artifactId>
+    <description>各种demo实例</description>
 
     <modules>
-        <module>auth-common</module>
-        <module>auth-core</module>
-        <module>auth-entities</module>
+        <module>demo-oAuth2</module>
     </modules>
 
 </project>

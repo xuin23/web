@@ -6,17 +6,15 @@
 
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>web</artifactId>
+        <artifactId>web-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-auth</artifactId>
-    <packaging>pom</packaging>
+    <description>oAuth2权限</description>
+    <artifactId>demo-oAuth2</artifactId>
 
     <modules>
-        <module>auth-common</module>
-        <module>auth-core</module>
-        <module>auth-entities</module>
+        <module>oAuth2-server</module>
     </modules>
 
 </project>

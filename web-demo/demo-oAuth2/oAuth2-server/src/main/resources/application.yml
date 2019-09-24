@@ -5,21 +5,8 @@ server:
 spring:
   application:
     name: @pom.artifactId@
-  #redis 数据源
-  redis:
-    database: 0
-    port: 6379
-    host: localhost
-  #mysql数据源
   datasource:
     url: jdbc:mysql://localhost:3306/WEB?useSSL=false&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-
-logging:
-  level:
-    com:
-      cloud:
-        auth:
-          mapper: debug
