@@ -10,7 +10,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <description>oAuth2权限</description>
     <artifactId>demo-oAuth2</artifactId>
     <packaging>pom</packaging>
 
