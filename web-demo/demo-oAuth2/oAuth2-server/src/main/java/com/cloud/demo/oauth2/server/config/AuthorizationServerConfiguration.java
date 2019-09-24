@@ -89,7 +89,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-        builder.withClient("").secret("");
+        builder.withClient("client").secret("secret")
+                //设置token有效期
+                .accessTokenValiditySeconds(7 * 24 * 3600)
+                //设置refreshToken有效期
+                .refreshTokenValiditySeconds(7 * 24 * 3600)
+                //支持的认证方式
+                .authorizedGrantTypes("refresh_token", "authorization_code", "password").autoApprove(false)
+                //授权域
+                .scopes("app", "write");
 
 
     }
