@@ -1,6 +1,7 @@
 package com.cloud.demo.oauth2.server.service;
 
 import com.cloud.auth.entity.AuthUser;
+import com.cloud.demo.oauth2.server.module.UserDetail;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,8 +34,9 @@ public class UserDetailService implements UserDetailsService {
         if (null == authUser) {
             throw new RuntimeException("当前用户不存在！");
         }
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("auth_"));
-        return new User(authUser.getUsername(), authUser.getPassword(), authorities);
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//        authorities.add(new SimpleGrantedAuthority("auth_"));
+//        return new User(authUser.getUsername(), authUser.getPassword(), authorities);
+        return new UserDetail(authUser.getId(), authUser.getEmail(), authUser.getPassword(), authUser.getEmail());
     }
 }
