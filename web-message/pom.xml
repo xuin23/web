@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>message</artifactId>
+    <artifactId>web-message</artifactId>
     <description>消息</description>
 
     <packaging>pom</packaging>

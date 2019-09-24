@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>auth</artifactId>
+        <artifactId>web-auth</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -63,7 +63,7 @@
         <!--公共包-->
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>web-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--权限公共包-->

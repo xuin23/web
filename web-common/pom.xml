@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common</artifactId>
+    <artifactId>web-common</artifactId>
     <description>公共包</description>
 
     <dependencies>

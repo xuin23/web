@@ -39,19 +39,19 @@
 
     <modules>
         <!--Eureka服务-->
-        <module>eureka</module>
+        <module>web-eureka</module>
         <!--配置服务-->
-        <module>config</module>
+        <module>web-config</module>
         <!--路由服务-->
-        <module>gateway</module>
+        <module>web-gateway</module>
         <!--公共包-->
-        <module>common</module>
+        <module>web-common</module>
         <!--权限操作-->
-        <module>auth</module>
+        <module>web-auth</module>
         <!--操作员服务-->
-        <module>operator</module>
+        <module>web-operator</module>
         <!--消息服务-->
-        <module>message</module>
+        <module>web-message</module>
 
     </modules>
 

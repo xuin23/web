@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>operator</artifactId>
+    <artifactId>web-operator</artifactId>
 
     <dependencies>
         <dependency>
@@ -35,7 +35,7 @@
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>web-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
