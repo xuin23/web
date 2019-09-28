@@ -15,6 +15,7 @@
 
     <modules>
         <module>demo-oAuth2</module>
+        <module>demo-jpa</module>
     </modules>
 
 </project>
