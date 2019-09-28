@@ -29,6 +29,7 @@ public class AuthUserService extends BaseService<AuthUser> {
      * @param username 用户名
      * @return AuthUser
      */
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public AuthUser findByUserName(String username) {
         return authUserMapper.findByUserName(username);
     }
@@ -39,6 +40,7 @@ public class AuthUserService extends BaseService<AuthUser> {
      * @param email 邮箱
      * @return AuthUser
      */
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public AuthUser findByEmail(String email) {
         return authUserMapper.findByEmail(email);
     }

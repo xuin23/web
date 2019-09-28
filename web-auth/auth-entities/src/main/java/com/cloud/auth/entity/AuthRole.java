@@ -2,6 +2,7 @@ package com.cloud.auth.entity;
 
 import com.cloud.common.enums.Status;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import java.util.Date;
  * 角色信息
  */
 @Data
+@ToString
 public class AuthRole {
 
     /**

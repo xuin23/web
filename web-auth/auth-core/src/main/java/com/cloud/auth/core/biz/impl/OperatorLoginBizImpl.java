@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -43,6 +45,7 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
      * @return Authorization
      */
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Authorization login(String username, String password, Boolean isSecurity, String securityCode) {
         log.info("操作员 用户登录：{}", username);
 

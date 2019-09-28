@@ -32,8 +32,6 @@ import java.util.Map;
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-    private static final String DEMO_RESOURCE_ID = "order";
-
     @Resource
     private AuthenticationManager authenticationManager;
 
