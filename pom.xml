@@ -53,7 +53,7 @@
         <!--消息服务-->
         <module>web-message</module>
         <!--demo实例-->
-        <module>web-demo</module>
+<!--        <module>web-demo</module>-->
 
     </modules>
 
