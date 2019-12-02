@@ -1,8 +1,8 @@
-create database web;
-create schema web;
-create table web.AUTH_USER
+create schema  IF NOT EXISTS web;
+-- 用户表
+create table  IF NOT EXISTS web.AUTH_USER
 (
-    ID          bigserial not null,
+    ID          bigserial not null primary key,
     OPTIMISTIC  bigint      default 0,
     USERNAME    varchar(50) default null,
     PASSWORD    varchar(50) default null,
@@ -22,162 +22,171 @@ comment on column web.AUTH_USER.STATUS is '状态';
 comment on column web.AUTH_USER.UPDATE_TIME is '更新日期';
 comment on column web.AUTH_USER.CREATE_TIME is '创建日期';
 create unique index AUTH_USER_ID_uindex on web.AUTH_USER (ID);
-alter table web.AUTH_USER add constraint AUTH_USER_pk primary key (ID);
 
 insert into web.auth_user (username, password, realname, email, status)
 values ('xuin23', 'E10ADC3949BA59ABBE56E057F20F883E', '徐礼健', 'xxxx@xxx.com', 'TRUE');
 
 
+-- 角色表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE
 (
-    ID          bigserial   not null,
-    OPTIMISTIC  int(10) default 0,
-    NAME        VARCHAR(50) NULL,
-    STATUS      varchar(20) NULL,
-    UPDATE_TIME timestamp DEFAULT NOW(),
-    CREATE_TIME timestamp DEFAULT NOW()
+    ID          bigserial not null primary key,
+    OPTIMISTIC  bigint      default 0,
+    NAME        VARCHAR(50) default NULL,
+    STATUS      varchar(20) default NULL,
+    UPDATE_TIME timestamp   DEFAULT NOW(),
+    CREATE_TIME timestamp   DEFAULT NOW()
 );
 comment on table web.AUTH_ROLE is '角色表';
 comment on column web.AUTH_ROLE.ID is '角色ID';
-comment on column web.AUTH_ROLE.OPTIMISTIC;
 comment on column web.AUTH_ROLE.NAME is '角色名';
 comment on column web.AUTH_ROLE.STATUS is '状态';
 comment on column web.AUTH_ROLE.UPDATE_TIME is '更新日期';
 comment on column web.AUTH_ROLE.CREATE_TIME is '创建日期';
 
+-- 用户组表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_GROUP
 (
-    ID          BIGINT AUTO_INCREMENT UNIQUE NOT NULL
-        PRIMARY KEY COMMENT '用户组ID',
-    OPTIMISTIC  int(10) default 0,
-    NAME        VARCHAR(50)                  NULL COMMENT '用户组名',
-    FID         VARCHAR(50)                  NULL COMMENT '父用户组ID',
-    STATUS      varchar(20)                  NULL comment '状态',
-    UPDATE_TIME timestamp DEFAULT NOW() COMMENT '更新日期',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期'
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '用户组表';
+    ID          bigserial not null primary key,
+    OPTIMISTIC  bigint      default 0,
+    NAME        VARCHAR(50) default NULL,
+    FID         VARCHAR(50) default NULL,
+    STATUS      varchar(20) default NULL,
+    UPDATE_TIME timestamp   DEFAULT NOW(),
+    CREATE_TIME timestamp   DEFAULT NOW()
+);
+comment on table web.AUTH_GROUP is '用户组表';
+comment on column web.AUTH_GROUP.ID is '用户组ID';
+comment on column web.AUTH_GROUP.NAME is '用户组名';
+comment on column web.AUTH_GROUP.FID is '父用户组ID';
+comment on column web.AUTH_GROUP.STATUS is '状态';
+comment on column web.AUTH_GROUP.UPDATE_TIME is '更新日期';
+comment on column web.AUTH_GROUP.CREATE_TIME is '创建日期';
 
 
+-- 权限表
 CREATE TABLE IF NOT EXISTS WEB.AUTHORITY
 (
-    ID          BIGINT AUTO_INCREMENT UNIQUE NOT NULL
-        PRIMARY KEY COMMENT '权限ID',
-    OPTIMISTIC  int(10) default 0,
-    NAME        VARCHAR(50)                  NULL COMMENT '权限类型',
-    STATUS      varchar(20)                  NULL comment '状态',
-    UPDATE_TIME timestamp DEFAULT NOW() COMMENT '更新日期',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期'
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '权限表';
+    ID          bigserial not null primary key,
+    OPTIMISTIC  BIGINT      default 0,
+    NAME        VARCHAR(50) default NULL,
+    STATUS      varchar(20) default NULL,
+    UPDATE_TIME timestamp   DEFAULT NOW(),
+    CREATE_TIME timestamp   DEFAULT NOW()
+);
+comment on table web.AUTHORITY is '权限表';
+comment on column web.AUTHORITY.ID is '权限ID';
+comment on column web.AUTHORITY.NAME is '权限类型';
+comment on column web.AUTHORITY.STATUS is '状态';
+comment on column web.AUTHORITY.UPDATE_TIME is '更新日期';
+comment on column web.AUTHORITY.CREATE_TIME is '创建日期';
 
+-- 功能操作
 CREATE TABLE IF NOT EXISTS WEB.AUTH_OPERATION
 (
-    ID          BIGINT AUTO_INCREMENT UNIQUE NOT NULL
-        PRIMARY KEY COMMENT '权限ID',
-    OPTIMISTIC  int(10) default 0,
-    NAME        VARCHAR(50)                  NULL COMMENT '权限类型',
-    STATUS      varchar(20)                  NULL comment '状态',
-    UPDATE_TIME timestamp DEFAULT NOW() COMMENT '更新日期',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期'
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '功能操作';
+    ID          bigserial not null primary key,
+    OPTIMISTIC  BIGINT      default 0,
+    NAME        VARCHAR(50) default null,
+    STATUS      varchar(20) default null,
+    UPDATE_TIME timestamp   DEFAULT NOW(),
+    CREATE_TIME timestamp   DEFAULT NOW()
+);
+comment on table web.AUTH_OPERATION is '功能操作';
+comment on column web.AUTH_OPERATION.ID is '功能ID';
+comment on column web.AUTH_OPERATION.NAME is '功能名称';
+comment on column web.AUTH_OPERATION.STATUS is '状态';
+comment on column web.AUTH_OPERATION.UPDATE_TIME is '更新日期';
+comment on column web.AUTH_OPERATION.CREATE_TIME is '创建日期';
 
+-- 菜单表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_MENU
 (
-    ID          BIGINT AUTO_INCREMENT UNIQUE NOT NULL
-        PRIMARY KEY COMMENT '菜单ID',
-    OPTIMISTIC  int(10) default 0,
-    NAME        VARCHAR(50)                  NULL COMMENT '菜单名',
-    URL         VARCHAR(100)                 NULL COMMENT '地址',
-    PID         BIGINT   DEFAULT 0 COMMENT '父节点ID',
-    STATUS      varchar(20)                  NULL comment '状态',
-    UPDATE_TIME timestamp DEFAULT NOW() COMMENT '更新日期',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期'
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '菜单表';
+    ID          BIGINT not null primary key,
+    OPTIMISTIC  BIGINT       default 0,
+    NAME        VARCHAR(50)  default NULL,
+    URL         VARCHAR(100) default NULL,
+    PID         BIGINT       DEFAULT 0,
+    STATUS      varchar(20)  default NULL,
+    UPDATE_TIME timestamp    DEFAULT NOW(),
+    CREATE_TIME timestamp    DEFAULT NOW()
+);
+comment on table web.AUTH_MENU is '菜单表';
+comment on column web.AUTH_MENU.ID is '菜单ID';
+comment on column web.AUTH_MENU.NAME is '菜单名';
+comment on column web.AUTH_MENU.URL is '地址';
+comment on column web.AUTH_MENU.PID is '父节点ID';
+comment on column web.AUTH_MENU.STATUS is '状态';
+comment on column web.AUTH_MENU.UPDATE_TIME is '更新日期';
+comment on column web.AUTH_MENU.CREATE_TIME is '创建日期';
 
+-- 用户组与用户关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_USER_GROUP
 (
-    USER_ID     BIGINT NOT NULL COMMENT '用户ID',
-    GROUP_ID    BIGINT NOT NULL COMMENT '用户组ID',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT PK_USER_ID_GROUP_ID PRIMARY KEY (USER_ID, GROUP_ID),
-    CONSTRAINT AUTH_USER_GROUP_AUTH_GROUP_GROUP_ID_ID_FK
-        FOREIGN KEY (GROUP_ID) REFERENCES WEB.AUTH_GROUP (ID),
-    CONSTRAINT AUTH_USER_GROUP_AUTH_USER_USER_ID_ID_FK
-        FOREIGN KEY (USER_ID) REFERENCES WEB.AUTH_USER (ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '用户组与用户关联表';
+    USER_ID     BIGINT NOT NULL,
+    GROUP_ID    BIGINT NOT NULL,
+    CREATE_TIME timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_USER_GROUP is '用户组与用户关联表';
+comment on column web.AUTH_USER_GROUP.USER_ID is '用户ID';
+comment on column web.AUTH_USER_GROUP.GROUP_ID is '用户组ID';
+comment on column web.AUTH_USER_GROUP.CREATE_TIME is '创建日期';
 
-
-
+-- 用户组与角色关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE_GROUP
 (
-    ROLE_ID     BIGINT NOT NULL COMMENT '角色ID',
-    GROUP_ID    BIGINT NOT NULL COMMENT '用户组ID',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT AUTH_ROLE_GROUP_AUTH_GROUP_GROUP_ID_ID_FK
-        FOREIGN KEY (GROUP_ID) REFERENCES WEB.AUTH_GROUP (ID),
-    CONSTRAINT AUTH_ROLE_GROUP_AUTH_ROLE_ROLE_ID_ID_FK
-        FOREIGN KEY (ROLE_ID) REFERENCES WEB.AUTH_ROLE (ID),
-    CONSTRAINT PK_ROLE_ID_GROUP_ID PRIMARY KEY (ROLE_ID, GROUP_ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '用户组与角色关联表';
+    ROLE_ID     BIGINT NOT NULL,
+    GROUP_ID    BIGINT NOT NULL,
+    CREATE_TIME timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_ROLE_GROUP is '用户组与角色关联表';
+comment on column web.AUTH_ROLE_GROUP.ROLE_ID is '角色ID';
+comment on column web.AUTH_ROLE_GROUP.GROUP_ID is '用户组ID';
+comment on column web.AUTH_ROLE_GROUP.CREATE_TIME is '创建日期';
 
-
+-- 用户角色关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_USER_ROLE
 (
-    ROLE_ID     BIGINT NOT NULL COMMENT '角色ID',
-    USER_ID     BIGINT NOT NULL COMMENT '用户ID',
-    CREATE_TIME timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT AUTH_ROLE_USER_AUTH_USER_USER_ID_ID_FK
-        FOREIGN KEY (USER_ID) REFERENCES WEB.AUTH_USER (ID),
-    CONSTRAINT AUTH_ROLE_USER_AUTH_ROLE_ROLE_ID_ID_FK
-        FOREIGN KEY (ROLE_ID) REFERENCES WEB.AUTH_ROLE (ID),
-    CONSTRAINT PK_ROLE_ID_USER_ID PRIMARY KEY (ROLE_ID, USER_ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '用户角色关联表';
+    ROLE_ID     BIGINT NOT NULL,
+    USER_ID     BIGINT NOT NULL,
+    CREATE_TIME timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_USER_ROLE is '用户角色关联表';
+comment on column web.AUTH_USER_ROLE.ROLE_ID is '角色ID';
+comment on column web.AUTH_USER_ROLE.USER_ID is '用户ID';
+comment on column web.AUTH_USER_ROLE.CREATE_TIME is '创建日期';
 
-
-
+-- 角色权限关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE_AUTHORITY
 (
-    ROLE_ID      BIGINT NOT NULL COMMENT '角色ID',
-    AUTHORITY_ID BIGINT NOT NULL COMMENT '权限ID',
-    CREATE_TIME  timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT PK_ROLE_ID_AUTHORITY_ID PRIMARY KEY (ROLE_ID, AUTHORITY_ID),
-    CONSTRAINT AUTH_ROLE_AUTHORITY_AUTHORITY_AUTHORITY_ID_ID_FK
-        FOREIGN KEY (AUTHORITY_ID) REFERENCES WEB.AUTHORITY (ID),
-    CONSTRAINT AUTH_ROLE_AUTHORITY_AUTH_ROLE_ROLE_ID_ID_FK
-        FOREIGN KEY (ROLE_ID) REFERENCES WEB.AUTH_ROLE (ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '角色权限关联表';
+    ROLE_ID      BIGINT NOT NULL,
+    AUTHORITY_ID BIGINT NOT NULL,
+    CREATE_TIME  timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_ROLE_AUTHORITY is '角色权限关联表';
+comment on column web.AUTH_ROLE_AUTHORITY.ROLE_ID is '角色ID';
+comment on column web.AUTH_ROLE_AUTHORITY.AUTHORITY_ID is '权限ID';
+comment on column web.AUTH_ROLE_AUTHORITY.CREATE_TIME is '创建日期';
 
-
+-- 权限操作关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_OPERATION_AUTHORITY
 (
-    OPERATION_ID BIGINT NOT NULL COMMENT '功能ID',
-    AUTHORITY_ID BIGINT NOT NULL COMMENT '权限ID',
-    CREATE_TIME  timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT PK_OPERATION_ID_AUTHORITY_ID PRIMARY KEY (OPERATION_ID, AUTHORITY_ID),
-    CONSTRAINT AUTH_OPERATION_AUTHORITY_AUTHORITY_AUTHORITY_ID_ID_FK
-        FOREIGN KEY (AUTHORITY_ID) REFERENCES WEB.AUTHORITY (ID),
-    CONSTRAINT AUTH_OPERATION_AUTHORITY_AUTH_OPERATION_OPERATION_ID_ID_FK
-        FOREIGN KEY (OPERATION_ID) REFERENCES WEB.AUTH_OPERATION (ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '权限操作关联表';
+    OPERATION_ID BIGINT NOT NULL,
+    AUTHORITY_ID BIGINT NOT NULL,
+    CREATE_TIME  timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_OPERATION_AUTHORITY is '权限操作关联表';
+comment on column web.AUTH_OPERATION_AUTHORITY.OPERATION_ID is '功能ID';
+comment on column web.AUTH_OPERATION_AUTHORITY.AUTHORITY_ID is '权限ID';
+comment on column web.AUTH_OPERATION_AUTHORITY.CREATE_TIME is '创建日期';
 
-
+-- 权限菜单关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_MENU_AUTHORITY
 (
-    AUTHORITY_ID BIGINT NOT NULL COMMENT '权限ID',
-    MENU_ID      BIGINT NOT NULL COMMENT '菜单ID',
-    CREATE_TIME  timestamp DEFAULT NOW() COMMENT '创建日期',
-    CONSTRAINT PK_AUTHORITY_ID_MENU_ID PRIMARY KEY (MENU_ID, AUTHORITY_ID),
-    CONSTRAINT AUTH_MENU_AUTHORITY_AUTHORITY_AUTHORITY_ID_ID_FK
-        FOREIGN KEY (AUTHORITY_ID) REFERENCES WEB.AUTHORITY (ID),
-    CONSTRAINT AUTH_MENU_AUTHORITY_AUTH_MENU_MENU_ID_ID_FK
-        FOREIGN KEY (MENU_ID) REFERENCES WEB.AUTH_MENU (ID)
-) ENGINE = INNODB
-  DEFAULT CHARSET = UTF8 COMMENT '权限菜单关联表';
+    AUTHORITY_ID BIGINT NOT NULL,
+    MENU_ID      BIGINT NOT NULL,
+    CREATE_TIME  timestamp DEFAULT NOW()
+);
+comment on table web.AUTH_MENU_AUTHORITY is '权限菜单关联表';
+comment on column web.AUTH_MENU_AUTHORITY.AUTHORITY_ID is '权限ID';
+comment on column web.AUTH_MENU_AUTHORITY.MENU_ID is '菜单ID';
+comment on column web.AUTH_MENU_AUTHORITY.CREATE_TIME is '创建日期';
