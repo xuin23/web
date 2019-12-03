@@ -32,6 +32,7 @@ public class AuthRoleProvider {
      */
     @GetMapping(value = "/findByPageAll")
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
+        log.info("params:{}", params);
         PageInfo<Map<String, Object>> page = authRoleService.findByPageAll(params);
         return ResultsBean.SUCCESS(page);
     }
@@ -44,6 +45,7 @@ public class AuthRoleProvider {
      */
     @GetMapping(value = "/findById/{id}")
     public ResultsBean<AuthRole> findById(@PathVariable("id") Long id) {
+        log.info("id:{}", id);
         AuthRole authRole = authRoleService.findById(id);
         return ResultsBean.SUCCESS(authRole);
     }
@@ -56,7 +58,7 @@ public class AuthRoleProvider {
      */
     @DeleteMapping(value = "/deleteById/{id}")
     public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
-        log.info("用户信息删除 ID={}", id);
+        log.info("id:{}", id);
         authRoleService.deleteById(id);
         return ResultsBean.SUCCESS();
     }

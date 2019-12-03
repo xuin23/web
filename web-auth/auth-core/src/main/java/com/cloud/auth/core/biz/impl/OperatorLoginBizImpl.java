@@ -1,13 +1,12 @@
 package com.cloud.auth.core.biz.impl;
 
-import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.auth.core.biz.OperatorLoginBiz;
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.bean.Authorization;
+import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.utils.DigestUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;

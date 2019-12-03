@@ -29,12 +29,16 @@
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>13</java.version>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
-        <java.version>13</java.version>
+        <!--分页插件-->
         <pagehelper.version>5.0.3</pagehelper.version>
+        <!--lombok-->
         <lombok.version>1.18.10</lombok.version>
-        <mybatis.generator.verion>1.3.7</mybatis.generator.verion>
+        <!--redisson-->
+        <redisson.verion>3.11.0</redisson.verion>
+        <mybatis.spring.boot.verion>2.1.1</mybatis.spring.boot.verion>
     </properties>
 
     <modules>
@@ -79,6 +83,16 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.verion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.verion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

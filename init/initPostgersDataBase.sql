@@ -21,7 +21,6 @@ comment on column web.AUTH_USER.EMAIL is '邮箱';
 comment on column web.AUTH_USER.STATUS is '状态';
 comment on column web.AUTH_USER.UPDATE_TIME is '更新日期';
 comment on column web.AUTH_USER.CREATE_TIME is '创建日期';
-create unique index AUTH_USER_ID_uindex on web.AUTH_USER (ID);
 
 insert into web.auth_user (username, password, realname, email, status)
 values ('xuin23', 'E10ADC3949BA59ABBE56E057F20F883E', '徐礼健', 'xxxx@xxx.com', 'TRUE');
