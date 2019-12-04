@@ -26,18 +26,22 @@
     </developers>
 
     <properties>
+        <!--spring cloud 版本-->
         <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <java.version>13</java.version>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
         <!--分页插件-->
-        <pagehelper.version>5.0.3</pagehelper.version>
+        <pagehelper.version>5.1.11</pagehelper.version>
         <!--lombok-->
         <lombok.version>1.18.10</lombok.version>
-        <!--redisson-->
-        <redisson.verion>3.11.0</redisson.verion>
+        <!--redisson 版本-->
+        <redisson.verion>3.11.6</redisson.verion>
+        <!--springboot mybatis-->
         <mybatis.spring.boot.verion>2.1.1</mybatis.spring.boot.verion>
     </properties>
 
@@ -57,8 +61,7 @@
         <!--消息服务-->
         <module>web-message</module>
         <!--demo实例-->
-<!--        <module>web-demo</module>-->
-
+        <module>web-demo</module>
     </modules>
 
     <dependencyManagement>
