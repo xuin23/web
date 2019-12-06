@@ -23,14 +23,13 @@ public class ResultsBean<T> implements Serializable {
     private T object; // 返回对象
 
     //默认构造函数必须有 否则Feign调用返回结果时会报错
-    public ResultsBean() {
-    }
+    public ResultsBean() { }
 
     /**
      * 状态码 实体类
      *
-     * @param code
-     * @param object
+     * @param code   状态码
+     * @param object 实体类
      */
     public ResultsBean(int code, T object) {
         super();
@@ -41,13 +40,6 @@ public class ResultsBean<T> implements Serializable {
     public ResultsBean(int code, String message) {
         super();
         this.code = code;
-        this.message = message;
-    }
-
-    public ResultsBean(int code, String failCode, String message) {
-        super();
-        this.code = code;
-        this.failCode = failCode;
         this.message = message;
     }
 
@@ -64,18 +56,9 @@ public class ResultsBean<T> implements Serializable {
         return SUCCESS(null);
     }
 
-    public static <T> ResultsBean<T> EXCEPTION(String message) {
-        return new ResultsBean<T>(RESULT_CODE_SYSTEM_ERR, message);
-    }
-
     public static <T> ResultsBean<T> FAIL(String message) {
         return new ResultsBean<T>(RESULT_CODE_SERVICE_ERR, message);
     }
-
-    public static <T> ResultsBean<T> FAIL(String failCode, String message) {
-        return new ResultsBean<T>(RESULT_CODE_SERVICE_ERR, failCode, message);
-    }
-
 
     public int getCode() {
         return code;
