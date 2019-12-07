@@ -1,6 +1,3 @@
-### 基于SpringCloud 的权限管理
-### 开发中，敬请期待
-##### 涉及内容
 ###### 后端（开发中）
 * RBAC(ROLE-BASED ACCESS CONTROL) 权限模型实现
 * SpringCloud Feign
@@ -9,7 +6,7 @@
 * SpringCloud GateWay
 * Redis
 * ~~RabbitMq~~
-* MySQL
+* Postgres
 * Mybatis
 * SpringBoot
 * docker
@@ -30,19 +27,16 @@
 * gateway（路由）
 
 #### 运行步骤 
-* 安装MySQL 5.7
-* 执行/init/initDataBase.sql文件初始化数据库
+* 安装Postgres 12
+* 执行/init/initPostgersDataBase.sql文件初始化数据库
+* 执行/init/initdata.sql初始化数据
 * 安装启动Redis
-* 安装启动RabbitMq
+* ~~安装启动RabbitMq~~
 * 启动eureka服务
 * 启动gateway服务
 * 启动auth-core服务
 * 启动operator服务
-* message-core服务
-
-#### 清除数据
-
-* 执行/init/dropDataBase.sql清除本项目创建的数据
+* 启动message-core服务
 
 #### 已实现功能
 
