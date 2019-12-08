@@ -11,6 +11,18 @@ spring:
     database: 0
     port: 6379
     host: localhost
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        retry:
+          enabled: true
   mail:
     host: smtp.qq.com
     username: 1486204732@qq.com #邮箱

@@ -1,7 +1,7 @@
 package com.cloud.message.provider;
 
 import com.cloud.common.bean.ResultsBean;
-import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.biz.IEmailBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class EmailProvider {
      * 邮箱业务
      */
     @Resource
-    private EmailBiz emailBiz;
+    private IEmailBiz emailBiz;
 
     /**
      * 发用邮箱验证码
@@ -32,7 +32,7 @@ public class EmailProvider {
         try {
             emailBiz.sendSecurityCode(username);
         } catch (Exception e) {
-            log.error("发送邮箱验证码出错", e);
+            log.error("发送邮箱验证码出错,{}", e.getMessage(), e);
         }
         return ResultsBean.SUCCESS();
     }

@@ -7,6 +7,11 @@ spring:
     name: @pom.artifactId@
   main:
     allow-bean-definition-overriding: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 feign:
   client:

@@ -1,23 +1,23 @@
-###### 后端（开发中）
+###### 后端
 * RBAC(ROLE-BASED ACCESS CONTROL) 权限模型实现
 * SpringCloud Feign
 * SpringCloud Eureka
 * ~~SpringCloud Oauth2~~
-* SpringCloud GateWay
+* ~~SpringCloud GateWay~~
 * Redis
-* ~~RabbitMq~~
+* RabbitMq
+* RabbitMq
 * Postgres
 * Mybatis
 * SpringBoot
-* docker
-###### 前端(开发中)
+* ~~docker~~
+###### 前端
 * vue
 * Vue Router
 * ElementUi
 * axios
 
-
-##### 主要模块
+###### 主要模块
 * ~~config（统一配置）~~
 * eureka（注册中心）
 * common（公共包）
@@ -26,19 +26,19 @@
 * operator（操作服务）
 * gateway（路由）
 
-#### 运行步骤 
+###### 运行步骤 
 * 安装Postgres 12
 * 执行/init/initPostgersDataBase.sql文件初始化数据库
 * 执行/init/initdata.sql初始化数据
 * 安装启动Redis
-* ~~安装启动RabbitMq~~
+* 安装启动RabbitMq
 * 启动eureka服务
 * 启动gateway服务
 * 启动auth-core服务
 * 启动operator服务
 * 启动message-core服务
 
-#### 已实现功能
+###### 已实现功能
 
 * 用户表 增删改查
 * 发送邮箱验证码

@@ -2,7 +2,7 @@ package com.cloud.message.biz.impl;
 
 import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.utils.SecurityCodeUtil;
-import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.biz.IEmailBiz;
 import com.cloud.message.common.bean.EmailBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class EmailBizImpl implements EmailBiz {
+public class EmailBizImpl implements IEmailBiz {
 
     /**
      * 邮箱发送人
@@ -105,10 +105,10 @@ public class EmailBizImpl implements EmailBiz {
         message.setText(bean.getText());
         try {
             javaMailSender.send(message);
-            log.info("邮箱发送成功:{}", bean);
+            log.info("email send success:{}", bean);
         } catch (MailException e) {
-            log.error("邮件发送失败:{}", e.getMessage());
-            throw new RuntimeException("邮件发送失败", e);
+            log.error("email send fault:{}", e.getMessage());
+            throw new RuntimeException("email send fault", e);
         }
     }
 }
