@@ -19,11 +19,11 @@ public class ResultsBean<T> implements Serializable {
 
     private int code; // 返回码
     private String message; // 返回信息
-    private String failCode; // 错误码
     private T object; // 返回对象
 
     //默认构造函数必须有 否则Feign调用返回结果时会报错
-    public ResultsBean() { }
+    public ResultsBean() {
+    }
 
     /**
      * 状态码 实体类
@@ -74,14 +74,6 @@ public class ResultsBean<T> implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getFailCode() {
-        return failCode;
-    }
-
-    public void setFailCode(String failCode) {
-        this.failCode = failCode;
     }
 
     public T getObject() {
