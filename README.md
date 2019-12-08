@@ -3,7 +3,7 @@
 * SpringCloud Feign
 * SpringCloud Eureka
 * ~~SpringCloud Oauth2~~
-* ~~SpringCloud GateWay~~
+* SpringCloud GateWay
 * Redis
 * RabbitMq
 * RabbitMq
