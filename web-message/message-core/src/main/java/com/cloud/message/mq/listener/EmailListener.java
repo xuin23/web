@@ -1,7 +1,7 @@
 package com.cloud.message.mq.listener;
 
 import com.cloud.common.constant.MqConstants;
-import com.cloud.message.biz.IEmailBiz;
+import com.cloud.message.biz.EmailBiz;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -22,7 +22,7 @@ public class EmailListener {
      * email 业务
      */
     @Resource
-    private IEmailBiz emailBiz;
+    private EmailBiz emailBiz;
 
 
     /**

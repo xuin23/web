@@ -3,7 +3,7 @@ package com.cloud.message.biz;
 /**
  * email 业务
  */
-public interface IEmailBiz {
+public interface EmailBiz {
 
     /**
      * 发送邮箱验证码

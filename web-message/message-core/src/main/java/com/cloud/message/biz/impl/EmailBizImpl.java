@@ -2,7 +2,7 @@ package com.cloud.message.biz.impl;
 
 import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.utils.SecurityCodeUtil;
-import com.cloud.message.biz.IEmailBiz;
+import com.cloud.message.biz.EmailBiz;
 import com.cloud.message.common.bean.EmailBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class EmailBizImpl implements IEmailBiz {
+public class EmailBizImpl implements EmailBiz {
 
     /**
      * 邮箱发送人

@@ -1,7 +1,7 @@
 package com.cloud.message.provider;
 
 import com.cloud.common.bean.ResultsBean;
-import com.cloud.message.biz.IEmailBiz;
+import com.cloud.message.biz.EmailBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class EmailProvider {
      * 邮箱业务
      */
     @Resource
-    private IEmailBiz emailBiz;
+    private EmailBiz emailBiz;
 
     /**
      * 发用邮箱验证码
