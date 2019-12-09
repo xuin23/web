@@ -43,9 +43,9 @@ public class AuthUserProvider {
      * @param authUser 用户信息
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/merge")
-    public ResultsBean<String> merge(@RequestBody AuthUser authUser) {
-        authUserService.merge(authUser);
+    @PostMapping(value = "/save")
+    public ResultsBean<String> save(@RequestBody AuthUser authUser) {
+        authUserService.save(authUser);
         return ResultsBean.SUCCESS();
     }
 

@@ -1,6 +1,6 @@
 package com.cloud.auth.core.service;
 
-import com.cloud.auth.core.service.base.BaseService;
+import com.cloud.common.base.BaseService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.mapper.AuthUserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +52,7 @@ public class AuthUserService extends BaseService<AuthUser> {
      * @param authUser 用户信息
      */
     @Transactional(propagation = Propagation.REQUIRED)
-    public void merge(AuthUser authUser) {
+    public void save(AuthUser authUser) {
         if (null != authUser.getId()) {
             log.info("用户信息更新{}", authUser);
             modifyById(authUser, authUser.getId());

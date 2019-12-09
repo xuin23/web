@@ -1,7 +1,7 @@
 package com.cloud.auth.mapper;
 
 import com.cloud.auth.entity.AuthRole;
-import com.cloud.auth.mapper.base.BaseMapper;
+import com.cloud.common.base.BaseMapper;
 
 /**
  * 角色 mapper

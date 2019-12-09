@@ -1,4 +1,4 @@
-package com.cloud.auth.mapper.base;
+package com.cloud.common.base;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +18,7 @@ public interface BaseMapper<T> {
      * @param id id
      * @return T
      */
-    public T findById(Long id);
+    T findById(Long id);
 
     /**
      * 插入方法
@@ -26,7 +26,7 @@ public interface BaseMapper<T> {
      * @param t t
      * @return int
      */
-    public int insert(T t);
+    int insert(T t);
 
 
     /**
@@ -34,7 +34,7 @@ public interface BaseMapper<T> {
      *
      * @param id id
      */
-    public int deleteById(Long id);
+    int deleteById(Long id);
 
 
     /**
@@ -43,7 +43,7 @@ public interface BaseMapper<T> {
      * @param t t
      * @return int
      */
-    public int updateById(T t);
+    int updateById(T t);
 
 
     /**
@@ -52,5 +52,5 @@ public interface BaseMapper<T> {
      * @param params 参数
      * @return 分页查询结果
      */
-    public List<Map<String, Object>> findByPageAll(@Param("params") Map<String, Object> params);
+    List<Map<String, Object>> findByPageAll(@Param("params") Map<String, Object> params);
 }

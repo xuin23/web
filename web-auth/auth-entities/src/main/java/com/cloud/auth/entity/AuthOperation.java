@@ -1,20 +1,21 @@
-package com.cloud.auth.common.bean;
+package com.cloud.auth.entity;
 
-import lombok.Data;
 import com.cloud.common.enums.Status;
-
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 角色bean
+ * 功能操作
+ *
+ * @author xulijian
  */
 @Data
-public class AuthRoleBean implements Serializable {
+public class AuthOperation implements Serializable {
 
     /**
-     * 角色id
+     * 功能id
      */
     private Long id;
 
@@ -24,7 +25,7 @@ public class AuthRoleBean implements Serializable {
     private Long optimistic;
 
     /**
-     * 角色名
+     * 功能名
      */
     private String name;
 

@@ -69,9 +69,9 @@ public class AuthRoleProvider {
      * @param authRole 角色信息
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/merge")
-    public ResultsBean<String> merge(@RequestBody AuthRole authRole) {
-        authRoleService.merge(authRole);
+    @PostMapping(value = "/save")
+    public ResultsBean<String> save(@RequestBody AuthRole authRole) {
+        authRoleService.save(authRole);
         return ResultsBean.SUCCESS();
     }
 

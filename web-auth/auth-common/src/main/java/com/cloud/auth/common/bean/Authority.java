@@ -7,13 +7,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户bean
+ * 权限
+ *
+ * @author xulijian
  */
 @Data
-public class AuthUserBean implements Serializable {
+public class Authority implements Serializable {
 
     /**
-     * 用户ID
+     * 权限id
      */
     private Long id;
 
@@ -23,24 +25,9 @@ public class AuthUserBean implements Serializable {
     private Long optimistic;
 
     /**
-     * 角色名
+     * 权限名
      */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 真实姓名
-     */
-    private String realname;
-
-    /**
-     * 邮箱
-     */
-    private String email;
+    private String name;
 
     /**
      * 状态

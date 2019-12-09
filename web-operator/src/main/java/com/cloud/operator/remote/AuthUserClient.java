@@ -1,6 +1,6 @@
 package com.cloud.operator.remote;
 
-import com.cloud.auth.common.bean.AuthUserBean;
+import com.cloud.auth.common.bean.AuthUser;
 import com.cloud.common.bean.ResultsBean;
 import com.cloud.common.constant.FeignClientConstants;
 import com.cloud.operator.config.HostFallBackFactory;
@@ -32,7 +32,7 @@ public interface AuthUserClient {
      * @return ResultsBean<AuthUserBean>
      */
     @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/authUser/findById/{id}", method = RequestMethod.GET)
-    ResultsBean<AuthUserBean> findById(@PathVariable("id") Long id);
+    ResultsBean<AuthUser> findById(@PathVariable("id") Long id);
 
     /**
      * 根据姓名查询用户信息
@@ -41,7 +41,7 @@ public interface AuthUserClient {
      * @return ResultsBean<AuthUserBean>
      */
     @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/authUser/findByUserName", method = RequestMethod.GET)
-    ResultsBean<AuthUserBean> findByUserName(@RequestParam("username") String username);
+    ResultsBean<AuthUser> findByUserName(@RequestParam("username") String username);
 
     /**
      * 删除用户信息
@@ -50,7 +50,7 @@ public interface AuthUserClient {
      * @return ResultsBean<String>
      */
     @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/authUser/deleteById/{id}", method = RequestMethod.DELETE)
-    public ResultsBean<String> deleteById(@PathVariable("id") Long id);
+    ResultsBean<String> deleteById(@PathVariable("id") Long id);
 
     /**
      * 创建或更新用户信息
@@ -58,7 +58,7 @@ public interface AuthUserClient {
      * @param authUser 用户信息
      * @return ResultsBean<String>
      */
-    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/authUser/merge", method = RequestMethod.POST)
-    public ResultsBean<String> createOrUpdate(@RequestBody AuthUserBean authUser);
+    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/authUser/save", method = RequestMethod.POST)
+    ResultsBean<String> createOrUpdate(@RequestBody AuthUser authUser);
 
 }

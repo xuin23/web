@@ -1,6 +1,5 @@
-package com.cloud.auth.core.service.base;
+package com.cloud.common.base;
 
-import com.cloud.auth.mapper.base.BaseMapper;
 import com.cloud.common.constant.CommonConstants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -14,13 +13,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 公共 service 接口
+ * 公共 service 抽象类（对应数据库表格）
  *
  * @param <T>
  */
 @Slf4j
 @Component
-public class BaseService<T> {
+public abstract class BaseService<T> implements IService<T> {
 
     //@Resource
     // 使用Resoure会出错，执行MyBatis时会找baseMapper.xml下的Sql
@@ -32,6 +31,7 @@ public class BaseService<T> {
      *
      * @param t t
      */
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public void create(T t) {
         baseMapper.insert(t);
@@ -42,12 +42,12 @@ public class BaseService<T> {
      *
      * @param t  t
      * @param id id
-     * @return int
      */
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public int modifyById(T t, Long id) {
         int i = 0;
-        if (id != null) {
+        if (null != id) {
             i = baseMapper.updateById(t);
         }
         return i;
@@ -59,6 +59,7 @@ public class BaseService<T> {
      * @param id id
      * @return int
      */
+    @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public int deleteById(Long id) {
         int i = 0;
@@ -75,6 +76,7 @@ public class BaseService<T> {
      * @param id id
      * @return int
      */
+    @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public T findById(Long id) {
         if (id == null) {
