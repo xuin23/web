@@ -13,9 +13,9 @@ spring:
           lower-case-service-id: true
       routes:
         - id: operator
-          uri: lb://operator
+          uri: lb://web-operator
           predicates:
-            - Path=/operator/**
+            - Path=/web-operator/**
 #          filters:
 #            - StripPrefix=1
 
