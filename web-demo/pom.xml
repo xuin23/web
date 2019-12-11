@@ -15,7 +15,6 @@
 
     <modules>
         <module>demo-jpa</module>
-        <module>demo-postgre</module>
     </modules>
 
 </project>
