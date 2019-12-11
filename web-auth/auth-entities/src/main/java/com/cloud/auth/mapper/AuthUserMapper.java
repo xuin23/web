@@ -5,6 +5,8 @@ import com.cloud.common.base.BaseMapper;
 
 /**
  * 用户 mapper
+ *
+ * @author xulijian
  */
 public interface AuthUserMapper extends BaseMapper<AuthUser> {
 
