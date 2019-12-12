@@ -5,7 +5,6 @@
         <id column="ID" jdbcType="BIGINT" property="id"/>
         <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
         <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
-        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
         <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
         <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
         <result column="STATUS" jdbcType="VARCHAR" property="status"/>
@@ -14,7 +13,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, OPTIMISTIC, USERNAME, PASSWORD, REALNAME, EMAIL, STATUS,  UPDATE_TIME, CREATE_TIME
+        ID, OPTIMISTIC, USERNAME, REALNAME, EMAIL, STATUS,  UPDATE_TIME, CREATE_TIME
     </sql>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -45,9 +44,6 @@
             <if test="username != null">
                 USERNAME = #{username,jdbcType=VARCHAR},
             </if>
-            <if test="password != null">
-                PASSWORD = #{password,jdbcType=VARCHAR},
-            </if>
             <if test="realname != null">
                 REALNAME = #{realname,jdbcType=VARCHAR},
             </if>
@@ -67,22 +63,16 @@
         from WEB.AUTH_USER
         <where>
             <if test=" params.username != null and  params.username != ''">
-                USERNAME = #{ params.username,jdbcType=VARCHAR}
-            </if>
-            <if test=" params.password != null and  params.password != ''">
-                PASSWORD = #{ params.password,jdbcType=VARCHAR}
+                USERNAME = #{params.username,jdbcType=VARCHAR}
             </if>
             <if test=" params.realname != null and  params.realname != ''">
-                REALNAME = #{ params.realname,jdbcType=VARCHAR}
+                REALNAME = #{params.realname,jdbcType=VARCHAR}
             </if>
             <if test=" params.email != null and  params.email != ''">
-                EMAIL = #{ params.email,jdbcType=VARCHAR}
+                EMAIL = #{params.email,jdbcType=VARCHAR}
             </if>
             <if test=" params.status != null and  params.status != ''">
-                STATUS = #{ params.status,jdbcType=VARCHAR}
-            </if>
-            <if test=" params.createTime != null and  params.createTime != ''">
-                CREATE_TIME = #{ params.createTime,jdbcType=TIMESTAMP}
+                STATUS = #{params.status,jdbcType=VARCHAR}
             </if>
         </where>
     </select>

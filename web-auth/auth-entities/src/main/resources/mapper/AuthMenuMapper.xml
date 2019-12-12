@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.auth.mapper.AuthUserMapper">
+    <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthMenu">
+        <id column="ID" jdbcType="BIGINT" property="id"/>
+        <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="URL" jdbcType="VARCHAR" property="url"/>
+        <result column="PID" jdbcType="BIGINT" property="pid"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID, OPTIMISTIC, NAME, URL, PID, STATUS,  UPDATE_TIME, CREATE_TIME
+    </sql>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WEB.AUTH_MENU
+        where ID = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete
+        from WEB.AUTH_MENU
+        where ID = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthMenu"
+            useGeneratedKeys="true">
+        insert into WEB.AUTH_MENU (NAME, URL, PID, STATUS)
+        values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{PID,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateById" parameterType="com.cloud.auth.entity.AuthMenu">
+        update WEB.AUTH_MENU
+        <set>
+            UPDATE_TIME = now(),
+            OPTIMISTIC = OPTIMISTIC+1,
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                URL = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null">
+                PID = #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from WEB.AUTH_MENU
+        <where>
+            <if test=" params.name != null and  params.name != ''">
+                NAME = #{params.name,jdbcType=VARCHAR}
+            </if>
+            <if test=" params.url != null and  params.url != ''">
+                URL = #{params.url,jdbcType=VARCHAR}
+            </if>
+            <if test=" params.pid != null and  params.pid != ''">
+                PID = #{params.pid,jdbcType=VARCHAR}
+            </if>
+            <if test=" params.status != null and  params.status != ''">
+                STATUS = #{params.status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>
