@@ -11,8 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.cloud"})
 @EnableFeignClients(basePackages = {"com.cloud.message.remote"})
-public class MessageApp {
+public class App {
     public static void main(String[] args) {
-        SpringApplication.run(MessageApp.class, args);
+        SpringApplication.run(App.class, args);
     }
 }
