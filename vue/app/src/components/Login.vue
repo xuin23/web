@@ -55,9 +55,7 @@ export default {
       data.append('password', this.form.password)
       data.append('securityCode', this.form.securityCode)
       this.$http.post('/operator/login/operatorLogin', data).then((response) => {
-        console.log(response)
         let res = response.data
-        console.log(res)
         if (res.code === 200) {
           this.msg = res.object
           this.centerDialogVisible = true
@@ -66,7 +64,7 @@ export default {
           this.centerDialogVisible = true
         }
       }).catch((error) => {
-        console.log(error)
+        this.msg = error
       })
     },
     getSecurityCode () {
@@ -75,7 +73,6 @@ export default {
       data.append('username', this.form.username)
       this.$http.post('/operator/login/loginSecurityCode', data).then((response) => {
         let res = response.data
-        console.log(res)
         let _this = this
         if (res.code === 200) {
           setTimeout(function () {
@@ -83,7 +80,7 @@ export default {
           }, 1000 * 6)
         }
       }).catch((error) => {
-        console.log(error)
+        this.msg = error
       })
     }
   }
