@@ -11,6 +11,7 @@ spring:
     database: 0
     port: 6379
     host: localhost
+  #rabbitmq 配置
   rabbitmq:
     host: localhost
     port: 5672
