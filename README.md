@@ -6,7 +6,6 @@
 * SpringCloud GateWay
 * Redis
 * RabbitMq
-* RabbitMq
 * Postgres
 * Mybatis
 * SpringBoot
@@ -19,8 +18,8 @@
 
 ###### 主要模块
 * ~~config（统一配置）~~
-* eureka（注册中心）
 * common（公共包）
+* eureka（注册中心）
 * auth（权限服务）
 * message（消息服务）
 * operator（操作服务）
