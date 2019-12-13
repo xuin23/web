@@ -10,7 +10,7 @@ public enum YesNo {
 
     private String value;
 
-    private YesNo(String value) {
+    YesNo(String value) {
         this.value = value;
     }
 
