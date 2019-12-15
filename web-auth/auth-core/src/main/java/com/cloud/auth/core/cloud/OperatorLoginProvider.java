@@ -32,7 +32,7 @@ public class OperatorLoginProvider {
      * @param password     密码
      * @param isSecurity   是否使用验证码
      * @param securityCode 验证码
-     * @return
+     * @return ResultsBean<Authorization>
      */
     @PostMapping(value = "/login")
     public ResultsBean<Authorization> login(@RequestParam(value = "username") String username,

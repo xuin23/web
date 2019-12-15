@@ -45,21 +45,4 @@ public class AuthUserService extends BaseService<AuthUser> {
         return authUserMapper.findByEmail(email);
     }
 
-
-    /**
-     * 修改或添加用户信息
-     *
-     * @param authUser 用户信息
-     */
-    @Transactional(propagation = Propagation.REQUIRED)
-    public void save(AuthUser authUser) {
-        if (null != authUser.getId()) {
-            log.info("用户信息更新{}", authUser);
-            modifyById(authUser, authUser.getId());
-        } else {
-            log.info("新建用户 {}", authUser);
-            create(authUser);
-        }
-    }
-
 }

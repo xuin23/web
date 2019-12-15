@@ -71,7 +71,13 @@ public class AuthRoleProvider {
      */
     @PostMapping(value = "/save")
     public ResultsBean<String> save(@RequestBody AuthRole authRole) {
-        authRoleService.save(authRole);
+        if (null != authRole.getId()) {
+            log.info("用户信息更新{}", authRole);
+            authRoleService.modifyById(authRole, authRole.getId());
+        } else {
+            log.info("新建用户 {}", authRole);
+            authRoleService.create(authRole);
+        }
         return ResultsBean.SUCCESS();
     }
 

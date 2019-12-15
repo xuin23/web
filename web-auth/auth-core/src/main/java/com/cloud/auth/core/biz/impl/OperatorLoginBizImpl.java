@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * 操作员登录 业务
@@ -52,11 +53,7 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         securityCodeCheck(username, isSecurity, securityCode);
 
         AuthUser authUser = authUserService.findByEmail(username);
-        if (null == authUser) {
-            throw new RuntimeException("用户名或密码错误");
-        }
-        //密码MD5加密验证是否正确
-        if (!DigestUtil.encodeByMd5(password).equals(authUser.getPassword())) {
+        if (null == authUser || !Objects.equals(DigestUtil.encodeByMd5(password), authUser.getPassword())) {
             throw new RuntimeException("用户名或密码错误");
         }
         Authorization auth = new Authorization();

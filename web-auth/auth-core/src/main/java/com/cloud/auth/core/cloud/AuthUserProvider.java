@@ -45,7 +45,13 @@ public class AuthUserProvider {
      */
     @PostMapping(value = "/save")
     public ResultsBean<String> save(@RequestBody AuthUser authUser) {
-        authUserService.save(authUser);
+        if (null != authUser.getId()) {
+            log.info("用户信息更新{}", authUser);
+            authUserService.modifyById(authUser, authUser.getId());
+        } else {
+            log.info("新建用户 {}", authUser);
+            authUserService.create(authUser);
+        }
         return ResultsBean.SUCCESS();
     }
 
@@ -96,6 +102,5 @@ public class AuthUserProvider {
         AuthUser authUser = authUserService.findByEmail(email);
         return ResultsBean.SUCCESS(authUser);
     }
-
 
 }
