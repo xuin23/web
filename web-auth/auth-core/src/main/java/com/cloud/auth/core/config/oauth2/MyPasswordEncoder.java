@@ -1,4 +1,4 @@
-package com.cloud.auth.core.config;
+package com.cloud.auth.core.config.oauth2;
 
 import com.cloud.common.utils.DigestUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;

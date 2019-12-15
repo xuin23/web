@@ -60,6 +60,10 @@ public class ResultsBean<T> implements Serializable {
         return new ResultsBean<T>(RESULT_CODE_SERVICE_ERR, message);
     }
 
+    public static <T> ResultsBean<T> FAIL(int code,String message) {
+        return new ResultsBean<T>(code, message);
+    }
+
     public int getCode() {
         return code;
     }

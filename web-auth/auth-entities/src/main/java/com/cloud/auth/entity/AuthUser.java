@@ -5,14 +5,21 @@ import java.util.Date;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * 用户信息
  */
 @Data
+@Entity(name = "auth_user")
 public class AuthUser {
     /**
      * 用户ID
      */
+    @Id
+    @GeneratedValue
     private Long id;
 
     /**

@@ -24,6 +24,9 @@ public class AuthUserService {
 
 
     public List<AuthUser> findAll() {
+        if (true) {
+            throw new RuntimeException("findAll");
+        }
         return authUserRepository.findAll();
     }
 

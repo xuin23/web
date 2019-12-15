@@ -1,5 +1,6 @@
 package com.cloud.auth.core.service;
 
+import com.cloud.auth.repo.AuthUserRepository;
 import com.cloud.common.base.BaseService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.mapper.AuthUserMapper;
@@ -22,6 +23,9 @@ public class AuthUserService extends BaseService<AuthUser> {
      */
     @Resource
     private AuthUserMapper authUserMapper;
+
+    @Resource
+    private AuthUserRepository authUserRepository;
 
     /**
      * 通过用户名查询用户信息

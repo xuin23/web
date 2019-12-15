@@ -2,6 +2,10 @@ package com.cloud.auth.entity;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,11 +14,14 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
-public class AuthMenuAuthority {
+@Entity(name = "auth_menu_authority")
+public class AuthMenuAuthority implements Serializable {
 
     /**
      * 权限菜单关联id
      */
+    @Id
+    @GeneratedValue
     private Long id;
 
 

@@ -3,6 +3,9 @@ package com.cloud.auth.entity;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,11 +15,14 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
+@Entity(name = "auth_user")
 public class AuthGroup implements Serializable {
 
     /**
      * 用户组id
      */
+    @Id
+    @GeneratedValue
     private Long id;
 
     /**
