@@ -15,7 +15,7 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
-@Entity(name = "auth_user")
+@Entity(name = "auth_group")
 public class AuthGroup implements Serializable {
 
     /**

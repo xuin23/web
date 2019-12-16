@@ -5,6 +5,7 @@
         <id column="ID" jdbcType="BIGINT" property="id"/>
         <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
         <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
         <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
         <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
         <result column="STATUS" jdbcType="VARCHAR" property="status"/>

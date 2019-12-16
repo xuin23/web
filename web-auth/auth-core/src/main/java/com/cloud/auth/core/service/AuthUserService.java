@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 /**
  * 用户 service
@@ -47,6 +48,16 @@ public class AuthUserService extends BaseService<AuthUser> {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public AuthUser findByEmail(String email) {
         return authUserMapper.findByEmail(email);
+    }
+
+
+    @Override
+    public AuthUser findById(Long id) {
+        Optional<AuthUser> authUser = authUserRepository.findById(id);
+        if (authUser.isEmpty()) {
+            return null;
+        }
+        return authUser.get();
     }
 
 }

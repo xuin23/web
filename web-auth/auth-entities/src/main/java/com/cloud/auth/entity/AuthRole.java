@@ -2,7 +2,6 @@ package com.cloud.auth.entity;
 
 import com.cloud.common.enums.Status;
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

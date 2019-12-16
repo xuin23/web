@@ -1,5 +1,4 @@
 package com.cloud.auth.entity;
-
 import lombok.Data;
 
 import javax.persistence.Entity;
