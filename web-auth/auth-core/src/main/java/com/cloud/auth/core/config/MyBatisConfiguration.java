@@ -27,7 +27,8 @@ public class MyBatisConfiguration {
         properties.setProperty("rowBoundsWithCount", "true");
         // 分页参数合理化，默认false禁用。启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页，禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据
         properties.setProperty("reasonable", "true");
-        properties.setProperty("dialect", "postgresql");    //配置mysql数据库的方言
+        //配置mysql数据库的方言
+        properties.setProperty("dialect", "postgresql");
         pageHelper.setProperties(properties);
         return pageHelper;
     }
