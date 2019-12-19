@@ -1,4 +1,4 @@
-package com.cloud.demo.jpa.bean;
+package com.cloud.test.jpa.bean;
 
 import lombok.Data;
 

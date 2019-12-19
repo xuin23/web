@@ -1,7 +1,7 @@
-package com.cloud.demo.jpa.controller;
+package com.cloud.test.jpa.controller;
 
-import com.cloud.demo.jpa.bean.AuthUser;
-import com.cloud.demo.jpa.service.AuthUserService;
+import com.cloud.test.jpa.bean.AuthUser;
+import com.cloud.test.jpa.service.AuthUserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

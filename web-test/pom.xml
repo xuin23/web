@@ -10,7 +10,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-demo</artifactId>
+    <artifactId>web-test</artifactId>
+    <description>测试专用模块，用于新功能的实现，随时删除</description>
     <packaging>pom</packaging>
 
     <modules>
