@@ -1,4 +1,4 @@
-package com.cloud.demo.jpa;
+package com.cloud.test.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

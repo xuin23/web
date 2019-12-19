@@ -1,4 +1,4 @@
-package com.cloud.demo.jpa.config;
+package com.cloud.test.jpa.config;
 
 import com.cloud.common.bean.ResultsBean;
 import com.fasterxml.jackson.core.JsonProcessingException;

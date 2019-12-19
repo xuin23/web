@@ -1,8 +1,8 @@
-package com.cloud.demo.jpa.service;
+package com.cloud.test.jpa.service;
 
 
-import com.cloud.demo.jpa.bean.AuthUser;
-import com.cloud.demo.jpa.dao.AuthUserRepository;
+import com.cloud.test.jpa.bean.AuthUser;
+import com.cloud.test.jpa.dao.AuthUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

@@ -60,8 +60,8 @@
         <module>web-operator</module>
         <!--消息服务-->
         <module>web-message</module>
-        <!--demo实例-->
-        <module>web-demo</module>
+        <!--测试专用模块，用于新功能的实现，随时删除-->
+        <module>web-test</module>
     </modules>
 
     <dependencyManagement>
