@@ -16,6 +16,7 @@
 
     <modules>
         <module>demo-jpa</module>
+        <module>test-config</module>
     </modules>
 
 </project>
