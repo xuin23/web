@@ -11,4 +11,3 @@ spring:
         git:
           uri: https://github.com/xuin23/web
           search-paths: config
-
