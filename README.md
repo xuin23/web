@@ -3,14 +3,12 @@
 * RBAC(ROLE-BASED ACCESS CONTROL) 权限模型实现
 * SpringCloud Feign
 * SpringCloud Eureka
-* ~~SpringCloud Oauth2~~
 * SpringCloud GateWay
 * Redis
 * RabbitMq
 * Postgres
 * Mybatis
 * SpringBoot
-* ~~docker~~
 ###### 前端
 * vue
 * Vue Router
@@ -18,7 +16,6 @@
 * axios
 
 ###### 主要模块
-* ~~config（统一配置）~~
 * common（公共包）
 * eureka（注册中心）
 * auth（权限服务）
