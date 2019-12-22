@@ -10,6 +10,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/**
+ * 公共Controller 包含基础的crud操作
+ *
+ * @param <T> t
+ * @author xulijian
+ */
 @Slf4j
 public abstract class BaseController<T> {
 
@@ -101,6 +107,7 @@ public abstract class BaseController<T> {
             result = method.invoke(o, args);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             log.error("{}", o.getClass(), e);
+            throw new RuntimeException(o.getClass() + "" + e.getMessage());
         }
         return result;
 

@@ -15,7 +15,8 @@ import java.util.Map;
 /**
  * 公共 service 抽象类（对应数据库表格）
  *
- * @param <T>
+ * @param <T> t
+ * @author xulijian
  */
 @Slf4j
 @Component

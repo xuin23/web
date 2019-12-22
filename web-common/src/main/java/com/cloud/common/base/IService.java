@@ -3,7 +3,8 @@ package com.cloud.common.base;
 /**
  * Service接口
  *
- * @param <T>
+ * @param <T> t
+ * @author xulijian
  */
 public interface IService<T> {
 

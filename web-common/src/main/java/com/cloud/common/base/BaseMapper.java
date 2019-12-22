@@ -8,7 +8,8 @@ import java.util.Map;
 /**
  * 公共Mapper
  *
- * @param <T>
+ * @param <T> t
+ * @author xulijian
  */
 public interface BaseMapper<T> {
 
