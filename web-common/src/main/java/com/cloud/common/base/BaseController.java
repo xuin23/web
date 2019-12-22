@@ -60,13 +60,7 @@ public abstract class BaseController<T> {
      */
     @PutMapping(value = "")
     public ResultsBean<String> updateById(@RequestBody T t) {
-        Long id = null;
-        try {
-            Method method = t.getClass().getMethod("getId");
-            id = (Long) method.invoke(t, null);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        Long id = (Long) invokeMethod(t, "getId", (Object) null);
         if (null != id) {
             log.info("{} 更新 {}", t.getClass(), t);
             baseService.modifyById(t, id);
@@ -88,6 +82,28 @@ public abstract class BaseController<T> {
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
         PageInfo<Map<String, Object>> page = baseService.findByPageAll(params);
         return ResultsBean.SUCCESS(page);
+    }
+
+    /**
+     * 反射调用方法
+     *
+     * @param o          反射对象
+     * @param methodName 方法名
+     * @return object
+     */
+    private Object invokeMethod(Object o, String methodName, Object... args) {
+        if (null == o) {
+            throw new RuntimeException("首个参数不能为空！！！");
+        }
+        Object result = null;
+        try {
+            Method method = o.getClass().getMethod(methodName);
+            result = method.invoke(o, args);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            log.error("{}", o.getClass(), e);
+        }
+        return result;
+
     }
 
 }
