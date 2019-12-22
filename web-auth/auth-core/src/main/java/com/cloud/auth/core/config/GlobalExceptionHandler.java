@@ -23,6 +23,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public ResultsBean<Object> defaultErrorHandler(Exception e) {
         log.error("", e);
-        return ResultsBean.SUCCESS(e.getMessage());
+        return ResultsBean.FAIL(e.getMessage());
     }
 }

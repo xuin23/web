@@ -30,7 +30,7 @@ public class AuthUserProvider {
      * @param id id
      * @return ResultsBean<String>
      */
-    @DeleteMapping(value = "/deleteById/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
         log.info("用户信息删除 ID={}", id);
         authUserService.deleteById(id);
@@ -38,20 +38,30 @@ public class AuthUserProvider {
     }
 
     /**
-     * 修改或添加用户信息
+     * 修改用户信息
      *
      * @param authUser 用户信息
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/save")
-    public ResultsBean<String> save(@RequestBody AuthUser authUser) {
+    @PutMapping(value = "")
+    public ResultsBean<String> update(@RequestBody AuthUser authUser) {
         if (null != authUser.getId()) {
             log.info("用户信息更新{}", authUser);
             authUserService.modifyById(authUser, authUser.getId());
-        } else {
-            log.info("新建用户 {}", authUser);
-            authUserService.create(authUser);
         }
+        return ResultsBean.SUCCESS();
+    }
+
+    /**
+     * 添加用户信息
+     *
+     * @param authUser 用户信息
+     * @return ResultsBean<String>
+     */
+    @PostMapping(value = "")
+    public ResultsBean<String> create(@RequestBody AuthUser authUser) {
+        log.info("新建用户 {}", authUser);
+        authUserService.create(authUser);
         return ResultsBean.SUCCESS();
     }
 
@@ -61,7 +71,7 @@ public class AuthUserProvider {
      * @param params 参数
      * @return ResultsBean
      */
-    @GetMapping(value = "/findByPageAll")
+    @GetMapping(value = "")
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
         PageInfo<Map<String, Object>> page = authUserService.findByPageAll(params);
         return ResultsBean.SUCCESS(page);
@@ -73,7 +83,7 @@ public class AuthUserProvider {
      * @param id id
      * @return ResultsBean<AuthUser>
      */
-    @GetMapping(value = "/findById/{id}")
+    @GetMapping(value = "/{id}")
     public ResultsBean<AuthUser> findById(@PathVariable("id") Long id) {
         AuthUser authUser = authUserService.findById(id);
         return ResultsBean.SUCCESS(authUser);

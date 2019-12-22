@@ -1,6 +1,5 @@
 package com.cloud.auth.core.service;
 
-import com.cloud.auth.repo.AuthUserRepository;
 import com.cloud.common.base.BaseService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.mapper.AuthUserMapper;
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Optional;
 
 /**
  * 用户 service
@@ -24,9 +22,6 @@ public class AuthUserService extends BaseService<AuthUser> {
      */
     @Resource
     private AuthUserMapper authUserMapper;
-
-    @Resource
-    private AuthUserRepository authUserRepository;
 
     /**
      * 通过用户名查询用户信息
@@ -48,16 +43,6 @@ public class AuthUserService extends BaseService<AuthUser> {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public AuthUser findByEmail(String email) {
         return authUserMapper.findByEmail(email);
-    }
-
-
-    @Override
-    public AuthUser findById(Long id) {
-        Optional<AuthUser> authUser = authUserRepository.findById(id);
-        if (authUser.isEmpty()) {
-            return null;
-        }
-        return authUser.get();
     }
 
 }

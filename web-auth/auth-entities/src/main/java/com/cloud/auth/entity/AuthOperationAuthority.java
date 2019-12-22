@@ -2,9 +2,6 @@ package com.cloud.auth.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,14 +11,11 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
-@Entity(name = "auth_operation_authority")
 public class AuthOperationAuthority implements Serializable {
 
     /**
      * 权限操作关联id
      */
-    @Id
-    @GeneratedValue
     private Long id;
 
     /**

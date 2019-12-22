@@ -3,23 +3,17 @@ package com.cloud.auth.entity;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * 角色信息
  */
 @Data
-@Entity(name = "auth_role")
 public class AuthRole {
 
     /**
      * 角色id
      */
-    @Id
-    @GeneratedValue
     private Long id;
 
     /**

@@ -30,7 +30,7 @@ public class AuthRoleProvider {
      * @param params 参数
      * @return ResultsBean
      */
-    @GetMapping(value = "/findByPageAll")
+    @GetMapping(value = "")
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
         log.info("params:{}", params);
         PageInfo<Map<String, Object>> page = authRoleService.findByPageAll(params);
@@ -43,7 +43,7 @@ public class AuthRoleProvider {
      * @param id id
      * @return ResultsBean<AuthUser>
      */
-    @GetMapping(value = "/findById/{id}")
+    @GetMapping(value = "/{id}")
     public ResultsBean<AuthRole> findById(@PathVariable("id") Long id) {
         log.info("id:{}", id);
         AuthRole authRole = authRoleService.findById(id);
@@ -56,7 +56,7 @@ public class AuthRoleProvider {
      * @param id id
      * @return ResultsBean<String>
      */
-    @DeleteMapping(value = "/deleteById/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
         log.info("id:{}", id);
         authRoleService.deleteById(id);
@@ -64,20 +64,30 @@ public class AuthRoleProvider {
     }
 
     /**
-     * 修改或添加角色信息
+     * 根据id修改角色信息
      *
      * @param authRole 角色信息
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/save")
-    public ResultsBean<String> save(@RequestBody AuthRole authRole) {
+    @PutMapping(value = "")
+    public ResultsBean<String> updateById(@RequestBody AuthRole authRole) {
         if (null != authRole.getId()) {
             log.info("用户信息更新{}", authRole);
             authRoleService.modifyById(authRole, authRole.getId());
-        } else {
-            log.info("新建用户 {}", authRole);
-            authRoleService.create(authRole);
         }
+        return ResultsBean.SUCCESS();
+    }
+
+    /**
+     * 创建角色信息
+     *
+     * @param authRole 角色信息
+     * @return ResultsBean<String>
+     */
+    @PostMapping(value = "")
+    public ResultsBean<String> create(@RequestBody AuthRole authRole) {
+        log.info("新建用户 {}", authRole);
+        authRoleService.create(authRole);
         return ResultsBean.SUCCESS();
     }
 

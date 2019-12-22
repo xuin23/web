@@ -2,9 +2,6 @@ package com.cloud.auth.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -13,14 +10,11 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
-@Entity(name = "auth_role_group")
 public class AuthRoleGroup {
 
     /**
      * 权限角色关联id
      */
-    @Id
-    @GeneratedValue
     private Long id;
 
     /**
