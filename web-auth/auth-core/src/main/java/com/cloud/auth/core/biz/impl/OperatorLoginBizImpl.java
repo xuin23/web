@@ -67,7 +67,6 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         //设置登录缓存
         redisTemplate.opsForValue().set(CacheKeyConstants.LOGIN_TOKEN_USER_PREFIX + token, auth);
         log.info("App 用户登陆：{}，登陆成功，设置 token：{}", username, token);
-
         return auth;
     }
 
