@@ -3,6 +3,7 @@ package com.cloud.operator.controller;
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
 import com.cloud.common.constant.LoginConstants;
+import com.cloud.operator.mq.EmailProducer;
 import com.cloud.operator.remote.EmailClient;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +26,9 @@ public class LoginController {
     @Resource
     private LoginClient loginClient;
 
-    /**
-     * 邮箱客户端
-     */
+
     @Resource
-    private EmailClient emailClient;
+    private EmailProducer emailProducer;
 
     /**
      * 发送验证码
@@ -43,12 +42,14 @@ public class LoginController {
             throw new RuntimeException("请输入邮箱");
         }
         log.info("获取验证码：{}", username);
-        ResultsBean<String> resultsBean = emailClient.sendEmail(username);
-        if (!resultsBean.success()) {
-            return ResultsBean.FAIL(resultsBean.getMessage());
+        try {
+            emailProducer.sendEmailMessage(username);
+        } catch (Exception e) {
+            log.error("发送验证码错误");
+            return ResultsBean.FAIL(username);
         }
-        log.info("验证码发送完成");
-        return ResultsBean.SUCCESS("验证码发送成功");
+        log.info("验证码发送完成,{}", username);
+        return ResultsBean.SUCCESS("验证码发送成功" + username);
     }
 
     /**
