@@ -4,7 +4,6 @@ import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
 import com.cloud.common.constant.LoginConstants;
 import com.cloud.operator.mq.EmailProducer;
-import com.cloud.operator.remote.EmailClient;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
