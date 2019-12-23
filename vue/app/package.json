@@ -1,5 +1,5 @@
 {
-  "name": "untitled1",
+  "name": "apps",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -21,10 +21,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

@@ -4,5 +4,6 @@
 *.classpath
 *.factoryPath
 *.iml
-*/target
+target
 logs
+dist
