@@ -41,6 +41,7 @@
             <groupId>com.cloud</groupId>
             <artifactId>web-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
