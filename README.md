@@ -1,42 +1,24 @@
 ###### 后端
-* Openjdk13
-* RBAC(ROLE-BASED ACCESS CONTROL) 权限模型实现
-* SpringCloud Feign
-* SpringCloud Eureka
-* SpringCloud GateWay
-* Redis
-* RabbitMq
-* Postgres
-* Mybatis
-* SpringBoot
+名称|版本号
+---|---
+OpenJDK|13
+SpringBoot|2.2.1.RELEASE
+SpringCloud|Hoxton.RELEASE
+Redis|
+Rabbitmq|
 ###### 前端
-* vue
-* Vue Router
-* ElementUi
-* axios
-
+名称|使用
+---|--- 
+框架|vue
+路由|Vue Router
+UI库|ElementUi
+http库|axios
 ###### 主要模块
-* common（公共包）
-* eureka（注册中心）
-* auth（权限服务）
-* message（消息服务）
-* operator（操作服务）
-* gateway（路由）
-
-###### 运行步骤 
-* 安装Postgres 12
-* 执行/init/initPostgersDataBase.sql文件初始化数据库
-* 执行/init/initdata.sql初始化数据
-* 安装启动Redis
-* 安装启动RabbitMq
-* 启动eureka服务
-* 启动gateway服务
-* 启动auth-core服务
-* 启动operator服务
-* 启动message-core服务
-
-###### 已实现功能
-
-* 用户表 增删改查
-* 发送邮箱验证码
-* 邮箱验证码登录
+模块|模块名|作用
+---|--- | ---
+web-common|公共包|公共依赖
+web-eureka|注册中心|注册发现
+web-auth|权限服务|主要业务
+web-message|消息服务|邮箱发送
+web-operator|操作服务|操作入口
+web-gateway|路由|类似nginx功能
