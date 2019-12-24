@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.auth.mapper.AuthUserGroupMapper">
+    <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthUserGroup">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="group_id" jdbcType="BIGINT" property="groupId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_id, group_id, create_time
+    </sql>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from web.auth_user_group
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete
+        from web.auth_user_group
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUserGroup"
+            useGeneratedKeys="true">
+        insert into web.auth_user_group (user_id, group_id)
+        values (#{userId,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT})
+    </insert>
+
+    <update id="updateById" parameterType="com.cloud.auth.entity.AuthUserGroup">
+        update web.auth_user_group
+        <set>
+            <if test="user_id != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="group_id != null">
+                group_id = #{groupId,jdbcType=BIGINT},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from web.auth_user_group
+        <where>
+            <if test=" params.userId != null and  params.userId != ''">
+                user_id = #{params.userId,jdbcType=VARCHAR}
+            </if>
+            <if test=" params.groupId != null and  params.groupId != ''">
+                group_id = #{params.groupId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

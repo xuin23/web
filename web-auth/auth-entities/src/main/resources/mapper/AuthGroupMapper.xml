@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloud.auth.mapper.AuthMenuMapper">
-    <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthMenu">
+<mapper namespace="com.cloud.auth.mapper.AuthGroupMapper">
+    <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthGroup">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="optimistic" jdbcType="BIGINT" property="optimistic"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="pid" jdbcType="BIGINT" property="pid"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
@@ -13,38 +12,35 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, optimistic, name, url, pid, status,  update_time, create_time
+        id, optimistic, name, pid, status,  update_time, create_time
     </sql>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_menu
+        from web.auth_group
         where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from web.auth_menu
+        from web.auth_group
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.auth.entity.AuthMenu"
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthGroup"
             useGeneratedKeys="true">
-        insert into web.auth_menu (name, url, pid, status)
-        values (#{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})
+        insert into web.auth_group (name, pid, status)
+        values (#{name,jdbcType=VARCHAR}, #{pid,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})
     </insert>
 
-    <update id="updateById" parameterType="com.cloud.auth.entity.AuthMenu">
-        update web.auth_menu
+    <update id="updateById" parameterType="com.cloud.auth.entity.AuthGroup">
+        update web.auth_group
         <set>
             update_time = now(),
             optimistic = optimistic+1,
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="url != null">
-                url = #{url,jdbcType=VARCHAR},
             </if>
             <if test="pid != null">
                 pid = #{pid,jdbcType=BIGINT},
@@ -53,19 +49,16 @@
                 status = #{status,jdbcType=VARCHAR},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where ID = #{id,jdbcType=BIGINT}
     </update>
 
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_menu
+        from web.auth_group
         <where>
             <if test=" params.name != null and  params.name != ''">
                 name = #{params.name,jdbcType=VARCHAR}
-            </if>
-            <if test=" params.url != null and  params.url != ''">
-                url = #{params.url,jdbcType=VARCHAR}
             </if>
             <if test=" params.pid != null and  params.pid != ''">
                 pid = #{params.pid,jdbcType=VARCHAR}

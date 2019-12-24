@@ -32,7 +32,7 @@ public class AuthGroup implements Serializable {
     /**
      * 用户组父id
      */
-    private Long fid;
+    private Long pid;
 
     /**
      * 状态

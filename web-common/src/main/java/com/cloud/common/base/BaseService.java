@@ -23,7 +23,7 @@ import java.util.Map;
 public abstract class BaseService<T> implements IService<T> {
 
     //@Resource
-    // 使用Resoure会出错，执行MyBatis时会找baseMapper.xml下的Sql
+    // 使用Resoure会出错，MyBatis会找baseMapper.xml下的Sql
     @Autowired
     private BaseMapper<T> baseMapper;
 

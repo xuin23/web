@@ -2,78 +2,78 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloud.auth.mapper.AuthUserMapper">
     <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthUser">
-        <id column="ID" jdbcType="BIGINT" property="id"/>
-        <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
-        <result column="USERNAME" jdbcType="VARCHAR" property="username"/>
-        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
-        <result column="REALNAME" jdbcType="VARCHAR" property="realname"/>
-        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
-        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
-        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="optimistic" jdbcType="BIGINT" property="optimistic"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, OPTIMISTIC, USERNAME, REALNAME, EMAIL, STATUS,  UPDATE_TIME, CREATE_TIME
+        id, optimistic, username,password, realname, email, status,  update_time, create_time
     </sql>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_USER
-        where ID = #{id,jdbcType=BIGINT}
+        from web.auth_user
+        where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from WEB.AUTH_USER
-        where ID = #{id,jdbcType=BIGINT}
+        from web.auth_user
+        where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUser"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUser"
             useGeneratedKeys="true">
-        insert into WEB.AUTH_USER (USERNAME, PASSWORD, REALNAME, EMAIL, STATUS)
+        insert into web.auth_user (username, password, realname, email, status)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
                 #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
-        update WEB.AUTH_USER
+        update web.auth_user
         <set>
-            UPDATE_TIME = now(),
-            OPTIMISTIC = OPTIMISTIC+1,
+            update_time = now(),
+            optimistic = optimistic+1,
             <if test="username != null">
-                USERNAME = #{username,jdbcType=VARCHAR},
+                username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="realname != null">
-                REALNAME = #{realname,jdbcType=VARCHAR},
+                realname = #{realname,jdbcType=VARCHAR},
             </if>
             <if test="email != null">
-                EMAIL = #{email,jdbcType=VARCHAR},
+                email = #{email,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                STATUS = #{status,jdbcType=VARCHAR},
+                status = #{status,jdbcType=VARCHAR},
             </if>
         </set>
-        where ID = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
     </update>
 
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_USER
+        from web.auth_user
         <where>
             <if test=" params.username != null and  params.username != ''">
-                USERNAME = #{params.username,jdbcType=VARCHAR}
+                username = #{params.username,jdbcType=VARCHAR}
             </if>
             <if test=" params.realname != null and  params.realname != ''">
-                REALNAME = #{params.realname,jdbcType=VARCHAR}
+                realname = #{params.realname,jdbcType=VARCHAR}
             </if>
             <if test=" params.email != null and  params.email != ''">
-                EMAIL = #{params.email,jdbcType=VARCHAR}
+                email = #{params.email,jdbcType=VARCHAR}
             </if>
             <if test=" params.status != null and  params.status != ''">
-                STATUS = #{params.status,jdbcType=VARCHAR}
+                status = #{params.status,jdbcType=VARCHAR}
             </if>
         </where>
     </select>
@@ -81,12 +81,12 @@
     <select id="findByUserName" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_USER where USERNAME= #{username,jdbcType=VARCHAR}
+        from web.auth_user where username= #{username,jdbcType=VARCHAR}
     </select>
 
     <select id="findByEmail" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_USER where EMAIL= #{email,jdbcType=VARCHAR}
+        from web.auth_user where email= #{email,jdbcType=VARCHAR}
     </select>
 </mapper>

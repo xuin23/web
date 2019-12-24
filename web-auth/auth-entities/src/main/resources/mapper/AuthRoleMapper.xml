@@ -3,65 +3,65 @@
 <mapper namespace="com.cloud.auth.mapper.AuthRoleMapper">
 
     <resultMap id="BaseResultMap" type="com.cloud.auth.entity.AuthRole">
-        <id column="ID" jdbcType="BIGINT" property="id"/>
-        <result column="OPTIMISTIC" jdbcType="BIGINT" property="optimistic"/>
-        <result column="NAME" jdbcType="VARCHAR" property="name"/>
-        <result column="STATUS" jdbcType="VARCHAR" property="status"/>
-        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime"/>
-        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="optimistic" jdbcType="BIGINT" property="optimistic"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        ID, OPTIMISTIC, NAME, STATUS,  UPDATE_TIME, CREATE_TIME
+        id, optimistic, name, status,  update_time, create_time
     </sql>
 
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_ROLE
-        where ID = #{id,jdbcType=BIGINT}
+        from web.auth_role
+        where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from WEB.AUTH_ROLE
-        where ID = #{id,jdbcType=BIGINT}
+        from web.auth_role
+        where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthRole"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.auth.entity.AuthRole"
             useGeneratedKeys="true">
-        insert into WEB.AUTH_ROLE (NAME, STATUS)
+        insert into web.auth_role (name, status)
         values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
-        update WEB.AUTH_ROLE
+        update web.auth_role
         <set>
-            UPDATE_TIME = now(),
-            OPTIMISTIC = OPTIMISTIC+1,
+            update_time = now(),
+            optimistic = optimistic+1,
             <if test="name != null">
-                NAME = #{name,jdbcType=VARCHAR},
+                name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
-                STATUS = #{status,jdbcType=VARCHAR},
+                status = #{status,jdbcType=VARCHAR},
             </if>
         </set>
-        where ID = #{id,jdbcType=BIGINT}
+        where id = #{id,jdbcType=BIGINT}
     </update>
 
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from WEB.AUTH_ROLE
+        from web.auth_role
         <where>
             <if test=" params.name != null and  params.name != ''">
-                NAME = #{ params.name,jdbcType=VARCHAR}
+                name = #{ params.name,jdbcType=VARCHAR}
             </if>
             <if test=" params.status != null and  params.status != ''">
-                STATUS = #{ params.status,jdbcType=VARCHAR}
+                status = #{ params.status,jdbcType=VARCHAR}
             </if>
             <if test=" params.createTime != null and  params.createTime != ''">
-                CREATE_TIME = #{ params.createTime,jdbcType=TIMESTAMP}
+                create_time = #{ params.createTime,jdbcType=TIMESTAMP}
             </if>
         </where>
     </select>
