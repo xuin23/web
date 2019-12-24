@@ -4,6 +4,7 @@
 OpenJDK|13
 SpringBoot|2.2.1.RELEASE
 SpringCloud|Hoxton.RELEASE
+Postgres|
 Redis|
 Rabbitmq|
 ###### 前端
