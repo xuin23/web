@@ -49,6 +49,9 @@
         <include refid="Base_Column_List"/>
         from web.auth_operation_authority
         <where>
+            <if test=" params.id != null and  params.id != ''">
+                id = #{params.id,jdbcType=BIGINT}
+            </if>
             <if test=" params.authorityId != null and  params.authorityId != ''">
                 authority_id = #{params.authorityId,jdbcType=VARCHAR}
             </if>

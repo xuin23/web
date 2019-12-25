@@ -53,6 +53,9 @@
         <include refid="Base_Column_List"/>
         from web.auth_operation
         <where>
+            <if test=" params.id != null and  params.id != ''">
+                id = #{params.id,jdbcType=BIGINT}
+            </if>
             <if test=" params.name != null and  params.name != ''">
                 name = #{params.name,jdbcType=VARCHAR}
             </if>

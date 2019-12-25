@@ -49,6 +49,9 @@
         <include refid="Base_Column_List"/>
         from web.auth_user_group
         <where>
+            <if test=" params.id != null and  params.id != ''">
+                id = #{params.id,jdbcType=BIGINT}
+            </if>
             <if test=" params.userId != null and  params.userId != ''">
                 user_id = #{params.userId,jdbcType=VARCHAR}
             </if>
