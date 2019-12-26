@@ -14,7 +14,7 @@ import java.util.Map;
  * 公共Controller
  * 包含基础的crud操作
  *
- * @param T t
+ * @param <T> t
  * @author xulijian
  */
 @Slf4j
@@ -76,7 +76,7 @@ public abstract class BaseController<T> {
      */
     @PutMapping(value = "")
     public ResultsBean<String> updateById(@RequestBody T t) {
-        Long id = (Long) invokeMethod(t, "getId", (Object) null);
+        Long id = (Long) invokeMethod(t, "getId", null);
         if (null != id) {
             log.info("{} 更新 {}", tName, t);
             baseService.modifyById(t, id);
