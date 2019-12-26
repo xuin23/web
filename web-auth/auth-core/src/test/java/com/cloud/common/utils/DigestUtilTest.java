@@ -1,11 +1,10 @@
 package com.cloud.common.utils;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class DigestUtilTest {
 
@@ -14,46 +13,47 @@ public class DigestUtilTest {
         System.out.println(DigestUtil.encodeByMd5("123456"));
     }
 
-    @Test
-    public void image() throws IOException {
-        File file1 = new File("C:\\Users\\xx\\Desktop\\批注 2019-11-25 204937 - 副本.png");
-        File file2 = new File("C:\\Users\\xx\\Desktop\\批注 2019-11-25 204937.png");
-        FileInputStream fileInputStream1 = new FileInputStream(file1);
-        FileInputStream fileInputStream2 = new FileInputStream(file2);
-        byte[] b1 = fileInputStream1.readAllBytes();
-        System.out.println(b1.length);
-        byte[] b2 = fileInputStream2.readAllBytes();
-        System.out.println(b2.length);
-        long timeMillis = System.currentTimeMillis();
-
-        StringBuffer s1 = new StringBuffer();
-        for (byte b : b1) {
-            s1.append(b);
+    public static void main(String[] args) {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("123456");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres?search_path=web");
+        dataSource.setMaximumPoolSize(10);
+        for (int i = 0; i < 100; i++) {
+            new Thread(new ConnectionDemo(dataSource)).start();
         }
-//        System.out.println(s1);
-        System.out.println(System.currentTimeMillis() - timeMillis + " 毫秒");
-        timeMillis = System.currentTimeMillis();
-        StringBuffer s2 = new StringBuffer();
-        for (byte b : b2) {
-            s2.append(b);
+    }
+}
+
+class ConnectionDemo implements Runnable {
+
+    private HikariDataSource dataSource;
+
+    public ConnectionDemo(HikariDataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Override
+    public void run() {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            long t = (long) (Math.random() * 3000);
+            System.out.println("获取连接" + Thread.currentThread().getName() + " :sleep" + t);
+            Thread.sleep(t);
+            connection.close();
+            System.out.println("关闭连接" + Thread.currentThread().getName() + " :sleep" + t);
+        } catch (SQLException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != connection) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-//        System.out.println(s2);
-        System.out.println(System.currentTimeMillis() - timeMillis + " 毫秒");
-
-        timeMillis = System.currentTimeMillis();
-        System.out.println(DigestUtil.encodeByMd5(s1.toString()));
-        System.out.println(System.currentTimeMillis() - timeMillis + " md5毫秒");
-
-        timeMillis = System.currentTimeMillis();
-        System.out.println(DigestUtil.encodeByMd5(s2.toString()));
-        System.out.println(System.currentTimeMillis() - timeMillis + " md5毫秒");
-
-
-        timeMillis = System.currentTimeMillis();
-        if (s1.equals(s2)) {
-            System.out.println("asd");
-        }
-        System.out.println(System.currentTimeMillis() - timeMillis + " md5毫秒");
-
     }
 }
