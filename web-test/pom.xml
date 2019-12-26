@@ -15,8 +15,14 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>demo-jpa</module>
+        <!--jpaDemo-->
+        <module>test-jpa</module>
+        <!--springcloud config Serve-->
         <module>test-config</module>
+        <!--oauth2 Serve-->
+        <module>test-oauth</module>
+        <!--springSecurity-->
+        <module>test-security</module>
     </modules>
 
 </project>

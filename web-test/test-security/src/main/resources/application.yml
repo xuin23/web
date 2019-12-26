@@ -1,0 +1,12 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /@pom.artifactId@
+spring:
+  application:
+    name: @pom.artifactId@
+  security:
+    user:
+      name: root
+      password: 123456
+      roles: ADMIN
