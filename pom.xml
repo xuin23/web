@@ -48,8 +48,6 @@
     <modules>
         <!--Eureka服务-->
         <module>web-eureka</module>
-        <!--配置服务-->
-        <module>web-config</module>
         <!--路由服务-->
         <module>web-gateway</module>
         <!--公共包-->

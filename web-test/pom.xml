@@ -17,8 +17,6 @@
     <modules>
         <!--jpaDemo-->
         <module>test-jpa</module>
-        <!--springcloud config Serve-->
-        <module>test-config</module>
         <!--oauth2 Serve-->
         <module>test-oauth</module>
         <!--springSecurity-->
