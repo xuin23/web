@@ -63,10 +63,10 @@ public abstract class BaseController<T> {
      * @return ResultsBean<String>
      */
     @PostMapping(value = "")
-    public ResultsBean<String> create(@RequestBody T t) {
+    public ResultsBean<Long> create(@RequestBody T t) {
         log.info("{} 新建, {}", tName, t);
-        baseService.create(t);
-        return ResultsBean.SUCCESS();
+        Long id = baseService.create(t);
+        return ResultsBean.SUCCESS(id);
     }
 
     /**

@@ -28,4 +28,17 @@ public interface LoginClient {
                                      @RequestParam(value = "password") String password,
                                      @RequestParam(value = "isSecurity") Boolean isSecurity,
                                      @RequestParam(value = "securityCode", required = false) String securityCode);
+
+    /**
+     * 注册
+     *
+     * @param username     用户名
+     * @param securityCode 验证码
+     * @return ResultsBean<String>
+     */
+    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/operatorLogin/register", method = RequestMethod.POST)
+    ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
+                                        @RequestParam(value = "securityCode") String securityCode);
+
+
 }

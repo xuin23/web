@@ -12,8 +12,9 @@ public interface IService<T> {
      * 创建方法
      *
      * @param t 实体类
+     * @return 主键
      */
-    void create(T t);
+    Long create(T t);
 
 
     /**

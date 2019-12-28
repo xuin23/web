@@ -39,8 +39,24 @@ public class OperatorLoginProvider {
                                             @RequestParam(value = "password") String password,
                                             @RequestParam(value = "isSecurity") Boolean isSecurity,
                                             @RequestParam(value = "securityCode", required = false) String securityCode) {
+        log.info("用户登录：{}", username);
         Authorization authorization = operatorLoginBiz.login(username, password, isSecurity, securityCode);
         log.info("用户登录：{}，返回结果：{}", username, authorization);
+        return ResultsBean.SUCCESS(authorization);
+    }
+
+    /**
+     * 注册
+     *
+     * @param username     用户名
+     * @param securityCode 验证码
+     * @return ResultsBean<String>
+     */
+    @PostMapping(value = "/operatorLogin/register")
+    ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
+                                 @RequestParam(value = "securityCode") String securityCode) {
+        log.info("用户注册：{}，验证码：{}", username, securityCode);
+        Authorization authorization = operatorLoginBiz.register(username, securityCode);
         return ResultsBean.SUCCESS(authorization);
     }
 

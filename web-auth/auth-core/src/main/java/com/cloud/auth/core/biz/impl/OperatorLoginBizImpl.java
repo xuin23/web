@@ -1,10 +1,13 @@
 package com.cloud.auth.core.biz.impl;
 
 import com.cloud.auth.core.biz.OperatorLoginBiz;
+import com.cloud.auth.core.service.AuthUserRoleService;
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
+import com.cloud.auth.entity.AuthUserRole;
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.constant.CacheKeyConstants;
+import com.cloud.common.enums.Status;
 import com.cloud.common.utils.DigestUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,6 +32,12 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
     private AuthUserService authUserService;
 
     /**
+     * 用户角色关联 service
+     */
+    @Resource
+    private AuthUserRoleService authUserRoleService;
+
+    /**
      * redis
      */
     @Resource
@@ -47,8 +56,6 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public Authorization login(String username, String password, Boolean isSecurity, String securityCode) {
-        log.info("操作员 用户登录：{}", username);
-
         //验证码校验
         securityCodeCheck(username, isSecurity, securityCode);
 
@@ -68,6 +75,49 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         redisTemplate.opsForValue().set(CacheKeyConstants.LOGIN_TOKEN_USER_PREFIX + token, auth);
         log.info("App 用户登陆：{}，登陆成功，设置 token：{}", username, token);
         return auth;
+    }
+
+    /**
+     * 注册
+     *
+     * @param username     用户名
+     * @param securityCode 验证码
+     */
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Authorization register(String username, String securityCode) {
+        //验证码校验
+        securityCodeCheck(username, true, securityCode);
+        //验证邮箱是否存在
+        emailCheck(username);
+        //创建用户
+        AuthUser authUser = new AuthUser();
+        authUser.setEmail(username);
+        authUser.setPassword(DigestUtil.encodeByMd5("123456"));  //默认密码123456
+        authUser.setStatus(Status.TRUE);
+
+        AuthUserRole authUserRole = new AuthUserRole();
+        Long id = authUserService.create(authUser);
+        //创建角色关联
+        authUserRole.setUserId(id);
+        authUserRole.setRoleId(2L);
+        authUserRoleService.create(authUserRole);
+
+        Authorization authorization = new Authorization();
+        authorization.setEmail(username);
+        return authorization;
+    }
+
+    /**
+     * 邮箱验证
+     *
+     * @param email 邮箱
+     */
+    private void emailCheck(String email) {
+        AuthUser authUser = authUserService.findByEmail(email);
+        if (null != authUser) {
+            throw new RuntimeException("当前邮箱已存在:" + email);
+        }
     }
 
     /**

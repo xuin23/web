@@ -25,7 +25,9 @@ public class LoginController {
     @Resource
     private LoginClient loginClient;
 
-
+    /**
+     * Email mq
+     */
     @Resource
     private EmailProducer emailProducer;
 
@@ -73,6 +75,24 @@ public class LoginController {
         }
         //保存登录 session
         request.getSession().setAttribute(LoginConstants.AUTHORIZATION, resultsBean.getObject());
+        return resultsBean;
+    }
+
+    /**
+     * 注册登录
+     *
+     * @param username     用户名
+     * @param securityCode 验证码
+     * @return ResultsBean<Authorization>
+     */
+    @PostMapping(value = "/register")
+    private ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
+                                                @RequestParam(value = "securityCode") String securityCode) {
+        log.info("用户名：{}，验证码：{}", username, securityCode);
+        ResultsBean<Authorization> resultsBean = loginClient.register(username, securityCode);
+        if (resultsBean.success()) {
+            log.info("用户登录：{}，返回结果：{}", username, resultsBean.getObject());
+        }
         return resultsBean;
     }
 

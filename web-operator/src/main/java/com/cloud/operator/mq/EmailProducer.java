@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * Email mq消息
+ * Email mq
  */
 @Slf4j
 @Component

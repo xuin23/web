@@ -31,11 +31,12 @@ public abstract class BaseService<T> implements IService<T> {
      * 创建
      *
      * @param t t
+     * @return id 主键
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public void create(T t) {
-        baseMapper.insert(t);
+    public Long create(T t) {
+        return baseMapper.insert(t);
     }
 
     /**

@@ -17,4 +17,12 @@ public interface OperatorLoginBiz {
      * @return Authorization
      */
     Authorization login(String username, String password, Boolean isSecurity, String securityCode);
+
+    /**
+     * 注册
+     *
+     * @param username     用户名
+     * @param securityCode 验证码
+     */
+    Authorization register(String username, String securityCode);
 }

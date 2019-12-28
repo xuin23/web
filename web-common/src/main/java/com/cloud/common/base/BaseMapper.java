@@ -25,9 +25,9 @@ public interface BaseMapper<T> {
      * 插入方法
      *
      * @param t t
-     * @return int
+     * @return id
      */
-    int insert(T t);
+    Long insert(T t);
 
 
     /**
