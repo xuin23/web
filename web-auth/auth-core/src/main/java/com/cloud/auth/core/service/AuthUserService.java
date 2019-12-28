@@ -24,17 +24,6 @@ public class AuthUserService extends BaseService<AuthUser> {
     private AuthUserMapper authUserMapper;
 
     /**
-     * 通过用户名查询用户信息
-     *
-     * @param username 用户名
-     * @return AuthUser
-     */
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public AuthUser findByUserName(String username) {
-        return authUserMapper.findByUserName(username);
-    }
-
-    /**
      * 通过邮箱查询用户信息
      *
      * @param email 邮箱

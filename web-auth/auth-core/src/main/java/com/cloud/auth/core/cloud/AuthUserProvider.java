@@ -23,19 +23,6 @@ public class AuthUserProvider extends BaseController<AuthUser> {
     @Resource
     private AuthUserService authUserService;
 
-
-    /**
-     * 通过用户名查询用户信息
-     *
-     * @param username 用户名
-     * @return ResultsBean<AuthUser>
-     */
-    @GetMapping(value = "/findByUserName")
-    public ResultsBean<AuthUser> findByUserName(@RequestParam("username") String username) {
-        AuthUser authUser = authUserService.findByUserName(username);
-        return ResultsBean.SUCCESS(authUser);
-    }
-
     /**
      * 通过邮箱查询用户信息
      *
