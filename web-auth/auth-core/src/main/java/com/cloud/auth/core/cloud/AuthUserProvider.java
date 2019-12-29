@@ -29,8 +29,8 @@ public class AuthUserProvider extends BaseController<AuthUser> {
      * @param email 邮箱
      * @return ResultsBean<AuthUser>
      */
-    @GetMapping(value = "/findByEmail")
-    public ResultsBean<AuthUser> findByEmail(@RequestParam("email") String email) {
+    @GetMapping(value = "/email/{email}")
+    public ResultsBean<AuthUser> findByEmail(@PathVariable String email) {
         AuthUser authUser = authUserService.findByEmail(email);
         return ResultsBean.SUCCESS(authUser);
     }

@@ -21,6 +21,6 @@ public interface EmailClient {
      * @return ResultsBean<String>
      */
     @RequestMapping(path = FeignClientConstants.MESSAGE_APPLICATION_NAME_CODE + "/email/sendEmail", method = RequestMethod.POST)
-    public ResultsBean<String> sendEmail(@RequestParam("username") String username);
+    ResultsBean<String> sendEmail(@RequestParam("username") String username);
 
 }

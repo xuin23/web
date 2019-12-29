@@ -25,3 +25,14 @@ web-auth|权限服务|主要业务
 web-message|消息服务|邮箱发送
 web-operator|操作服务|操作入口
 web-gateway|路由|类似nginx功能
+
+##### restful 风格
+>例如：authUser 
+
+操作|url|请求类型
+---|--- | ---
+ID查询|/authUser/1|GET
+根据ID删除|/authUser/1|DELETE
+查询所有|/authUser|GET
+修改（ID必填）|/authUser|PUT
+新增|/authUser|POST

@@ -2,11 +2,13 @@ package com.cloud.operator.controller;
 
 import com.cloud.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
-import com.cloud.common.constant.LoginConstants;
 import com.cloud.operator.mq.EmailProducer;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -73,8 +75,6 @@ public class LoginController {
         if (resultsBean.success()) {
             log.info("用户登录：{}，返回结果：{}", username, resultsBean.getObject());
         }
-        //保存登录 session
-        request.getSession().setAttribute(LoginConstants.AUTHORIZATION, resultsBean.getObject());
         return resultsBean;
     }
 
