@@ -50,13 +50,13 @@
         from web.auth_menu_authority
         <where>
             <if test=" params.id != null and  params.id != ''">
-                id = #{params.id,jdbcType=BIGINT}
+                id = cast( #{params.id,jdbcType=BIGINT} as integer )
             </if>
             <if test=" params.authorityId != null and  params.authorityId != ''">
-                authority_id = #{params.authorityId,jdbcType=VARCHAR}
+                authority_id = cast(#{params.authorityId,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.menuId != null and  params.menuId != ''">
-                menu_id = #{params.menuId,jdbcType=VARCHAR}
+                menu_id = cast(#{params.menuId,jdbcType=BIGINT}as integer )
             </if>
         </where>
     </select>

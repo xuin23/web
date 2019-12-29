@@ -50,13 +50,13 @@
         from web.auth_user_group
         <where>
             <if test=" params.id != null and  params.id != ''">
-                id = #{params.id,jdbcType=BIGINT}
+                id = cast(#{params.id,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.userId != null and  params.userId != ''">
-                user_id = #{params.userId,jdbcType=VARCHAR}
+                user_id = cast(#{params.userId,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.groupId != null and  params.groupId != ''">
-                group_id = #{params.groupId,jdbcType=VARCHAR}
+                group_id = cast(#{params.groupId,jdbcType=BIGINT}as integer )
             </if>
         </where>
     </select>

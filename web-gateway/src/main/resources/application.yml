@@ -12,12 +12,15 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
-        - id: operator
+        - id: web-operator
           uri: lb://web-operator
           predicates:
             - Path=/web-operator/**
-#          filters:
-#            - StripPrefix=1
+        - id: auth-core
+          uri: lb://auth-core
+          predicates:
+            - Path=/auth-core/**
+
 
 eureka:
   client:

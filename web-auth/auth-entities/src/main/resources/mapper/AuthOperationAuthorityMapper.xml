@@ -50,13 +50,13 @@
         from web.auth_operation_authority
         <where>
             <if test=" params.id != null and  params.id != ''">
-                id = #{params.id,jdbcType=BIGINT}
+                id = cast(#{params.id,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.authorityId != null and  params.authorityId != ''">
-                authority_id = #{params.authorityId,jdbcType=VARCHAR}
+                authority_id = cast( #{params.authorityId,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.operationId != null and  params.operationId != ''">
-                operation_id = #{params.operationId,jdbcType=VARCHAR}
+                operation_id = cast( #{params.operationId,jdbcType=BIGINT}as integer )
             </if>
         </where>
     </select>

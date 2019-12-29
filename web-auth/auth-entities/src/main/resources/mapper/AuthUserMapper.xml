@@ -64,7 +64,7 @@
         from web.auth_user
         <where>
             <if test=" params.id != null and  params.id != ''">
-                id = #{params.id,jdbcType=BIGINT}
+                id = cast(#{params.id,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.username != null and  params.username != ''">
                 username = #{params.username,jdbcType=VARCHAR}

@@ -50,13 +50,13 @@
         from web.auth_role_authority
         <where>
             <if test=" params.id != null and  params.id != ''">
-                id = #{params.id,jdbcType=BIGINT}
+                id = cast(#{params.id,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.authorityId != null and  params.authorityId != ''">
-                authority_id = #{params.authorityId,jdbcType=VARCHAR}
+                authority_id = cast(#{params.authorityId,jdbcType=BIGINT}as integer )
             </if>
             <if test=" params.roleId != null and  params.roleId != ''">
-                role_id = #{params.roleId,jdbcType=VARCHAR}
+                role_id = cast(#{params.roleId,jdbcType=BIGINT}as integer )
             </if>
         </where>
     </select>

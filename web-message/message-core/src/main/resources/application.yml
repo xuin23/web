@@ -36,6 +36,9 @@ spring:
           starttls:
             enable: true
             required: true
+#eureka client
 eureka:
   client:
     register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
