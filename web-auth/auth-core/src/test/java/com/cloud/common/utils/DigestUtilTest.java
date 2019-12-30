@@ -39,7 +39,7 @@ public class DigestUtilTest {
 
 class ConnectionDemo implements Runnable {
 
-    private HikariDataSource dataSource;
+    private final HikariDataSource dataSource;
 
     public ConnectionDemo(HikariDataSource dataSource) {
         this.dataSource = dataSource;
