@@ -10,7 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>demo-jpa</artifactId>
+    <artifactId>test-jpa</artifactId>
     <packaging>jar</packaging>
 
 

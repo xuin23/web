@@ -1,7 +1,6 @@
 package com.cloud.common.utils;
 
-import com.cloud.common.enums.EncodeType;
-
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -30,17 +29,16 @@ public class DigestUtil {
      */
     public static String encodeByMd5(byte[] bytes) {
         try {
-            MessageDigest mdTemp = MessageDigest.getInstance(EncodeType.MD5.toString());
-            mdTemp.update(bytes);
-            byte[] md = mdTemp.digest();
-            int j = md.length;
-            char[] string = new char[j * 2];
-            int k = 0;
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(bytes);
+            byte[] md = messageDigest.digest();
+            char[] chars = new char[md.length * 2];
+            int i = 0;
             for (byte byte0 : md) {
-                string[k++] = HEX_CHARS[byte0 >>> 4 & 0xf];
-                string[k++] = HEX_CHARS[byte0 & 0xf];
+                chars[i++] = HEX_CHARS[byte0 >>> 4 & 0xf];
+                chars[i++] = HEX_CHARS[byte0 & 0xf];
             }
-            return new String(string);
+            return new String(chars);
         } catch (Exception e) {
             return null;
         }
