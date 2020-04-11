@@ -3,7 +3,7 @@
 ###### 后端
 名称|版本号
 ---|---
-OpenJDK|13
+OpenJDK|11
 SpringBoot|2.2.1.RELEASE
 SpringCloud|Hoxton.RELEASE
 Postgres|
