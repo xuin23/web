@@ -20,7 +20,6 @@ http库|axios
 模块|模块名|作用
 ---|--- | ---
 web-common|公共包|公共依赖
-web-eureka|注册中心|注册发现
 web-auth|权限服务|主要业务
 web-message|消息服务|邮箱发送
 web-operator|操作服务|操作入口

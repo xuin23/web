@@ -20,9 +20,8 @@ spring:
           uri: lb://auth-core
           predicates:
             - Path=/auth-core/**
-
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+    consul:
+      host: xuin23.com
+      port: 8500
+      discovery:
+        service-name:  @pom.artifactId@

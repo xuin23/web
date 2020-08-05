@@ -10,10 +10,10 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: localhost
+    host: xuin23.com
   #rabbitmq 配置
   rabbitmq:
-    host: localhost
+    host: xuin23.com
     port: 5672
     username: guest
     password: guest
@@ -36,9 +36,9 @@ spring:
           starttls:
             enable: true
             required: true
-#eureka client
-eureka:
-  client:
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    consul:
+      host: xuin23.com
+      port: 8500
+      discovery:
+        service-name:  @pom.artifactId@

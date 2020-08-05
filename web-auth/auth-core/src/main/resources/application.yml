@@ -9,25 +9,25 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: localhost
+    host: xuin23.com
   #postgres数据源
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?search_path=web
+    url: jdbc:postgresql://xuin23.com:5432/postgres?search_path=web
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 123456
+  cloud:
+    consul:
+      host: xuin23.com
+      port: 8500
+      discovery:
+        service-name: @pom.artifactId@
 #mybatis配置
 mybatis:
   type-aliases-package: com.cloud.auth.entity
   mapper-locations: classpath:mapper/*xml
   configuration:
     map-underscore-to-camel-case: true
-#eureka client
-eureka:
-  client:
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
 #日志配置
 logging:
   level:

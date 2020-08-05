@@ -46,8 +46,6 @@
     </properties>
 
     <modules>
-        <!--Eureka服务-->
-        <module>web-eureka</module>
         <!--路由服务-->
         <module>web-gateway</module>
         <!--公共包-->

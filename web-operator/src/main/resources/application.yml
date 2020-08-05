@@ -8,15 +8,16 @@ spring:
   main:
     allow-bean-definition-overriding: true
   rabbitmq:
-    host: localhost
+    host: xuin23.com
     port: 5672
     username: guest
     password: guest
-eureka:
-  client:
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+  cloud:
+    consul:
+      host: xuin23.com
+      port: 8500
+      discovery:
+        service-name: @pom.artifactId@
 feign:
   client:
     config:
