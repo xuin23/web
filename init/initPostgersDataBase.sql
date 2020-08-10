@@ -192,21 +192,3 @@ comment on table web.AUTH_MENU_AUTHORITY is '权限菜单关联表';
 comment on column web.AUTH_MENU_AUTHORITY.AUTHORITY_ID is '权限ID';
 comment on column web.AUTH_MENU_AUTHORITY.MENU_ID is '菜单ID';
 comment on column web.AUTH_MENU_AUTHORITY.CREATE_TIME is '创建日期';
-
-
-create schema IF NOT EXISTS demo;
-create table IF NOT EXISTS demo.ACCOUNT
-(
-    ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
-    USER_ID     integer     default null,
-    STATUS      varchar(20) default 'TRUE',
-    UPDATE_TIME timestamp   default now(),
-    CREATE_TIME timestamp   default now()
-);
-comment on table demo.ACCOUNT is '用户表';
-comment on column demo.ACCOUNT.ID is '用户ID';
-comment on column demo.ACCOUNT.USER_ID is '角色名';
-comment on column demo.ACCOUNT.STATUS is '状态';
-comment on column demo.ACCOUNT.UPDATE_TIME is '更新日期';
-comment on column demo.ACCOUNT.CREATE_TIME is '创建日期';

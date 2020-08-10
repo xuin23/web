@@ -10,7 +10,7 @@ values (1, 'admin', 'TRUE');
 insert into web.auth_role (id, name, status)
 values (2, 'default', 'TRUE');
 -- auth_user_role
-insert into auth_user_role (id, role_id, user_id)
+insert into web.auth_user_role (id, role_id, user_id)
 values (1, 1, 1);
-insert into auth_user_role (id, role_id, user_id)
+insert into web.auth_user_role (id, role_id, user_id)
 values (2, 2, 2);
