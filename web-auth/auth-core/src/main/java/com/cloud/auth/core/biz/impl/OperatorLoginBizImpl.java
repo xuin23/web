@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -59,7 +60,11 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         //验证码校验
         securityCodeCheck(username, isSecurity, securityCode);
 
-        AuthUser authUser = authUserService.findByEmail(username);
+        List<AuthUser> authUserList = authUserService.findByEmail(username);
+        AuthUser authUser = null;
+        if (authUserList.size() == 1) {
+            authUser = authUserList.get(0);
+        }
         if (null == authUser || !Objects.equals(DigestUtil.encodeByMd5(password), authUser.getPassword())) {
             throw new RuntimeException("用户名或密码错误");
         }
@@ -114,8 +119,8 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
      * @param email 邮箱
      */
     private void emailCheck(String email) {
-        AuthUser authUser = authUserService.findByEmail(email);
-        if (null != authUser) {
+        List<AuthUser> authUserList = authUserService.findByEmail(email);
+        if (!authUserList.isEmpty()) {
             throw new RuntimeException("当前邮箱已存在:" + email);
         }
     }

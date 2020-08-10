@@ -14,3 +14,7 @@ insert into web.auth_user_role (id, role_id, user_id)
 values (1, 1, 1);
 insert into web.auth_user_role (id, role_id, user_id)
 values (2, 2, 2);
+
+
+insert into web.auth_user ( username, password, realname, email, status)
+values ( 'default', 'E10ADC3949BA59ABBE56E057F20F883E', '徐礼健', 'xxxx@xxx.com', 'TRUE');

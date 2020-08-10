@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户 service
@@ -30,7 +31,7 @@ public class AuthUserService extends BaseService<AuthUser> {
      * @return AuthUser
      */
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public AuthUser findByEmail(String email) {
+    public List<AuthUser> findByEmail(String email) {
         return authUserMapper.findByEmail(email);
     }
 

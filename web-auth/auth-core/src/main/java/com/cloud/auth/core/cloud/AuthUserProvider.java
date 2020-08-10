@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 用户 provider
@@ -31,8 +32,14 @@ public class AuthUserProvider extends BaseController<AuthUser> {
      */
     @GetMapping(value = "/email/{email}")
     public ResultsBean<AuthUser> findByEmail(@PathVariable String email) {
-        AuthUser authUser = authUserService.findByEmail(email);
-        return ResultsBean.SUCCESS(authUser);
+        List<AuthUser> authUserList = authUserService.findByEmail(email);
+        if (authUserList.isEmpty()) {
+            throw new RuntimeException("this email is empty");
+        }
+        if (authUserList.size() > 1) {
+            throw new RuntimeException("this email number is over 2");
+        }
+        return ResultsBean.SUCCESS(authUserList.get(0));
     }
 
 }
