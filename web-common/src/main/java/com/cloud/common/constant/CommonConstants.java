@@ -3,7 +3,7 @@ package com.cloud.common.constant;
 /**
  * 公共常量
  */
-public interface CommonConstants {
+public class CommonConstants {
 
     public static final String SUCCESS = "SUCCESS";
     public static final String ERROR = "ERROR";

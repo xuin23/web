@@ -3,7 +3,7 @@ package com.cloud.common.constant;
 /**
  * mq 主题 常量
  */
-public interface MqConstants {
+public class MqConstants {
 
     /**
      * 邮箱主题

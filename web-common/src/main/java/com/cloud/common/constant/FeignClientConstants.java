@@ -3,7 +3,7 @@ package com.cloud.common.constant;
 /**
  * Feign常量
  */
-public interface FeignClientConstants {
+public class FeignClientConstants {
 
     //权限
     public static final String AUTH_APPLICATION_NAME_CODE = "/auth-core/cloud";

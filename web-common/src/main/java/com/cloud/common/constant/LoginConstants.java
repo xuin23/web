@@ -3,7 +3,7 @@ package com.cloud.common.constant;
 /**
  * 登录常量
  */
-public interface LoginConstants {
+public class LoginConstants {
 
     /**
      * token
