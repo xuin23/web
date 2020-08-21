@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 公共Controller
@@ -39,7 +40,7 @@ public abstract class BaseController<T> {
      */
     @GetMapping(value = "/{id}")
     public ResultsBean<T> findById(@PathVariable("id") Long id) {
-        log.info("查询 {} ，id：{}", tName, id);
+        log.info("search {} ，id：{}", tName, id);
         T t = baseService.findById(id);
         return ResultsBean.SUCCESS(t);
     }
@@ -52,7 +53,7 @@ public abstract class BaseController<T> {
      */
     @DeleteMapping(value = "/{id}")
     public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
-        log.info("{} 删除, id：{}", tName, id);
+        log.info("{} delete, id：{}", tName, id);
         baseService.deleteById(id);
         return ResultsBean.SUCCESS();
     }
@@ -64,7 +65,7 @@ public abstract class BaseController<T> {
      */
     @PostMapping(value = "")
     public ResultsBean<Long> create(@RequestBody T t) {
-        log.info("{} 新建, {}", tName, t);
+        log.info("{} create, {}", tName, t);
         Long id = baseService.create(t);
         return ResultsBean.SUCCESS(id);
     }
@@ -78,12 +79,12 @@ public abstract class BaseController<T> {
     public ResultsBean<String> updateById(@RequestBody T t) {
         Long id = (Long) invokeMethod(t, "getId", null);
         if (null != id) {
-            log.info("{} 更新 {}", tName, t);
+            log.info("{} update {}", tName, t);
             baseService.modifyById(t, id);
             return ResultsBean.SUCCESS();
         } else {
-            log.error("更新{}失败，不存在id，{}", tName, t);
-            return ResultsBean.FAIL("更新" + tName + "失败，不存在id");
+            log.error("update {} fail，id: {} is not exist", tName, t);
+            return ResultsBean.FAIL(String.format("update %s fail，id: %s is not exist", tName, t));
         }
 
     }
@@ -96,7 +97,7 @@ public abstract class BaseController<T> {
      */
     @GetMapping(value = "/list")
     public ResultsBean<PageInfo<Map<String, Object>>> list(@RequestParam Map<String, Object> params) {
-        log.info("{} 分页查询，{}", tName, params);
+        log.info("{} : {}", tName, params);
         PageInfo<Map<String, Object>> page = baseService.findByPageAll(params);
         return ResultsBean.SUCCESS(page);
     }
@@ -109,7 +110,7 @@ public abstract class BaseController<T> {
      */
     @GetMapping(value = "")
     public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
-        log.info("{} 分页查询，{}", tName, params);
+        log.info("{} : {}", tName, params);
         PageInfo<Map<String, Object>> page = baseService.findByPageAll(params);
         return ResultsBean.SUCCESS(page);
     }
@@ -122,10 +123,8 @@ public abstract class BaseController<T> {
      * @return object
      */
     private Object invokeMethod(Object o, String methodName, Object... args) {
-        if (null == o) {
-            throw new RuntimeException("首个参数不能为空！！！");
-        }
-        Object result = null;
+        Objects.requireNonNull(o);
+        Object result;
         try {
             Method method = o.getClass().getMethod(methodName);
             result = method.invoke(o, args);

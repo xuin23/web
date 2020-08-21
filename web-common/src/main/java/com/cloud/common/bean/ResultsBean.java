@@ -13,9 +13,7 @@ public class ResultsBean<T> implements Serializable {
     //返回成功
     public static final int RESULT_CODE_SUCCESS = 200;
     //返回业务失败
-    public static final int RESULT_CODE_SERVICE_ERR = 98;
-    //返回系统失败
-    public static final int RESULT_CODE_SYSTEM_ERR = 99;
+    public static final int RESULT_CODE_SERVICE_ERR = 500;
 
     private int code; // 返回码
     private String message; // 返回信息

@@ -2,6 +2,8 @@ package com.cloud.common.constant;
 
 /**
  * Feign常量
+ *
+ * @author xulijian
  */
 public class FeignClientConstants {
 

@@ -1,10 +1,11 @@
 package com.cloud.common.utils;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
- * 密码加密
+ * 密码加密工具
+ *
+ * @author xulijian
  */
 public class DigestUtil {
 

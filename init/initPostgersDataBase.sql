@@ -3,12 +3,12 @@ create schema IF NOT EXISTS web;
 create table IF NOT EXISTS web.AUTH_USER
 (
     ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
     USERNAME    varchar(50) default null,
     PASSWORD    varchar(50) default null,
     REALNAME    varchar(50) default null,
     EMAIL       varchar(50) default null,
-    STATUS      varchar(20) default 'TRUE',
+    OPTIMISTIC  integer     default 0,
+    STATUS      boolean     default true,
     UPDATE_TIME timestamp   default now(),
     CREATE_TIME timestamp   default now()
 );
@@ -27,11 +27,11 @@ comment on column web.AUTH_USER.CREATE_TIME is '创建日期';
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE
 (
     ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
     NAME        VARCHAR(50) default NULL,
-    STATUS      varchar(20) default 'TRUE',
-    UPDATE_TIME timestamp   DEFAULT NOW(),
-    CREATE_TIME timestamp   DEFAULT NOW()
+    OPTIMISTIC  integer     default 0,
+    STATUS      boolean     default true,
+    UPDATE_TIME timestamp   default now(),
+    CREATE_TIME timestamp   default now()
 );
 comment on table web.AUTH_ROLE is '角色表';
 comment on column web.AUTH_ROLE.ID is '角色ID';
@@ -44,10 +44,10 @@ comment on column web.AUTH_ROLE.CREATE_TIME is '创建日期';
 CREATE TABLE IF NOT EXISTS WEB.AUTH_GROUP
 (
     ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
     NAME        VARCHAR(50) default NULL,
     pid         VARCHAR(50) default NULL,
-    STATUS      varchar(20) default 'TRUE',
+    OPTIMISTIC  integer     default 0,
+    STATUS      boolean     default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
 );
@@ -64,9 +64,9 @@ comment on column web.AUTH_GROUP.CREATE_TIME is '创建日期';
 CREATE TABLE IF NOT EXISTS WEB.AUTHORITY
 (
     ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
     NAME        VARCHAR(50) default NULL,
-    STATUS      varchar(20) default 'TRUE',
+    OPTIMISTIC  integer     default 0,
+    STATUS      bool        default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
 );
@@ -81,9 +81,9 @@ comment on column web.AUTHORITY.CREATE_TIME is '创建日期';
 CREATE TABLE IF NOT EXISTS WEB.AUTH_OPERATION
 (
     ID          serial not null primary key,
-    OPTIMISTIC  integer     default 0,
     NAME        VARCHAR(50) default null,
-    STATUS      varchar(20) default 'TRUE',
+    OPTIMISTIC  integer     default 0,
+    STATUS      boolean     default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
 );
@@ -97,12 +97,12 @@ comment on column web.AUTH_OPERATION.CREATE_TIME is '创建日期';
 -- 菜单表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_MENU
 (
-    ID          integer not null primary key,
-    OPTIMISTIC  integer      default 0,
+    ID          serial not null primary key,
     NAME        VARCHAR(50)  default NULL,
     URL         VARCHAR(100) default NULL,
     PID         integer      DEFAULT 0,
-    STATUS      varchar(20)  default 'TRUE',
+    OPTIMISTIC  integer      default 0,
+    STATUS      boolean      default true,
     UPDATE_TIME timestamp    DEFAULT NOW(),
     CREATE_TIME timestamp    DEFAULT NOW()
 );
@@ -118,9 +118,12 @@ comment on column web.AUTH_MENU.CREATE_TIME is '创建日期';
 -- 用户组与用户关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_USER_GROUP
 (
-    ID          integer not null primary key,
+    ID          serial  not null primary key,
     USER_ID     integer NOT NULL,
     GROUP_ID    integer NOT NULL,
+    OPTIMISTIC  integer   default 0,
+    STATUS      boolean   default true,
+    UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_USER_GROUP is '用户组与用户关联表';
@@ -131,9 +134,12 @@ comment on column web.AUTH_USER_GROUP.CREATE_TIME is '创建日期';
 -- 用户组与角色关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE_GROUP
 (
-    ID          integer not null primary key,
+    ID          serial  not null primary key,
     ROLE_ID     integer NOT NULL,
     GROUP_ID    integer NOT NULL,
+    OPTIMISTIC  integer   default 0,
+    STATUS      boolean   default true,
+    UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_ROLE_GROUP is '用户组与角色关联表';
@@ -144,9 +150,12 @@ comment on column web.AUTH_ROLE_GROUP.CREATE_TIME is '创建日期';
 -- 用户角色关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_USER_ROLE
 (
-    ID          integer not null primary key,
+    ID          serial  not null primary key,
     ROLE_ID     integer NOT NULL,
     USER_ID     integer NOT NULL,
+    OPTIMISTIC  integer   default 0,
+    STATUS      boolean   default true,
+    UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_USER_ROLE is '用户角色关联表';
@@ -157,9 +166,12 @@ comment on column web.AUTH_USER_ROLE.CREATE_TIME is '创建日期';
 -- 角色权限关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_ROLE_AUTHORITY
 (
-    ID           integer not null primary key,
+    ID           serial  not null primary key,
     ROLE_ID      integer NOT NULL,
     AUTHORITY_ID integer NOT NULL,
+    OPTIMISTIC   integer   default 0,
+    STATUS       boolean   default true,
+    UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_ROLE_AUTHORITY is '角色权限关联表';
@@ -170,9 +182,12 @@ comment on column web.AUTH_ROLE_AUTHORITY.CREATE_TIME is '创建日期';
 -- 权限操作关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_OPERATION_AUTHORITY
 (
-    ID           integer not null primary key,
+    ID           serial  not null primary key,
     OPERATION_ID integer NOT NULL,
     AUTHORITY_ID integer NOT NULL,
+    OPTIMISTIC   integer   default 0,
+    STATUS       boolean   default true,
+    UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_OPERATION_AUTHORITY is '权限操作关联表';
@@ -183,9 +198,12 @@ comment on column web.AUTH_OPERATION_AUTHORITY.CREATE_TIME is '创建日期';
 -- 权限菜单关联表
 CREATE TABLE IF NOT EXISTS WEB.AUTH_MENU_AUTHORITY
 (
-    ID           integer not null primary key,
+    ID           serial  not null primary key,
     AUTHORITY_ID integer NOT NULL,
     MENU_ID      integer NOT NULL,
+    OPTIMISTIC   integer   default 0,
+    STATUS       boolean   default true,
+    UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
 );
 comment on table web.AUTH_MENU_AUTHORITY is '权限菜单关联表';

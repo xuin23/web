@@ -2,6 +2,8 @@ package com.cloud.common.constant;
 
 /**
  * redis缓存key
+ *
+ * @author xulijian
  */
 public class CacheKeyConstants {
     public static final String LOGIN_TOKEN_USER_PREFIX = "LOGIN_TOKEN_";

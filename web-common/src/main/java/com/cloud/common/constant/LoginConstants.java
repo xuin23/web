@@ -2,6 +2,8 @@ package com.cloud.common.constant;
 
 /**
  * 登录常量
+ *
+ * @author xulijian
  */
 public class LoginConstants {
 

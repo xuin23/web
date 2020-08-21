@@ -6,6 +6,8 @@ import java.util.Random;
 
 /**
  * 验证码工具
+ *
+ * @author xulijian
  */
 public class SecurityCodeUtil {
 

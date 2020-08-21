@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.List;
 
-@RestController(value = "authUser")
+@RestController(value = "/authUser")
 public class AuthUserController {
 
     @Resource
@@ -22,9 +22,6 @@ public class AuthUserController {
 
     @GetMapping(value = "/{id}")
     public String fun1(@PathVariable("id") Long id) {
-        if (true) {
-            throw new AExcption("asda");
-        }
         return String.valueOf(id);
     }
     @GetMapping(value = "/de")

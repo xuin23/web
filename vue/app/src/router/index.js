@@ -7,9 +7,6 @@ export default new Router({
     mode: 'history',
     routes: [
         {
-            path: '/', component: () => import('../components/HelloWorld.vue'),props:{msg:'HelloWorld'}
-        },
-        {
             path: '/index', component: ()=> import('../components/Index.vue')
         },
         {

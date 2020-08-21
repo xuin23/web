@@ -2,6 +2,8 @@ package com.cloud.common.constant;
 
 /**
  * mq 主题 常量
+ *
+ * @author xulijian
  */
 public class MqConstants {
 

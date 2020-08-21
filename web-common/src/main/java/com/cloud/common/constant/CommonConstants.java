@@ -2,6 +2,8 @@ package com.cloud.common.constant;
 
 /**
  * 公共常量
+ *
+ * @author xulijian
  */
 public class CommonConstants {
 
