@@ -8,11 +8,11 @@
 
 模块|模块名|作用
 ---|--- | ---
-web-common|公共包|公共依赖
-web-auth|权限服务|主要业务
-web-message|消息服务|邮箱发送
-web-operator|操作服务|操作入口
-web-gateway|路由|类似nginx功能
+common|公共包|公共依赖
+auth|权限服务|主要业务
+message|消息服务|邮箱发送
+operator|操作服务|操作入口
+gateway|路由|类似nginx功能
 
 2 基本架构
 
