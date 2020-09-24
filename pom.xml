@@ -44,17 +44,15 @@
 
     <modules>
         <!--路由服务-->
-        <module>gateway</module>
+        <module>web-gateway</module>
         <!--公共包-->
-        <module>common</module>
+        <module>web-common</module>
         <!--权限操作-->
-        <module>auth</module>
+        <module>web-auth</module>
         <!--操作员服务-->
-        <module>operator</module>
+        <module>web-operator</module>
         <!--消息服务-->
-        <module>message</module>
-        <!--测试专用模块，用于新功能的实现，随时删除-->
-        <module>test</module>
+        <module>web-message</module>
     </modules>
 
     <dependencyManagement>
