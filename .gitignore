@@ -1,6 +1,7 @@
 .idea
 .settings
 .project
+.factorypath
 *.classpath
 *.factoryPath
 *.iml
