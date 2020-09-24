@@ -12,10 +12,10 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
-        - id: operator
-          uri: lb://operator
+        - id: web-operator
+          uri: lb://web-operator
           predicates:
-            - Path=/operator/**
+            - Path=/web-operator/**
         - id: auth-core
           uri: lb://auth-core
           predicates:
