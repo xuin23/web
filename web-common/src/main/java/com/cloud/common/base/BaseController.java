@@ -73,14 +73,15 @@ public abstract class BaseController<T> {
     /**
      * 修改信息
      *
+     * @param t t
      * @return ResultsBean<String>
      */
     @PutMapping(value = "")
     public ResultsBean<String> updateById(@RequestBody T t) {
-        Long id = (Long) invokeMethod(t, "getId", null);
-        if (null != id) {
+        Object id = invokeMethod(t, "getId", new Object());
+        if(id instanceof Long){
             log.info("{} update {}", tName, t);
-            baseService.modifyById(t, id);
+            baseService.modifyById(t,(Long) id);
             return ResultsBean.SUCCESS();
         } else {
             log.error("update {} fail，id: {} is not exist", tName, t);

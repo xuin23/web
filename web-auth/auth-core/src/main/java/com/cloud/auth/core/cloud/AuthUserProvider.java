@@ -4,7 +4,6 @@ import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.base.BaseController;
 import com.cloud.common.bean.ResultsBean;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,7 +12,6 @@ import java.util.List;
 /**
  * 用户 provider
  */
-@Slf4j
 @RestController
 @RequestMapping(value = "/cloud/authUser")
 public class AuthUserProvider extends BaseController<AuthUser> {

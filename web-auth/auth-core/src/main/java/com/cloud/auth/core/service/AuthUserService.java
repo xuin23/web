@@ -32,6 +32,7 @@ public class AuthUserService extends BaseService<AuthUser> {
      */
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<AuthUser> findByEmail(String email) {
+        log.info("email {}", email);
         return authUserMapper.findByEmail(email);
     }
 

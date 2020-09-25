@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Data
 public class EmailBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 邮箱发送人
      */

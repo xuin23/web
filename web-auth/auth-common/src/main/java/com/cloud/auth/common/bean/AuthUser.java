@@ -14,6 +14,8 @@ import java.util.Date;
 @Data
 public class AuthUser implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 用户ID
      */

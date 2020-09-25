@@ -3,13 +3,18 @@ package com.cloud.auth.entity;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 角色信息
+ * 
+ * @author xulijian
  */
 @Data
-public class AuthRole {
+public class AuthRole implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 角色id
