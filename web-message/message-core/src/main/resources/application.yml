@@ -6,14 +6,12 @@ server:
 spring:
   application:
     name: @pom.artifactId@
-  #redis 数据源
   redis:
     database: 0
     port: 6379
-    host: xuin23.com
-  #rabbitmq 配置
+    host: localhost
   rabbitmq:
-    host: xuin23.com
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -38,23 +36,15 @@ spring:
             required: true
   cloud:
     consul:
-      host: xuin23.com
+      host: localhost
       port: 8500
       discovery:
-        # 启用服务发现
-        enabled: true
-        # 启用服务注册
-        register: true
-        # 服务停止时取消注册
-        deregister: true
-        # 表示注册时使用IP而不是hostname
-        prefer-ip-address: true
-        # 执行监控检查的频率
-        health-check-interval: 30s
-        # 设置健康检查失败多长时间后，取消注册
-        health-check-critical-timeout: 30s
-        # 健康检查的路径
-        health-check-path: /@pom.artifactId@/actuator/info
-        # 服务注册标识，格式为：应用名称+服务器IP+端口
-        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-        service-name: ${spring.application.name}
+        enabled: true  # 启用服务发现
+        register: true # 启用服务注册
+        deregister: true # 服务停止时取消注册
+        prefer-ip-address: true # 表示注册时使用IP而不是hostname
+        health-check-interval: 30s # 执行监控检查的频率
+        health-check-critical-timeout: 30s # 设置健康检查失败多长时间后，取消注册
+        health-check-path: /@pom.artifactId@/actuator/info # 健康检查的路径
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
+        service-name: ${spring.application.name} # 注册服务名
