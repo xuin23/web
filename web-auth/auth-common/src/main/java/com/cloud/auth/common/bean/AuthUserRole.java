@@ -13,6 +13,8 @@ import java.util.Date;
 @Data
 public class AuthUserRole implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 权限角色关联id
      */

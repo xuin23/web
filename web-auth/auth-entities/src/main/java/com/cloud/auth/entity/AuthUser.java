@@ -1,5 +1,6 @@
 package com.cloud.auth.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.cloud.common.enums.Status;
@@ -7,9 +8,14 @@ import lombok.Data;
 
 /**
  * 用户信息
+ * 
+ * @author xulijian
  */
 @Data
-public class AuthUser {
+public class AuthUser implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * 用户ID
      */

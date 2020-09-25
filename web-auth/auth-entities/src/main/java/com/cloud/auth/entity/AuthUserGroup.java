@@ -1,6 +1,7 @@
 package com.cloud.auth.entity;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,9 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
-public class AuthUserGroup {
+public class AuthUserGroup implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * 权限角色关联id

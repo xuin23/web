@@ -10,16 +10,35 @@ import java.io.Serializable;
  */
 public class ResultsBean<T> implements Serializable {
 
-    //返回成功
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 返回成功
+     */
     public static final int RESULT_CODE_SUCCESS = 200;
-    //返回业务失败
+    
+    /**
+     * 返回业务失败
+     */
     public static final int RESULT_CODE_SERVICE_ERR = 500;
 
-    private int code; // 返回码
-    private String message; // 返回信息
-    private T object; // 返回对象
+    /**
+     * 返回码
+     */
+    private int code;
+    /**
+     * 返回信息
+     */
+    private String message;
+    
+    /**
+     * 返回对象
+     */
+    private T object;
 
-    //默认构造函数必须有 否则Feign调用返回结果时会报错
+    /**
+     * 默认构造函数必须有 否则Feign调用返回结果时会报错
+     */
     public ResultsBean() {
     }
 
@@ -35,16 +54,24 @@ public class ResultsBean<T> implements Serializable {
         this.object = object;
     }
 
+    /**
+     * 状态码 信息
+     * 
+     * @param code    状态码
+     * @param message 信息
+     */
     public ResultsBean(int code, String message) {
         super();
         this.code = code;
         this.message = message;
     }
 
+    /**
+     * 是否成功
+     */
     public boolean success() {
         return RESULT_CODE_SUCCESS == code;
     }
-
 
     public static <T> ResultsBean<T> SUCCESS(T t) {
         return new ResultsBean<T>(RESULT_CODE_SUCCESS, t);

@@ -13,6 +13,8 @@ import java.util.Date;
 @Data
 public class AuthMenuAuthority implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * 权限菜单关联id
      */
