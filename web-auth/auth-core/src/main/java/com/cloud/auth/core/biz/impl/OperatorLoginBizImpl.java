@@ -99,7 +99,7 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
         AuthUser authUser = new AuthUser();
         authUser.setEmail(username);
         authUser.setPassword(DigestUtil.encodeByMd5("123456"));  //默认密码123456
-        authUser.setStatus(Status.Y);
+        authUser.setStatus(Status.t);
 
         AuthUserRole authUserRole = new AuthUserRole();
         Long id = authUserService.create(authUser);
