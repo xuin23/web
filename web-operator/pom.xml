@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>web-operator</artifactId>
+    <name>operator</name>
 
     <dependencies>
         <dependency>

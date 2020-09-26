@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>message-core</artifactId>
+    <name>message</name>
     <description>消息-核心</description>
 
     <dependencies>
