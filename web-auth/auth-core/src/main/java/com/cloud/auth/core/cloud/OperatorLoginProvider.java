@@ -1,7 +1,7 @@
 package com.cloud.auth.core.cloud;
 
 import com.cloud.auth.core.biz.OperatorLoginBiz;
-import com.cloud.common.bean.Authorization;
+import com.cloud.auth.common.bean.Authorization;
 import com.cloud.common.bean.ResultsBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

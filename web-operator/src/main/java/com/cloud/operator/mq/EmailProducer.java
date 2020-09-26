@@ -23,7 +23,7 @@ public class EmailProducer {
      * @param username 用户名（邮箱）
      */
     public void sendEmailMessage(String username) {
-        log.info("Email send key:{},msg:{}",MqConstants.EMAIL_SECURITY_CODE,username);
+        log.info("Email send key:{},msg:{}", MqConstants.EMAIL_SECURITY_CODE, username);
         rabbitTemplate.convertAndSend(MqConstants.EMAIL_SECURITY_CODE, username);
         log.info("Email send key:{},msg:{}, over", MqConstants.EMAIL_SECURITY_CODE, username);
     }

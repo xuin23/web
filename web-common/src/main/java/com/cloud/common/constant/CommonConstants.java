@@ -7,13 +7,7 @@ package com.cloud.common.constant;
  */
 public class CommonConstants {
 
-    public static final String SUCCESS = "SUCCESS";
-    public static final String ERROR = "ERROR";
-    public static final String FAIL = "FAIL";
-
-    public static final String TRUE = "TRUE";
-    public static final String FALSE = "FALSE";
-
+    //分页插件默认每页数量
     public static final int DEFALT_PAGE_SIZE = 10;
 
 }

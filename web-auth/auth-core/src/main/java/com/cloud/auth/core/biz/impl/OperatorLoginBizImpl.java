@@ -1,11 +1,11 @@
 package com.cloud.auth.core.biz.impl;
 
+import com.cloud.auth.common.bean.Authorization;
 import com.cloud.auth.core.biz.OperatorLoginBiz;
 import com.cloud.auth.core.service.AuthUserRoleService;
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.entity.AuthUserRole;
-import com.cloud.common.bean.Authorization;
 import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.enums.Status;
 import com.cloud.common.utils.DigestUtil;

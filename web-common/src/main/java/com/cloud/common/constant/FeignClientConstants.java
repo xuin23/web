@@ -1,7 +1,7 @@
 package com.cloud.common.constant;
 
 /**
- * Feign常量
+ * Feign 产量
  *
  * @author xulijian
  */

@@ -1,4 +1,4 @@
-package com.cloud.gateway.config;
+package com.cloud.service.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,8 @@ import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
  * 网络配置
+ * 
+ * @author xulijian
  */
 @Configuration
 public class WebConfig {
@@ -20,6 +22,7 @@ public class WebConfig {
      */
     @Bean
     public CorsWebFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
         CorsConfiguration config = new CorsConfiguration();
         // cookie跨域
         config.setAllowCredentials(Boolean.TRUE);
@@ -28,8 +31,7 @@ public class WebConfig {
         config.addAllowedHeader("*");
         // 配置前端js允许访问的自定义响应头
         config.addExposedHeader("setToken");
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource(new PathPatternParser());
+        
         source.registerCorsConfiguration("/**", config);
 
         return new CorsWebFilter(source);

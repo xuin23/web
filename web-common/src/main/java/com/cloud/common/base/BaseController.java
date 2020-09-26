@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * 公共Controller
+ * 通用Controller
  * 包含基础的crud操作
  *
  * @param <T> t
@@ -79,9 +79,9 @@ public abstract class BaseController<T> {
     @PutMapping(value = "")
     public ResultsBean<String> updateById(@RequestBody T t) {
         Object id = invokeMethod(t, "getId", new Object());
-        if(id instanceof Long){
+        if (id instanceof Long) {
             log.info("{} update {}", tName, t);
-            baseService.modifyById(t,(Long) id);
+            baseService.modifyById(t, (Long) id);
             return ResultsBean.SUCCESS();
         } else {
             log.error("update {} fail，id: {} is not exist", tName, t);

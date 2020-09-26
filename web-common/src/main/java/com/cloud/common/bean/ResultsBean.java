@@ -1,6 +1,5 @@
 package com.cloud.common.bean;
 
-
 import java.io.Serializable;
 
 /**
@@ -16,7 +15,7 @@ public class ResultsBean<T> implements Serializable {
      * 返回成功
      */
     public static final int RESULT_CODE_SUCCESS = 200;
-    
+
     /**
      * 返回业务失败
      */
@@ -30,7 +29,7 @@ public class ResultsBean<T> implements Serializable {
      * 返回信息
      */
     private String message;
-    
+
     /**
      * 返回对象
      */
@@ -66,11 +65,12 @@ public class ResultsBean<T> implements Serializable {
         this.message = message;
     }
 
-    /**
-     * 是否成功
-     */
     public boolean success() {
         return RESULT_CODE_SUCCESS == code;
+    }
+
+    public boolean fail() {
+        return RESULT_CODE_SUCCESS != code;
     }
 
     public static <T> ResultsBean<T> SUCCESS(T t) {
@@ -85,7 +85,7 @@ public class ResultsBean<T> implements Serializable {
         return new ResultsBean<T>(RESULT_CODE_SERVICE_ERR, message);
     }
 
-    public static <T> ResultsBean<T> FAIL(int code,String message) {
+    public static <T> ResultsBean<T> FAIL(int code, String message) {
         return new ResultsBean<T>(code, message);
     }
 

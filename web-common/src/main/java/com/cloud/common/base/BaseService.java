@@ -20,8 +20,11 @@ import java.util.Map;
 @Component
 public abstract class BaseService<T> implements IService<T> {
 
-    //@Resource
-    // 使用Resoure会出错，MyBatis会找baseMapper.xml下的Sql
+    /**
+     * 基础Mapper
+     * 
+     * 使用Resoure会出错，MyBatis会找baseMapper.xml下的Sql
+     */
     @Autowired
     private BaseMapper<T> baseMapper;
 
@@ -69,7 +72,6 @@ public abstract class BaseService<T> implements IService<T> {
         return i;
     }
 
-
     /**
      * 通过id查询
      *
@@ -85,7 +87,6 @@ public abstract class BaseService<T> implements IService<T> {
         return baseMapper.findById(id);
     }
 
-
     /**
      * 分页查询
      *
@@ -94,10 +95,11 @@ public abstract class BaseService<T> implements IService<T> {
      */
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public PageInfo<Map<String, Object>> findByPageAll(Map<String, Object> params) {
-        //页码
+        // 页码
         int pageNum = params.get("pageNum") == null ? 1 : Integer.parseInt(params.get("pageNum").toString());
-        //每页显示数量
-        int pageSize = params.get("pageSize") == null ? CommonConstants.DEFALT_PAGE_SIZE : Integer.parseInt(params.get("pageSize").toString());
+        // 每页显示数量
+        int pageSize = params.get("pageSize") == null ? CommonConstants.DEFALT_PAGE_SIZE
+                : Integer.parseInt(params.get("pageSize").toString());
         // 设置页属性
         PageHelper.startPage(pageNum, pageSize, true);
         // 查询数据
