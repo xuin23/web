@@ -14,7 +14,7 @@ spring:
           uri: lb://web-operator
           predicates:
             - Path=/web-operator/**
-        - id: auth
+        - id: auth-core
           uri: lb://auth
           predicates:
             - Path=/auth/**
