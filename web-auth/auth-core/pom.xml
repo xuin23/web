@@ -13,7 +13,6 @@
     <name>auth</name>
     <artifactId>auth-core</artifactId>
     <description>权限-核心</description>
-    <packaging>jar</packaging>
 
     <dependencies>
 
