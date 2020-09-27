@@ -2,7 +2,6 @@ package com.cloud.auth.oauth2.config;
 
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.mapper.AuthUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -10,6 +10,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     consul:
       host: localhost
