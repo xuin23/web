@@ -69,7 +69,7 @@ public class EmailBizImpl implements EmailBiz {
         bean.setFrom(from);
         bean.setTo(email);
         bean.setSubject("邮箱验证码");
-        bean.setText(SecurityCodeUtil.generateSecurityCode(6));
+        bean.setText(SecurityCodeUtil.generateSecurityCode(6, SecurityCodeUtil.CODE_TYPE_CH));
         return bean;
     }
 

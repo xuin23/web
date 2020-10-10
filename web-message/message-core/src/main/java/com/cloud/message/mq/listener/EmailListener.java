@@ -24,7 +24,6 @@ public class EmailListener {
     @Resource
     private EmailBiz emailBiz;
 
-
     /**
      * 处理邮箱验证码消息
      */
