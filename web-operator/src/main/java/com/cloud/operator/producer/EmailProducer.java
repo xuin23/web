@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * Email mq
+ * EmailProducer
+ *
+ * @author xulijian
  */
 @Slf4j
 @Component

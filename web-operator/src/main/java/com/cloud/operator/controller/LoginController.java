@@ -29,7 +29,7 @@ public class LoginController {
     private LoginClient loginClient;
 
     /**
-     * Email mq
+     * email 生产者
      */
     @Resource
     private EmailProducer emailProducer;

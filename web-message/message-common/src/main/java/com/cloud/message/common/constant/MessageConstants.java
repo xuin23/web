@@ -1,7 +1,7 @@
 package com.cloud.message.common.constant;
 
 /**
- * mq 主题 常量
+ * message 常量
  *
  * @author xulijian
  */

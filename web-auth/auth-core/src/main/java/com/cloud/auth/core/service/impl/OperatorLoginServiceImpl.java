@@ -1,8 +1,8 @@
-package com.cloud.auth.core.biz.impl;
+package com.cloud.auth.core.service.impl;
 
 import com.cloud.auth.common.bean.Authorization;
 import com.cloud.auth.common.constants.AuthConstants;
-import com.cloud.auth.core.biz.OperatorLoginBiz;
+import com.cloud.auth.core.service.OperatorLoginService;
 import com.cloud.auth.core.service.AuthUserRoleService;
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Slf4j
 @Component
-public class OperatorLoginBizImpl implements OperatorLoginBiz {
+public class OperatorLoginServiceImpl implements OperatorLoginService {
 
     /**
      * 用户 service

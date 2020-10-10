@@ -1,11 +1,11 @@
-package com.cloud.auth.core.biz;
+package com.cloud.auth.core.service;
 
 import com.cloud.auth.common.bean.Authorization;
 
 /**
  * 操作员登录 业务
  */
-public interface OperatorLoginBiz {
+public interface OperatorLoginService {
 
     /**
      * 登录
