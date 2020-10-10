@@ -1,6 +1,6 @@
 package com.cloud.message.config;
 
-import com.cloud.common.constant.MqConstants;
+import com.cloud.message.common.constant.MessageConstants;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
@@ -14,11 +14,11 @@ public class RabbitMqConfig {
 
     @Bean
     public DirectExchange basicExchange(){
-        return new DirectExchange(MqConstants.EMAIL_SECURITY_CODE, true,false);
+        return new DirectExchange(MessageConstants.EMAIL_SECURITY_CODE, true,false);
     }
 
     @Bean
     public Queue queue(){
-        return new Queue(MqConstants.EMAIL_SECURITY_CODE, true);
+        return new Queue(MessageConstants.EMAIL_SECURITY_CODE, true);
     }
 }

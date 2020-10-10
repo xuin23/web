@@ -1,15 +1,13 @@
 package com.cloud.common.base;
 
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.common.bean.ResultBean;
+import com.cloud.common.utils.ReflectUtil;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 通用Controller
@@ -39,10 +37,10 @@ public abstract class BaseController<T> {
      * @return ResultsBean<T>
      */
     @GetMapping(value = "/{id}")
-    public ResultsBean<T> findById(@PathVariable("id") Long id) {
+    public ResultBean<T> findById(@PathVariable("id") Long id) {
         log.info("search {} ，id：{}", tName, id);
         T t = baseService.findById(id);
-        return ResultsBean.SUCCESS(t);
+        return ResultBean.SUCCESS(t);
     }
 
     /**
@@ -52,10 +50,10 @@ public abstract class BaseController<T> {
      * @return ResultsBean<String>
      */
     @DeleteMapping(value = "/{id}")
-    public ResultsBean<String> deleteById(@PathVariable("id") Long id) {
+    public ResultBean<String> deleteById(@PathVariable("id") Long id) {
         log.info("{} delete, id：{}", tName, id);
         baseService.deleteById(id);
-        return ResultsBean.SUCCESS();
+        return ResultBean.SUCCESS();
     }
 
     /**
@@ -64,10 +62,10 @@ public abstract class BaseController<T> {
      * @return ResultsBean<String>
      */
     @PostMapping(value = "")
-    public ResultsBean<Long> create(@RequestBody T t) {
+    public ResultBean<Long> create(@RequestBody T t) {
         log.info("{} create, {}", tName, t);
         Long id = baseService.create(t);
-        return ResultsBean.SUCCESS(id);
+        return ResultBean.SUCCESS(id);
     }
 
     /**
@@ -77,15 +75,19 @@ public abstract class BaseController<T> {
      * @return ResultsBean<String>
      */
     @PutMapping(value = "")
-    public ResultsBean<String> updateById(@RequestBody T t) {
-        Object id = invokeMethod(t, "getId", new Object());
+    public ResultBean<String> updateById(@RequestBody T t) {
+        Object id = ReflectUtil.invokeMethod(t, "getId", new Object());
         if (id instanceof Long) {
             log.info("{} update {}", tName, t);
-            baseService.modifyById(t, (Long) id);
-            return ResultsBean.SUCCESS();
+            int i = baseService.modifyById(t, (Long) id);
+            if (i == 0) {
+                log.error("update {} fail，nothing changed.", tName);
+                return ResultBean.FAIL(String.format("update %s fail，nothing changed.", tName));
+            }
+            return ResultBean.SUCCESS();
         } else {
             log.error("update {} fail，id: {} is not exist", tName, t);
-            return ResultsBean.FAIL(String.format("update %s fail，id: %s is not exist", tName, t));
+            return ResultBean.FAIL(String.format("update %s fail，id: %s is not exist", tName, t));
         }
 
     }
@@ -97,10 +99,10 @@ public abstract class BaseController<T> {
      * @return ResultsBean
      */
     @GetMapping(value = "/list")
-    public ResultsBean<PageInfo<Map<String, Object>>> list(@RequestParam Map<String, Object> params) {
+    public ResultBean<PageInfo<Map<String, Object>>> list(@RequestParam Map<String, Object> params) {
         log.info("{} : {}", tName, params);
         PageInfo<Map<String, Object>> page = baseService.findByPageAll(params);
-        return ResultsBean.SUCCESS(page);
+        return ResultBean.SUCCESS(page);
     }
 
     /**
@@ -110,31 +112,13 @@ public abstract class BaseController<T> {
      * @return ResultsBean
      */
     @GetMapping(value = "")
-    public ResultsBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
+    public ResultBean<PageInfo<Map<String, Object>>> findByPageAll(@RequestBody Map<String, Object> params) {
         log.info("{} : {}", tName, params);
         PageInfo<Map<String, Object>> page = baseService.findByPageAll(params);
-        return ResultsBean.SUCCESS(page);
+        return ResultBean.SUCCESS(page);
     }
 
-    /**
-     * 反射调用方法
-     *
-     * @param o          反射对象
-     * @param methodName 方法名
-     * @return object
-     */
-    private Object invokeMethod(Object o, String methodName, Object... args) {
-        Objects.requireNonNull(o);
-        Object result;
-        try {
-            Method method = o.getClass().getMethod(methodName);
-            result = method.invoke(o, args);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            log.error("{}", o.getClass(), e);
-            throw new RuntimeException(o.getClass() + "" + e.getMessage());
-        }
-        return result;
-    }
+
 
     /**
      * 获取泛型 类型

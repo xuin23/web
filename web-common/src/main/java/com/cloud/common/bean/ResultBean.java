@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @param <T>
  */
-public class ResultsBean<T> implements Serializable {
+public class ResultBean<T> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class ResultsBean<T> implements Serializable {
     /**
      * 默认构造函数必须有 否则Feign调用返回结果时会报错
      */
-    public ResultsBean() {
+    public ResultBean() {
     }
 
     /**
@@ -47,7 +47,7 @@ public class ResultsBean<T> implements Serializable {
      * @param code   状态码
      * @param object 实体类
      */
-    public ResultsBean(int code, T object) {
+    public ResultBean(int code, T object) {
         super();
         this.code = code;
         this.object = object;
@@ -59,7 +59,7 @@ public class ResultsBean<T> implements Serializable {
      * @param code    状态码
      * @param message 信息
      */
-    public ResultsBean(int code, String message) {
+    public ResultBean(int code, String message) {
         super();
         this.code = code;
         this.message = message;
@@ -73,20 +73,20 @@ public class ResultsBean<T> implements Serializable {
         return RESULT_CODE_SUCCESS != code;
     }
 
-    public static <T> ResultsBean<T> SUCCESS(T t) {
-        return new ResultsBean<T>(RESULT_CODE_SUCCESS, t);
+    public static <T> ResultBean<T> SUCCESS(T t) {
+        return new ResultBean<T>(RESULT_CODE_SUCCESS, t);
     }
 
-    public static <T> ResultsBean<T> SUCCESS() {
+    public static <T> ResultBean<T> SUCCESS() {
         return SUCCESS(null);
     }
 
-    public static <T> ResultsBean<T> FAIL(String message) {
-        return new ResultsBean<T>(RESULT_CODE_SERVICE_ERR, message);
+    public static <T> ResultBean<T> FAIL(String message) {
+        return new ResultBean<T>(RESULT_CODE_SERVICE_ERR, message);
     }
 
-    public static <T> ResultsBean<T> FAIL(int code, String message) {
-        return new ResultsBean<T>(code, message);
+    public static <T> ResultBean<T> FAIL(int code, String message) {
+        return new ResultBean<T>(code, message);
     }
 
     public int getCode() {

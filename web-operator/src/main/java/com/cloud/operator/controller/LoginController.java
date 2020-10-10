@@ -1,7 +1,7 @@
 package com.cloud.operator.controller;
 
 import com.cloud.auth.common.bean.Authorization;
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.common.bean.ResultBean;
 import com.cloud.operator.mq.EmailProducer;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
@@ -41,19 +41,19 @@ public class LoginController {
      * @return ResultsBean<String>
      */
     @GetMapping(value = "/loginSecurityCode")
-    private ResultsBean<String> securityCode(@RequestParam(value = "username") String username) {
+    private ResultBean<String> securityCode(@RequestParam(value = "username") String username) {
         if (!username.contains("@")) {
-            return ResultsBean.FAIL("Please Login With Email");
+            return ResultBean.FAIL("Please Login With Email");
         }
         try {
             log.info("Get Security Code：{}", username);
             emailProducer.sendEmailMessage(username);
         } catch (Exception e) {
             log.error("Email send error");
-            return ResultsBean.FAIL("Email send error");
+            return ResultBean.FAIL("Email send error");
         }
         log.info("Email send success,{}", username);
-        return ResultsBean.SUCCESS("Email send success" + username);
+        return ResultBean.SUCCESS("Email send success" + username);
     }
 
     /**
@@ -66,9 +66,9 @@ public class LoginController {
      * @return ResultsBean<Authorization>
      */
     @GetMapping(value = "/operatorLogin")
-    private ResultsBean<Authorization> login(HttpServletRequest request,
-            @RequestParam(value = "username") String username, @RequestParam(value = "password") String password,
-            @RequestParam(value = "securityCode", required = false) String securityCode) {
+    private ResultBean<Authorization> login(HttpServletRequest request,
+                                            @RequestParam(value = "username") String username, @RequestParam(value = "password") String password,
+                                            @RequestParam(value = "securityCode", required = false) String securityCode) {
         String remoteIp = request.getRemoteAddr();
         log.info("username : {},security code : {}，ip : {}", username, securityCode, remoteIp);
         return loginClient.login(username, password, true, securityCode);
@@ -82,10 +82,10 @@ public class LoginController {
      * @return ResultsBean<Authorization>
      */
     @GetMapping(value = "/register")
-    private ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
-            @RequestParam(value = "securityCode") String securityCode) {
+    private ResultBean<Authorization> register(@RequestParam(value = "username") String username,
+                                               @RequestParam(value = "securityCode") String securityCode) {
         log.info("用户名：{}，验证码：{}", username, securityCode);
-        ResultsBean<Authorization> resultsBean = loginClient.register(username, securityCode);
+        ResultBean<Authorization> resultsBean = loginClient.register(username, securityCode);
         if (resultsBean.success()) {
             log.info("用户登录：{}，返回结果：{}", username, resultsBean.getObject());
         }

@@ -1,9 +1,9 @@
 package com.cloud.message.biz.impl;
 
-import com.cloud.common.constant.CacheKeyConstants;
 import com.cloud.common.utils.SecurityCodeUtil;
 import com.cloud.message.biz.EmailBiz;
 import com.cloud.message.common.bean.EmailBean;
+import com.cloud.message.common.constant.MessageConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.mail.MailException;
@@ -81,7 +81,7 @@ public class EmailBizImpl implements EmailBiz {
      */
     private void cacheSecurityCode(EmailBean bean) {
         //key
-        String key = CacheKeyConstants.EMAIL_SECURITY_PREFIX + bean.getTo();
+        String key = MessageConstants.EMAIL_SECURITY_PREFIX + bean.getTo();
         //设置验证码
         redisTemplate.opsForValue().set(key, bean.getText());
         //设置过期时间 5 分钟

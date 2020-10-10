@@ -1,7 +1,7 @@
 package com.cloud.message.mq.listener;
 
-import com.cloud.common.constant.MqConstants;
 import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.common.constant.MessageConstants;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -28,7 +28,7 @@ public class EmailListener {
     /**
      * 处理邮箱验证码消息
      */
-    @RabbitListener(queues = MqConstants.EMAIL_SECURITY_CODE)
+    @RabbitListener(queues = MessageConstants.EMAIL_SECURITY_CODE)
     public void emailMessage(Message message, Channel channel) {
         String email = new String(message.getBody());
         log.info("receive email name {}", email);

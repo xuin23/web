@@ -1,6 +1,6 @@
 package com.cloud.operator.mq;
 
-import com.cloud.common.constant.MqConstants;
+import com.cloud.message.common.constant.MessageConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
@@ -23,9 +23,9 @@ public class EmailProducer {
      * @param username 用户名（邮箱）
      */
     public void sendEmailMessage(String username) {
-        log.info("Email send key:{},msg:{}", MqConstants.EMAIL_SECURITY_CODE, username);
-        rabbitTemplate.convertAndSend(MqConstants.EMAIL_SECURITY_CODE, username);
-        log.info("Email send key:{},msg:{}, over", MqConstants.EMAIL_SECURITY_CODE, username);
+        log.info("Email send key:{},msg:{}", MessageConstants.EMAIL_SECURITY_CODE, username);
+        rabbitTemplate.convertAndSend(MessageConstants.EMAIL_SECURITY_CODE, username);
+        log.info("Email send key:{},msg:{}, over", MessageConstants.EMAIL_SECURITY_CODE, username);
     }
 
 }

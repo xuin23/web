@@ -1,6 +1,6 @@
 package com.cloud.operator.remote;
 
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.common.bean.ResultBean;
 import com.cloud.common.constant.FeignClientConstants;
 import com.cloud.operator.config.HostFallBackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,6 +21,6 @@ public interface EmailClient {
      * @return ResultsBean<String>
      */
     @RequestMapping(path = FeignClientConstants.MESSAGE_APPLICATION_NAME_CODE + "/email/sendEmail", method = RequestMethod.POST)
-    ResultsBean<String> sendEmail(@RequestParam("username") String username);
+    ResultBean<String> sendEmail(@RequestParam("username") String username);
 
 }

@@ -1,6 +1,5 @@
 package com.cloud.common.base;
 
-import com.cloud.common.constant.CommonConstants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +97,7 @@ public abstract class BaseService<T> implements IService<T> {
         // 页码
         int pageNum = params.get("pageNum") == null ? 1 : Integer.parseInt(params.get("pageNum").toString());
         // 每页显示数量
-        int pageSize = params.get("pageSize") == null ? CommonConstants.DEFALT_PAGE_SIZE
+        int pageSize = params.get("pageSize") == null ? 10
                 : Integer.parseInt(params.get("pageSize").toString());
         // 设置页属性
         PageHelper.startPage(pageNum, pageSize, true);
