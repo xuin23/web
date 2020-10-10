@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>message-core</artifactId>
+    <name>message</name>
     <description>消息-核心</description>
 
     <dependencies>
@@ -30,6 +31,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.redisson</groupId>

@@ -1,6 +1,6 @@
 package com.cloud.message.provider;
 
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.common.bean.ResultBean;
 import com.cloud.message.biz.EmailBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +28,13 @@ public class EmailProvider {
      * @return ResultsBean<String>
      */
     @PostMapping("/sendEmail")
-    public ResultsBean<String> sendEmail(@RequestParam("username") String username) {
+    public ResultBean<String> sendEmail(@RequestParam("username") String username) {
         try {
             emailBiz.sendSecurityCode(username);
         } catch (Exception e) {
             log.error("发送邮箱验证码出错,{}", e.getMessage(), e);
         }
-        return ResultsBean.SUCCESS();
+        return ResultBean.SUCCESS();
     }
 
 }

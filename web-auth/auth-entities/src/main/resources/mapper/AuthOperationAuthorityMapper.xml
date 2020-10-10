@@ -15,24 +15,24 @@
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_operation_authority
+        from auth_operation_authority
         where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from web.auth_operation_authority
+        from auth_operation_authority
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthMenuAuthority"
             useGeneratedKeys="true">
-        insert into web.auth_operation_authority (authority_id, operation_id)
+        insert into auth_operation_authority (authority_id, operation_id)
         values (#{authorityId,jdbcType=BIGINT}, #{operationId,jdbcType=BIGINT})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthMenuAuthority">
-        update web.auth_operation_authority
+        update auth_operation_authority
         <set>
             <if test="authority_id != null">
                 authority_id = #{authorityId,jdbcType=BIGINT},
@@ -47,7 +47,7 @@
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_operation_authority
+        from auth_operation_authority
         <where>
             <if test=" params.id != null and  params.id != ''">
                 id = cast(#{params.id,jdbcType=BIGINT}as integer )

@@ -1,15 +1,16 @@
 package com.cloud.common.utils;
 
 import java.security.MessageDigest;
+import java.util.Objects;
 
 /**
- * 密码加密工具
+ * 加密工具
  *
  * @author xulijian
  */
 public class DigestUtil {
 
-    private static final char[] HEX_CHARS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char[] HEX_CHARS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 
     /**
      * MD5 工具
@@ -18,8 +19,8 @@ public class DigestUtil {
      * @return 加密结果
      */
     public static String encodeByMd5(String str) {
-        byte[] temp = str.getBytes();
-        return encodeByMd5(temp);
+        Objects.requireNonNull(str);
+        return encodeByMd5(str.getBytes());
     }
 
     /**

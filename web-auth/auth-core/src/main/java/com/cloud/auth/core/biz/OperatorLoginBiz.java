@@ -1,6 +1,6 @@
 package com.cloud.auth.core.biz;
 
-import com.cloud.common.bean.Authorization;
+import com.cloud.auth.common.bean.Authorization;
 
 /**
  * 操作员登录 业务

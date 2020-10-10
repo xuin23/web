@@ -10,5 +10,5 @@ public interface EmailBiz {
      *
      * @param email 邮箱
      */
-    public void sendSecurityCode(String email);
+    void sendSecurityCode(String email);
 }

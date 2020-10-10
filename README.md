@@ -4,22 +4,23 @@
 
 ### 1、基本架构
 
-    * OpenJDK11
-    * SpringBoot
-    * SpringCloud
+    * OpenJDK 11
+    * Spring Boot
+    * Spring Cloud
     * Postgres
     * Rabbitmq
     * Redis
 
-
 ### 2、主要模块
 
+    * web-service
+        * service-gateway
     * web-common
-    * web-gateway
     * web-auth
         * auth-common
         * auth-core
         * auth-entities
+        * auth-oauth2
     * web-message
         * message-common
         * message-core

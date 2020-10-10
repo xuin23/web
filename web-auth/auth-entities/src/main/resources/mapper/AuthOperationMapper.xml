@@ -17,24 +17,24 @@
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_operation
+        from auth_operation
         where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from web.auth_operation
+        from auth_operation
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthOperation"
             useGeneratedKeys="true">
-        insert into web.auth_operation (name, status)
+        insert into auth_operation (name, status)
         values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthOperation">
-        update web.auth_operation
+        update auth_operation
         <set>
             update_time = now(),
             optimistic = optimistic+1,
@@ -51,7 +51,7 @@
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_operation
+        from auth_operation
         <where>
             <if test=" params.id != null and  params.id != ''">
                 id = cast(#{params.id,jdbcType=BIGINT}as integer )

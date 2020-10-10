@@ -4,6 +4,5 @@ package com.cloud.common.enums;
  * 数据状态
  */
 public enum Status {
-    Y,
-    N
+    t, f
 }

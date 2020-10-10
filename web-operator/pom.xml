@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>web-operator</artifactId>
+    <name>operator</name>
 
     <dependencies>
         <dependency>
@@ -50,6 +51,11 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>auth-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>message-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

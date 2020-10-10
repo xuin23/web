@@ -15,24 +15,24 @@
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user_group
+        from auth_user_group
         where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from web.auth_user_group
+        from auth_user_group
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUserGroup"
             useGeneratedKeys="true">
-        insert into web.auth_user_group (user_id, group_id)
+        insert into auth_user_group (user_id, group_id)
         values (#{userId,jdbcType=BIGINT}, #{groupId,jdbcType=BIGINT})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUserGroup">
-        update web.auth_user_group
+        update auth_user_group
         <set>
             <if test="user_id != null">
                 user_id = #{userId,jdbcType=BIGINT},
@@ -47,7 +47,7 @@
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user_group
+        from auth_user_group
         <where>
             <if test=" params.id != null and  params.id != ''">
                 id = cast(#{params.id,jdbcType=BIGINT}as integer )

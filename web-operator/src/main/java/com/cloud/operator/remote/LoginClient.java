@@ -1,7 +1,7 @@
 package com.cloud.operator.remote;
 
-import com.cloud.common.bean.Authorization;
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.auth.common.bean.Authorization;
+import com.cloud.common.bean.ResultBean;
 import com.cloud.common.constant.FeignClientConstants;
 import com.cloud.operator.config.HostFallBackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 登录客户端
+ * 
+ * @author xulijian
  */
 @FeignClient(value = FeignClientConstants.AUTH_EUREKA_SERVER_INSTANCE_CORE, fallbackFactory = HostFallBackFactory.class)
 public interface LoginClient {
@@ -24,10 +26,10 @@ public interface LoginClient {
      * @param securityCode 验证码
      */
     @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/operatorLogin/login", method = RequestMethod.POST)
-    ResultsBean<Authorization> login(@RequestParam(value = "username") String username,
-                                     @RequestParam(value = "password") String password,
-                                     @RequestParam(value = "isSecurity") Boolean isSecurity,
-                                     @RequestParam(value = "securityCode", required = false) String securityCode);
+    ResultBean<Authorization> login(@RequestParam(value = "username") String username,
+                                    @RequestParam(value = "password") String password,
+                                    @RequestParam(value = "isSecurity") Boolean isSecurity,
+                                    @RequestParam(value = "securityCode", required = false) String securityCode);
 
     /**
      * 注册
@@ -37,8 +39,8 @@ public interface LoginClient {
      * @return ResultsBean<String>
      */
     @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/operatorLogin/register", method = RequestMethod.POST)
-    ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
-                                        @RequestParam(value = "securityCode") String securityCode);
+    ResultBean<Authorization> register(@RequestParam(value = "username") String username,
+                                       @RequestParam(value = "securityCode") String securityCode);
 
 
 }

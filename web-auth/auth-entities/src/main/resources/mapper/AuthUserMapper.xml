@@ -20,25 +20,25 @@
     <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user
+        from auth_user
         where id = #{id,jdbcType=BIGINT}
     </select>
 
     <delete id="deleteById" parameterType="java.lang.Long">
         delete
-        from web.auth_user
+        from auth_user
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cloud.auth.entity.AuthUser"
             useGeneratedKeys="true">
-        insert into web.auth_user (username, password, realname, email, status)
+        insert into auth_user (username, password, realname, email, status)
         values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR},
                 #{email,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
     </insert>
 
     <update id="updateById" parameterType="com.cloud.auth.entity.AuthUser">
-        update web.auth_user
+        update auth_user
         <set>
             update_time = now(),
             optimistic = optimistic+1,
@@ -61,7 +61,7 @@
     <select id="findByPageAll" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user
+        from auth_user
         <where>
             <if test=" params.id != null and  params.id != ''">
                 id = cast(#{params.id,jdbcType=BIGINT}as integer )
@@ -84,12 +84,12 @@
     <select id="findByUserName" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user where username= #{username,jdbcType=VARCHAR}
+        from auth_user where username= #{username,jdbcType=VARCHAR}
     </select>
 
     <select id="findByEmail" parameterType="string" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from web.auth_user where email= #{email,jdbcType=VARCHAR}
+        from auth_user where email= #{email,jdbcType=VARCHAR}
     </select>
 </mapper>

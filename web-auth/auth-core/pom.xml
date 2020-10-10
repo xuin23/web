@@ -10,9 +10,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <name>auth</name>
     <artifactId>auth-core</artifactId>
     <description>权限-核心</description>
-    <packaging>jar</packaging>
 
     <dependencies>
 
@@ -64,6 +64,16 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>web-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>auth-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>message-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

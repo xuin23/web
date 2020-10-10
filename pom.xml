@@ -43,11 +43,11 @@
     </properties>
 
     <modules>
-        <!--路由服务-->
-        <module>web-gateway</module>
         <!--公共包-->
         <module>web-common</module>
-        <!--权限操作-->
+        <!--基础服务-->
+        <module>web-service</module>
+        <!--权限服务-->
         <module>web-auth</module>
         <!--操作员服务-->
         <module>web-operator</module>

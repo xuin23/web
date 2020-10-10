@@ -1,7 +1,6 @@
 package com.cloud.common.utils;
 
-import com.cloud.common.enums.SecurityCodeType;
-
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -11,10 +10,34 @@ import java.util.Random;
  */
 public class SecurityCodeUtil {
 
+    public static final String CODE_TYPE_NUM = SecurityCodeType.NUM.toString();
+
+    public static final String CODE_TYPE_CH = SecurityCodeType.CH.toString();
+
+    /**
+     * 验证码类型枚举
+     */
+    private enum SecurityCodeType {
+        NUM, //数字
+        CH;  //全字符
+
+        public static SecurityCodeType getEnum(String type) {
+            for (SecurityCodeType value : SecurityCodeType.values()) {
+                if (value.toString().equals(type)) {
+                    return value;
+                }
+            }
+            return SecurityCodeType.NUM;
+        }
+    }
+
     /**
      * 全字符数组
      */
-    private static final char[] ch = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private static final char[] ch = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+            'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
+            'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+            'w', 'x', 'y', 'z'};
 
     /**
      * 数字数组
@@ -28,7 +51,7 @@ public class SecurityCodeUtil {
      * @return 验证码
      */
     public static String generateSecurityCode(int length) {
-        return generateSecurityCode(length, SecurityCodeType.NUM);
+        return generateSecurityCode(length, CODE_TYPE_NUM);
     }
 
     /**
@@ -38,16 +61,26 @@ public class SecurityCodeUtil {
      * @param type   验证码类型
      * @return 验证码
      */
-    public static String generateSecurityCode(int length, SecurityCodeType type) {
+    public static String generateSecurityCode(int length, String type) {
 
         char[] c;
-        if (SecurityCodeType.CH == type) {
-            c = ch;
-        } else {
-            c = num;
+
+        Objects.requireNonNull(type, "Security Code type can not null");
+
+        SecurityCodeType codeType = SecurityCodeType.getEnum(type);
+
+        switch (codeType) {
+            case NUM:
+                c = num;
+                break;
+            case CH:
+                c = ch;
+                break;
+            default:
+                c = ch;
+                break;
         }
         StringBuilder sb = new StringBuilder();
-
         Random random = new Random();
         for (int i = 0; i < length; i++) {
             char st = c[random.nextInt(c.length)];

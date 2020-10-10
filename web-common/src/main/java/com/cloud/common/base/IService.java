@@ -16,7 +16,6 @@ public interface IService<T> {
      */
     Long create(T t);
 
-
     /**
      * 根据Id修改
      *
@@ -25,7 +24,6 @@ public interface IService<T> {
      */
     int modifyById(T t, Long id);
 
-
     /**
      * 根据Id删除
      *
@@ -33,7 +31,6 @@ public interface IService<T> {
      * @return int
      */
     int deleteById(Long id);
-
 
     /**
      * 根据Id查询

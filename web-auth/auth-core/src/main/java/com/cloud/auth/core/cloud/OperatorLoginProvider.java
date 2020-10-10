@@ -1,8 +1,8 @@
 package com.cloud.auth.core.cloud;
 
 import com.cloud.auth.core.biz.OperatorLoginBiz;
-import com.cloud.common.bean.Authorization;
-import com.cloud.common.bean.ResultsBean;
+import com.cloud.auth.common.bean.Authorization;
+import com.cloud.common.bean.ResultBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +35,14 @@ public class OperatorLoginProvider {
      * @return ResultsBean<Authorization>
      */
     @PostMapping(value = "/login")
-    public ResultsBean<Authorization> login(@RequestParam(value = "username") String username,
-                                            @RequestParam(value = "password") String password,
-                                            @RequestParam(value = "isSecurity") Boolean isSecurity,
-                                            @RequestParam(value = "securityCode", required = false) String securityCode) {
+    public ResultBean<Authorization> login(@RequestParam(value = "username") String username,
+                                           @RequestParam(value = "password") String password,
+                                           @RequestParam(value = "isSecurity") Boolean isSecurity,
+                                           @RequestParam(value = "securityCode", required = false) String securityCode) {
         log.info("用户登录：{}", username);
         Authorization authorization = operatorLoginBiz.login(username, password, isSecurity, securityCode);
         log.info("用户登录：{}，返回结果：{}", username, authorization);
-        return ResultsBean.SUCCESS(authorization);
+        return ResultBean.SUCCESS(authorization);
     }
 
     /**
@@ -53,11 +53,11 @@ public class OperatorLoginProvider {
      * @return ResultsBean<String>
      */
     @PostMapping(value = "/operatorLogin/register")
-    ResultsBean<Authorization> register(@RequestParam(value = "username") String username,
-                                 @RequestParam(value = "securityCode") String securityCode) {
+    ResultBean<Authorization> register(@RequestParam(value = "username") String username,
+                                       @RequestParam(value = "securityCode") String securityCode) {
         log.info("用户注册：{}，验证码：{}", username, securityCode);
         Authorization authorization = operatorLoginBiz.register(username, securityCode);
-        return ResultsBean.SUCCESS(authorization);
+        return ResultBean.SUCCESS(authorization);
     }
 
 }
