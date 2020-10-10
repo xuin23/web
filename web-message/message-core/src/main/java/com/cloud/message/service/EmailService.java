@@ -1,9 +1,9 @@
-package com.cloud.message.biz;
+package com.cloud.message.service;
 
 /**
  * email 业务
  */
-public interface EmailBiz {
+public interface EmailService {
 
     /**
      * 发送邮箱验证码

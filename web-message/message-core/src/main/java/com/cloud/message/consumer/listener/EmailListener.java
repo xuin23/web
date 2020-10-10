@@ -1,6 +1,6 @@
-package com.cloud.message.mq.listener;
+package com.cloud.message.consumer.listener;
 
-import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.service.EmailService;
 import com.cloud.message.common.constant.MessageConstants;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class EmailListener {
      * email 业务
      */
     @Resource
-    private EmailBiz emailBiz;
+    private EmailService emailService;
 
     /**
      * 处理邮箱验证码消息
@@ -33,7 +33,7 @@ public class EmailListener {
         log.info("receive email name {}", email);
         try {
             channel.basicAck(message.getMessageProperties().getDeliveryTag(), true);
-            emailBiz.sendSecurityCode(email);
+            emailService.sendSecurityCode(email);
             log.info("send email success,{}", email);
         } catch (Exception e) {
             log.error("{}", e.getMessage(), e);

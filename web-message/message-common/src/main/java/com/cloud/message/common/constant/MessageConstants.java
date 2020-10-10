@@ -12,6 +12,9 @@ public class MessageConstants {
      */
     public static final String EMAIL_SECURITY_CODE = "EMAIL_SECURITY_CODE";
 
-    public static final String EMAIL_SECURITY_PREFIX = "EMAIL_SECURITY_KEY_";
+    /**
+     * 邮箱验证码Key前缀
+     */
+    public static final String EMAIL_SECURITY_CODE_PREFIX = "EMAIL_SECURITY_CODE_PREFIX_KEY_";
 
 }

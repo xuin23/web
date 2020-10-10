@@ -1,4 +1,4 @@
-package com.cloud.operator.mq;
+package com.cloud.operator.producer;
 
 import com.cloud.message.common.constant.MessageConstants;
 import lombok.extern.slf4j.Slf4j;

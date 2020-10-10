@@ -2,7 +2,7 @@ package com.cloud.operator.controller;
 
 import com.cloud.auth.common.bean.Authorization;
 import com.cloud.common.bean.ResultBean;
-import com.cloud.operator.mq.EmailProducer;
+import com.cloud.operator.producer.EmailProducer;
 import com.cloud.operator.remote.LoginClient;
 import lombok.extern.slf4j.Slf4j;
 

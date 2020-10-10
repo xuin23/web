@@ -1,7 +1,7 @@
-package com.cloud.message.biz.impl;
+package com.cloud.message.service.impl;
 
 import com.cloud.common.utils.SecurityCodeUtil;
-import com.cloud.message.biz.EmailBiz;
+import com.cloud.message.service.EmailService;
 import com.cloud.message.common.bean.EmailBean;
 import com.cloud.message.common.constant.MessageConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class EmailBizImpl implements EmailBiz {
+public class EmailServiceImpl implements EmailService {
 
     /**
      * 邮箱发送人
@@ -81,7 +81,7 @@ public class EmailBizImpl implements EmailBiz {
      */
     private void cacheSecurityCode(EmailBean bean) {
         //key
-        String key = MessageConstants.EMAIL_SECURITY_PREFIX + bean.getTo();
+        String key = MessageConstants.EMAIL_SECURITY_CODE_PREFIX + bean.getTo();
         //设置验证码
         redisTemplate.opsForValue().set(key, bean.getText());
         //设置过期时间 5 分钟

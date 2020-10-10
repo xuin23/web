@@ -135,7 +135,7 @@ public class OperatorLoginBizImpl implements OperatorLoginBiz {
      */
     private void securityCodeCheck(String username, Boolean isSecurity, String securityCode) {
         if (isSecurity) {
-            String key = MessageConstants.EMAIL_SECURITY_PREFIX + username;
+            String key = MessageConstants.EMAIL_SECURITY_CODE_PREFIX + username;
             Object o = redisTemplate.opsForValue().get(key);
             if (null != o && securityCode.equals(o.toString())) {
                 log.info("验证码校验成功");
