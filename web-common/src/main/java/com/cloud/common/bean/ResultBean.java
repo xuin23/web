@@ -35,11 +35,7 @@ public class ResultBean<T> implements Serializable {
      */
     private T object;
 
-    /**
-     * 默认构造函数必须有 否则Feign调用返回结果时会报错
-     */
-    public ResultBean() {
-    }
+    public ResultBean() { }
 
     /**
      * 状态码 实体类
