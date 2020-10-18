@@ -1,6 +1,6 @@
-package com.cloud.auth.core.cloud;
+package com.cloud.auth.core.controller;
 
-import com.cloud.auth.core.service.OperatorLoginService;
+import com.cloud.auth.core.service.LoginService;
 import com.cloud.auth.common.bean.Authorization;
 import com.cloud.common.bean.ResultBean;
 import lombok.extern.slf4j.Slf4j;
@@ -16,14 +16,14 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "/cloud/operatorLogin")
-public class OperatorLoginProvider {
+@RequestMapping(value = "/operatorLogin")
+public class LoginController {
 
     /**
      * 操作员登录 业务
      */
     @Resource
-    private OperatorLoginService operatorLoginService;
+    private LoginService loginService;
 
     /**
      * 操作员登录
@@ -40,7 +40,7 @@ public class OperatorLoginProvider {
                                            @RequestParam(value = "isSecurity") Boolean isSecurity,
                                            @RequestParam(value = "securityCode", required = false) String securityCode) {
         log.info("用户登录：{}", username);
-        Authorization authorization = operatorLoginService.login(username, password, isSecurity, securityCode);
+        Authorization authorization = loginService.login(username, password, isSecurity, securityCode);
         log.info("用户登录：{}，返回结果：{}", username, authorization);
         return ResultBean.SUCCESS(authorization);
     }
@@ -56,7 +56,7 @@ public class OperatorLoginProvider {
     ResultBean<Authorization> register(@RequestParam(value = "username") String username,
                                        @RequestParam(value = "securityCode") String securityCode) {
         log.info("用户注册：{}，验证码：{}", username, securityCode);
-        Authorization authorization = operatorLoginService.register(username, securityCode);
+        Authorization authorization = loginService.register(username, securityCode);
         return ResultBean.SUCCESS(authorization);
     }
 

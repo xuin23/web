@@ -5,7 +5,7 @@ import com.cloud.auth.common.bean.Authorization;
 /**
  * 操作员登录 业务
  */
-public interface OperatorLoginService {
+public interface LoginService {
 
     /**
      * 登录

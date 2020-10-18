@@ -1,4 +1,4 @@
-package com.cloud.auth.core.cloud;
+package com.cloud.auth.core.controller;
 
 import com.cloud.auth.core.service.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
@@ -13,8 +13,8 @@ import java.util.List;
  * 用户 provider
  */
 @RestController
-@RequestMapping(value = "/cloud/authUser")
-public class AuthUserProvider extends BaseController<AuthUser> {
+@RequestMapping(value = "/authUser")
+public class AuthUserController extends BaseController<AuthUser> {
 
     /**
      * 用户 service
