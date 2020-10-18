@@ -9,6 +9,6 @@ import feign.hystrix.FallbackFactory;
 public class HostFallBackFactory implements FallbackFactory<ResultBean<String>> {
     @Override
     public ResultBean<String> create(Throwable throwable) {
-        return ResultBean.FAIL("服务器调用异常 " + throwable.getMessage());
+        return ResultBean.FAIL(throwable.getMessage());
     }
 }
