@@ -25,7 +25,7 @@ public interface LoginClient {
      * @param isSecurity   是否使用验证码
      * @param securityCode 验证码
      */
-    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/operatorLogin/login", method = RequestMethod.POST)
+    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/login", method = RequestMethod.POST)
     ResultBean<Authorization> login(@RequestParam(value = "username") String username,
                                     @RequestParam(value = "password") String password,
                                     @RequestParam(value = "isSecurity") Boolean isSecurity,
@@ -38,7 +38,7 @@ public interface LoginClient {
      * @param securityCode 验证码
      * @return ResultsBean<String>
      */
-    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/operatorLogin/register", method = RequestMethod.POST)
+    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/register", method = RequestMethod.POST)
     ResultBean<Authorization> register(@RequestParam(value = "username") String username,
                                        @RequestParam(value = "securityCode") String securityCode);
 
