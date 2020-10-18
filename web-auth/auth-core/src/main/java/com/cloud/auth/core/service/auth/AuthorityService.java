@@ -1,4 +1,4 @@
-package com.cloud.auth.core.service;
+package com.cloud.auth.core.service.auth;
 
 import com.cloud.auth.entity.Authority;
 import com.cloud.common.base.BaseService;

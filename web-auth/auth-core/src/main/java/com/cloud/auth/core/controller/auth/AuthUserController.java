@@ -1,6 +1,6 @@
-package com.cloud.auth.core.controller;
+package com.cloud.auth.core.controller.auth;
 
-import com.cloud.auth.core.service.AuthUserService;
+import com.cloud.auth.core.service.auth.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.base.BaseController;
 import com.cloud.common.bean.ResultBean;

@@ -16,7 +16,6 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "/operatorLogin")
 public class LoginController {
 
     /**
@@ -52,7 +51,7 @@ public class LoginController {
      * @param securityCode 验证码
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/operatorLogin/register")
+    @PostMapping(value = "/register")
     ResultBean<Authorization> register(@RequestParam(value = "username") String username,
                                        @RequestParam(value = "securityCode") String securityCode) {
         log.info("用户注册：{}，验证码：{}", username, securityCode);

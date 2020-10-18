@@ -1,4 +1,4 @@
-package com.cloud.auth.core.controller;
+package com.cloud.auth.core.controller.auth;
 
 import com.cloud.auth.entity.AuthRoleGroup;
 import com.cloud.common.base.BaseController;
