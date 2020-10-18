@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * 登录客户端
- * 
+ *
  * @author xulijian
  */
 @FeignClient(value = FeignClientConstants.AUTH_EUREKA_SERVER_INSTANCE_CORE, fallbackFactory = HostFallBackFactory.class)
@@ -42,5 +42,12 @@ public interface LoginClient {
     ResultBean<Authorization> register(@RequestParam(value = "username") String username,
                                        @RequestParam(value = "securityCode") String securityCode);
 
-
+    /**
+     * 验证码
+     *
+     * @param username 用户名
+     * @return ResultsBean<String>
+     */
+    @RequestMapping(path = FeignClientConstants.AUTH_APPLICATION_NAME_CODE + "/securityCode", method = RequestMethod.POST)
+    ResultBean<String> securityCode(String username);
 }

@@ -1,5 +1,6 @@
 package com.cloud.auth.core.controller;
 
+import com.cloud.auth.core.producer.EmailProducer;
 import com.cloud.auth.core.service.LoginService;
 import com.cloud.auth.common.bean.Authorization;
 import com.cloud.common.bean.ResultBean;
@@ -23,6 +24,12 @@ public class LoginController {
      */
     @Resource
     private LoginService loginService;
+
+    /**
+     * EmailProducer
+     */
+    @Resource
+    EmailProducer emailProducer;
 
     /**
      * 操作员登录
@@ -58,5 +65,19 @@ public class LoginController {
         Authorization authorization = loginService.register(username, securityCode);
         return ResultBean.SUCCESS(authorization);
     }
+
+    /**
+     * 注册
+     *
+     * @param username 用户名
+     * @return ResultsBean<String>
+     */
+    @PostMapping(value = "/register")
+    ResultBean<String> securityCode(@RequestParam(value = "username") String username) {
+        log.info("securityCode ：{}", username);
+        emailProducer.sendEmailMessage(username);
+        return ResultBean.SUCCESS();
+    }
+
 
 }
