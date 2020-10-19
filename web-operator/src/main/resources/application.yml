@@ -5,11 +5,6 @@ server:
 spring:
   application:
     name: @pom.artifactId@
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
   main:
     allow-bean-definition-overriding: true
   cloud:

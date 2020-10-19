@@ -13,6 +13,6 @@ public class FeignClientConstants {
 
     //消息
     public static final String MESSAGE_APPLICATION_NAME_CODE = "/message";
-    public static final String MESSAGE_EUREKA_SERVER_INSTANCE_CORE = "AUTH-CORE";
+    public static final String MESSAGE_EUREKA_SERVER_INSTANCE_CORE = "MESSAGE-CORE";
 
 }
