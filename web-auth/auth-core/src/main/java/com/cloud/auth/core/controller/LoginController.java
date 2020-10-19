@@ -72,7 +72,7 @@ public class LoginController {
      * @param username 用户名
      * @return ResultsBean<String>
      */
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/securityCode")
     ResultBean<String> securityCode(@RequestParam(value = "username") String username) {
         log.info("securityCode ：{}", username);
         emailProducer.sendEmailMessage(username);
