@@ -4,7 +4,7 @@
 
 ### 1、基本架构
 
-    * OpenJDK 11
+    * OpenJDK 15
     * Spring Boot
     * Spring Cloud
     * Postgres
