@@ -15,6 +15,7 @@
 
     * web-service
         * service-gateway
+        * service-admin
     * web-common
     * web-auth
         * auth-common
