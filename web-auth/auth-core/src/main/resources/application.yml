@@ -46,3 +46,8 @@ logging:
       cloud:
         auth:
           mapper: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

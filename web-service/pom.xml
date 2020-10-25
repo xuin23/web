@@ -15,6 +15,7 @@
     
     <modules>
         <module>service-gateway</module>
+        <module>service-admin</module>
     </modules>
 
 </project>

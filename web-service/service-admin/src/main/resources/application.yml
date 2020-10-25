@@ -1,23 +1,17 @@
 server:
-  port: 8080
+  port: 8005
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
 spring:
   application:
     name: @pom.artifactId@
   cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: false
-          lower-case-service-id: true
-      routes:
-        - id: web-operator
-          uri: lb://web-operator
-          predicates:
-            - Path=/operator/**
-        - id: auth-core
-          uri: lb://auth-core
-          predicates:
-            - Path=/auth/**
     consul:
       host: localhost
       port: 8500
@@ -31,8 +25,7 @@ spring:
         health-check-path: /actuator/info # 健康检查的路径
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
         service-name: ${spring.application.name} # 注册服务名
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  boot:
+    admin:
+      discovery:
+        ignored-services: "consul"
