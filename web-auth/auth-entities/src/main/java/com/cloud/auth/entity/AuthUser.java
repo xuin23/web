@@ -1,30 +1,27 @@
 package com.cloud.auth.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import com.cloud.common.enums.Status;
 import lombok.Data;
+
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * 用户信息
- * 
- * @author xulijian
  */
 @Data
-public class AuthUser implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Cacheable
+@Entity(name = "auth_user")
+public class AuthUser {
     /**
      * 用户ID
      */
+    @Id
+    @GeneratedValue
     private Long id;
-
-    /**
-     * 乐观锁版本
-     */
-    private Long optimistic;
 
     /**
      * 角色名
@@ -47,9 +44,14 @@ public class AuthUser implements Serializable {
     private String email;
 
     /**
+     * 乐观锁版本
+     */
+    private Long optimistic;
+
+    /**
      * 状态
      */
-    private Status status;
+    private Boolean status;
 
     /**
      * 更新日期

@@ -60,13 +60,12 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>auth-entities</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <!--公共包-->
         <dependency>
@@ -77,6 +76,11 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>auth-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>auth-entities</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -3,33 +3,37 @@ package com.cloud.auth.entity;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
-import java.io.Serializable;
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * 角色信息
- * 
- * @author xulijian
  */
 @Data
-public class AuthRole implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Cacheable
+@Entity(name = "auth_role")
+public class AuthRole {
 
     /**
      * 角色id
      */
+    @Id
+    @GeneratedValue
     private Long id;
-
-    /**
-     * 乐观锁版本
-     */
-    private Long optimistic;
 
     /**
      * 角色名
      */
     private String name;
+
+
+    /**
+     * 乐观锁版本
+     */
+    private Long optimistic;
 
     /**
      * 状态
@@ -45,4 +49,5 @@ public class AuthRole implements Serializable {
      * 创建日期
      */
     private Date createTime;
+
 }

@@ -3,6 +3,10 @@ package com.cloud.auth.entity;
 import com.cloud.common.enums.Status;
 import lombok.Data;
 
+import javax.persistence.Cacheable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,19 +16,16 @@ import java.util.Date;
  * @author xulijian
  */
 @Data
+@Cacheable
+@Entity(name = "auth_group")
 public class AuthGroup implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 用户组id
      */
+    @Id
+    @GeneratedValue
     private Long id;
-
-    /**
-     * 乐观锁版本
-     */
-    private Long optimistic;
 
     /**
      * 用户组名
@@ -34,7 +35,12 @@ public class AuthGroup implements Serializable {
     /**
      * 用户组父id
      */
-    private Long pid;
+    private Long fid;
+
+    /**
+     * 乐观锁版本
+     */
+    private Long optimistic;
 
     /**
      * 状态
