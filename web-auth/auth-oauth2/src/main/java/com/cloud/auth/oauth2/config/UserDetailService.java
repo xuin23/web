@@ -1,7 +1,7 @@
 package com.cloud.auth.oauth2.config;
 
 import com.cloud.auth.entity.AuthUser;
-import com.cloud.auth.mapper.AuthUserMapper;
+import com.cloud.auth.repo.AuthUserRepo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +25,7 @@ public class UserDetailService implements UserDetailsService {
      * 用户 service
      */
     @Resource
-    private AuthUserMapper authUserMapper;
+    private AuthUserRepo authUserRepo;
 
     /**
      * 授权的时候是对角色授权，而认证的时候应该基于资源，而不是角色，因为资源是不变的，而用户的角色是会变的
@@ -33,7 +33,7 @@ public class UserDetailService implements UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<AuthUser>  authUserList = authUserMapper.findByEmail(username);
+        List<AuthUser>  authUserList = authUserRepo.findByEmail(username);
         if (authUserList.isEmpty()) {
             throw new RuntimeException("Current user is not exist.");
         }
