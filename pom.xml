@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.4.5</version>
         <relativePath/>
     </parent>
 
@@ -31,22 +31,14 @@
         <java.version>16</java.version>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <!--spring cloud 版本-->
         <spring-cloud.version>2020.0.2</spring-cloud.version>
-        <!--Redisson-->
-        <redisson.verion>3.13.6</redisson.verion>
+        <redisson.verion>3.15.5</redisson.verion>
     </properties>
 
     <modules>
-        <!--公共包-->
         <module>web-common</module>
-        <!--基础服务-->
         <module>web-service</module>
-        <!--权限服务-->
         <module>web-auth</module>
-        <!--操作员服务-->
-        <module>web-operator</module>
-        <!--消息服务-->
         <module>web-message</module>
     </modules>
 
@@ -63,11 +55,6 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.verion}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.spring.boot.verion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
