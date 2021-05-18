@@ -14,10 +14,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>auth-common</module>
         <module>auth-core</module>
         <module>auth-entities</module>
-        <module>auth-oauth2</module>
     </modules>
 
 </project>
