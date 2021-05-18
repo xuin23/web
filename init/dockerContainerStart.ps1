@@ -19,6 +19,6 @@ Write-Host "RabbitMQ 开启管理界面完成"
 
 Write-Host "Consul 服务创建中。。。。"
 mkdir -p /data/consul
-docker run -d  --restart always  -p 8500:8500 -v /data/consul:/consul/data -e CONSUL_BIND_INTERFACE = 'eth0' --name = consul consul agent -server -bootstrap -ui -client='0.0.0.0'
+docker run -d  --restart always  -p 8500:8500 -e CONSUL_BIND_INTERFACE='eth0' --name consul consul agent -server -bootstrap -ui -client='0.0.0.0'
 Write-Host "Consul 服务创建完成"
 
