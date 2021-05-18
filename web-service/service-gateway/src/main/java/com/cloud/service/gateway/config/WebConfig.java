@@ -16,9 +16,10 @@ import org.springframework.web.util.pattern.PathPatternParser;
 public class WebConfig {
 
     /**
-     * 配置跨域
+     * 跨域配置
      *
-     * @return CorsWebFilter
+     * @return CorsWebFilter CorsWebFilter
+     * @author xulijian
      */
     @Bean
     public CorsWebFilter corsFilter() {
@@ -31,7 +32,7 @@ public class WebConfig {
         config.addAllowedHeader("*");
         // 配置前端js允许访问的自定义响应头
         config.addExposedHeader("setToken");
-        
+
         source.registerCorsConfiguration("/**", config);
 
         return new CorsWebFilter(source);

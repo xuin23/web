@@ -4,7 +4,7 @@
 
 ### 1、基本架构
 
-    * OpenJDK 15
+    * OpenJDK 16
     * Spring Boot
     * Spring Cloud
     * Postgres
@@ -15,14 +15,11 @@
 
     * web-service
         * service-gateway
-        * service-admin
     * web-common
     * web-auth
-        * auth-common
         * auth-core
         * auth-entities
         * auth-oauth2
     * web-message
         * message-common
         * message-core
-    * web-operate

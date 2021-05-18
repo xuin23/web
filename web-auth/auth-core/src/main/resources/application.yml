@@ -8,9 +8,9 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: localhost
+    host: 172.17.0.1
   datasource:
-    url: jdbc:postgresql://localhost:5432/web
+    url: jdbc:postgresql://172.17.0.1:5432/web
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 123456
@@ -20,13 +20,13 @@ spring:
     hibernate:
       ddl-auto: update
   rabbitmq:
-    host: localhost
+    host: 172.17.0.1
     port: 5672
     username: guest
     password: guest
   cloud:
     consul:
-      host: localhost
+      host: 172.17.0.1
       port: 8500
       discovery:
         enabled: true  # 启用服务发现
@@ -38,12 +38,6 @@ spring:
         health-check-path: ${server.servlet.context-path}/actuator/info # 健康检查的路径
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
         service-name: ${spring.application.name} # 注册服务名
-mybatis:
-  type-aliases-package: com.cloud.auth.entity
-  mapper-locations: classpath:mapper/*xml
-  typeHandlersPackage:
-  configuration:
-    map-underscore-to-camel-case: true
 # 日志配置
 logging:
   level:

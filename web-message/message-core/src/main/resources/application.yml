@@ -9,9 +9,9 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: localhost
+    host: 172.17.0.1
   rabbitmq:
-    host: localhost
+    host: 172.17.0.1
     port: 5672
     username: guest
     password: guest
@@ -36,7 +36,7 @@ spring:
             required: true
   cloud:
     consul:
-      host: localhost
+      host: 172.17.0.1
       port: 8500
       discovery:
         enabled: true  # 启用服务发现

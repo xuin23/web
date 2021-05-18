@@ -3,7 +3,6 @@ package com.cloud.auth.service.auth;
 import com.cloud.auth.base.BaseService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.repo.AuthUserRepo;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ import javax.annotation.Resource;
  *
  * @author xulijian
  */
-@Slf4j
 @Service
 public class AuthUserService extends BaseService<AuthUser, Long> {
 

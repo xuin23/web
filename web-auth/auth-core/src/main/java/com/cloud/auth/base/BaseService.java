@@ -68,7 +68,7 @@ public abstract class BaseService<T, ID extends Serializable> {
      * @return Page<T>
      */
     public Page<T> findAll(int page, int size) {
-        Specification spec = (Specification) (root, query, criteriaBuilder) -> {
+        Specification<T> spec = (Specification<T>) (root, query, criteriaBuilder) -> {
 
             Path<Date> createTime = root.get("createTime");
             List<Predicate> predicateList = new ArrayList<>() {{

@@ -5,7 +5,8 @@ import java.io.Serializable;
 /**
  * 公共返回类
  *
- * @param <T>
+ * @param <T> T
+ * @author xulijian
  */
 public class ResultBean<T> implements Serializable {
 
@@ -19,7 +20,7 @@ public class ResultBean<T> implements Serializable {
     /**
      * 返回业务失败
      */
-    public static final int RESULT_CODE_SERVICE_ERR = 500;
+    public static final int RESULT_CODE_ERROR = 500;
 
     /**
      * 返回码
@@ -35,7 +36,8 @@ public class ResultBean<T> implements Serializable {
      */
     private T object;
 
-    public ResultBean() { }
+    public ResultBean() {
+    }
 
     /**
      * 状态码 实体类
@@ -78,7 +80,7 @@ public class ResultBean<T> implements Serializable {
     }
 
     public static <T> ResultBean<T> FAIL(String message) {
-        return new ResultBean<T>(RESULT_CODE_SERVICE_ERR, message);
+        return new ResultBean<T>(RESULT_CODE_ERROR, message);
     }
 
     public static <T> ResultBean<T> FAIL(int code, String message) {
