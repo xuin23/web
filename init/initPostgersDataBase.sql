@@ -8,7 +8,7 @@ create table IF NOT EXISTS AUTH_USER
     PASSWORD    varchar(50) default null,
     REALNAME    varchar(50) default null,
     EMAIL       varchar(50) default null,
-    VERSION        integer     default 0,
+    VERSION     integer     default 0,
     STATUS      boolean     default true,
     UPDATE_TIME timestamp   default now(),
     CREATE_TIME timestamp   default now()

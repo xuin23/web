@@ -7,6 +7,8 @@ import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
+
 import java.util.Date;
 
 /**
@@ -40,7 +42,8 @@ public class AuthUserRole {
     /**
      * 乐观锁版本
      */
-    private Long optimistic;
+    @Version
+    private Long version;
 
     /**
      * 状态

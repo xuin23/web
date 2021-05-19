@@ -1,13 +1,15 @@
 package com.cloud.auth.entity;
 
-import java.util.Date;
-
 import lombok.Data;
 
+import java.util.Date;
+
 import javax.persistence.Cacheable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 /**
  * 用户信息
@@ -15,7 +17,7 @@ import javax.persistence.Id;
 @Data
 @Cacheable
 @Entity(name = "auth_user")
-public class AuthUser {
+public class AuthUser{
     /**
      * 用户ID
      */
@@ -43,10 +45,12 @@ public class AuthUser {
      */
     private String email;
 
+    
     /**
      * 乐观锁版本
      */
-    private Long optimistic;
+    @Version
+    private Long version;
 
     /**
      * 状态
@@ -62,4 +66,5 @@ public class AuthUser {
      * 创建日期
      */
     private Date createTime;
+
 }

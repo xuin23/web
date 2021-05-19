@@ -8,13 +8,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
-import java.util.List;
-
 
 /**
- * 用户 provider
+ * 用户 Controller
+ * 
+ * @author xulijian
  */
 @Slf4j
 @RestController
@@ -24,20 +25,12 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
     @Resource
     private AuthUserService authUserService;
 
-    /**
-     * 查询所有
-     *
-     * @return ResultBean<List < T>>
-     */
-    @GetMapping(value = "")
-    public ResultBean<List<AuthUser>> findAll() {
-        List<AuthUser> all = authUserService.findAll();
-        for (AuthUser authUser : all) {
-            authUser.setOptimistic(authUser.getOptimistic() + 1);
-            AuthUser save = authUserService.save(authUser);
-            log.info("{}", save);
-        }
-        return ResultBean.SUCCESS(all);
+    @GetMapping(value = "/{id}")
+    public ResultBean<AuthUser> findById(@PathVariable("id") Long id) {
+        AuthUser authUser = authUserService.findById(id);
+        log.info("{}", authUser);
+        authUser.setRealname(String.valueOf((int) (Math.random() * 1000)));
+        authUserService.save(authUser);
+        return ResultBean.SUCCESS(authUserService.findById(id));
     }
-
 }
