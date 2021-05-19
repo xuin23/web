@@ -19,7 +19,6 @@
     * web-auth
         * auth-core
         * auth-entities
-        * auth-oauth2
     * web-message
         * message-common
         * message-core

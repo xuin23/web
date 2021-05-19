@@ -1,7 +1,9 @@
 package com.cloud.common.enums;
 
 /**
- * 数据状态
+ * 状态
+ * 
+ * @author xulijian
  */
 public enum Status {
     t, f

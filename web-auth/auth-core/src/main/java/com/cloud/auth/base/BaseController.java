@@ -14,6 +14,7 @@ import java.util.List;
  *
  * @param <T>
  * @param <ID>
+ * @author xulijian
  */
 public abstract class BaseController<T, ID extends Serializable> {
 
@@ -26,8 +27,6 @@ public abstract class BaseController<T, ID extends Serializable> {
 
 
     /**
-     *
-     *
      * @return ResultBean<List < T>>
      */
     @GetMapping(value = "")

@@ -8,7 +8,7 @@ create table IF NOT EXISTS AUTH_USER
     PASSWORD    varchar(50) default null,
     REALNAME    varchar(50) default null,
     EMAIL       varchar(50) default null,
-    OPTIMISTIC  integer     default 0,
+    VERSION        integer     default 0,
     STATUS      boolean     default true,
     UPDATE_TIME timestamp   default now(),
     CREATE_TIME timestamp   default now()
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS AUTH_ROLE
 (
     ID          serial not null primary key,
     NAME        VARCHAR(50) default NULL,
-    OPTIMISTIC  integer     default 0,
+    VERSION        integer     default 0,
     STATUS      boolean     default true,
     UPDATE_TIME timestamp   default now(),
     CREATE_TIME timestamp   default now()
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS AUTH_GROUP
     ID          serial not null primary key,
     NAME        VARCHAR(50) default NULL,
     pid         VARCHAR(50) default NULL,
-    OPTIMISTIC  integer     default 0,
+    VERSION        integer     default 0,
     STATUS      boolean     default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS AUTHORITY
 (
     ID          serial not null primary key,
     NAME        VARCHAR(50) default NULL,
-    OPTIMISTIC  integer     default 0,
+    VERSION        integer     default 0,
     STATUS      bool        default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS AUTH_OPERATION
 (
     ID          serial not null primary key,
     NAME        VARCHAR(50) default null,
-    OPTIMISTIC  integer     default 0,
+    VERSION        integer     default 0,
     STATUS      boolean     default true,
     UPDATE_TIME timestamp   DEFAULT NOW(),
     CREATE_TIME timestamp   DEFAULT NOW()
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS AUTH_MENU
     NAME        VARCHAR(50)  default NULL,
     URL         VARCHAR(100) default NULL,
     PID         integer      DEFAULT 0,
-    OPTIMISTIC  integer      default 0,
+    VERSION  integer      default 0,
     STATUS      boolean      default true,
     UPDATE_TIME timestamp    DEFAULT NOW(),
     CREATE_TIME timestamp    DEFAULT NOW()
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS AUTH_USER_GROUP
     ID          serial  not null primary key,
     USER_ID     integer NOT NULL,
     GROUP_ID    integer NOT NULL,
-    OPTIMISTIC  integer   default 0,
+    VERSION  integer   default 0,
     STATUS      boolean   default true,
     UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS AUTH_ROLE_GROUP
     ID          serial  not null primary key,
     ROLE_ID     integer NOT NULL,
     GROUP_ID    integer NOT NULL,
-    OPTIMISTIC  integer   default 0,
+    VERSION  integer   default 0,
     STATUS      boolean   default true,
     UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
@@ -154,7 +154,7 @@ CREATE TABLE IF NOT EXISTS AUTH_USER_ROLE
     ID          serial  not null primary key,
     ROLE_ID     integer NOT NULL,
     USER_ID     integer NOT NULL,
-    OPTIMISTIC  integer   default 0,
+    VERSION  integer   default 0,
     STATUS      boolean   default true,
     UPDATE_TIME timestamp DEFAULT NOW(),
     CREATE_TIME timestamp DEFAULT NOW()
@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS AUTH_ROLE_AUTHORITY
     ID           serial  not null primary key,
     ROLE_ID      integer NOT NULL,
     AUTHORITY_ID integer NOT NULL,
-    OPTIMISTIC   integer   default 0,
+    VERSION   integer   default 0,
     STATUS       boolean   default true,
     UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS AUTH_OPERATION_AUTHORITY
     ID           serial  not null primary key,
     OPERATION_ID integer NOT NULL,
     AUTHORITY_ID integer NOT NULL,
-    OPTIMISTIC   integer   default 0,
+    VERSION   integer   default 0,
     STATUS       boolean   default true,
     UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS AUTH_MENU_AUTHORITY
     ID           serial  not null primary key,
     AUTHORITY_ID integer NOT NULL,
     MENU_ID      integer NOT NULL,
-    OPTIMISTIC   integer   default 0,
+    VERSION   integer   default 0,
     STATUS       boolean   default true,
     UPDATE_TIME  timestamp DEFAULT NOW(),
     CREATE_TIME  timestamp DEFAULT NOW()
