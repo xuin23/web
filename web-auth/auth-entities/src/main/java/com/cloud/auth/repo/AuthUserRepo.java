@@ -24,8 +24,8 @@ public interface AuthUserRepo extends JpaRepository<AuthUser, Long>, JpaSpecific
      */
     @Query("""
             select t from auth_user t 
-            where 
-            t.email=:email            
+            where
+            t.email=:email
             """)
     List<AuthUser> findByEmail(String email);
 

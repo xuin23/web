@@ -28,9 +28,11 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
     @GetMapping(value = "/{id}")
     public ResultBean<AuthUser> findById(@PathVariable("id") Long id) {
         AuthUser authUser = authUserService.findById(id);
-        log.info("{}", authUser);
-        authUser.setRealname(String.valueOf((int) (Math.random() * 1000)));
-        authUserService.save(authUser);
+        if(null !=authUser){
+            log.info("{}", authUser);
+            authUser.setRealname(String.valueOf((int) (Math.random() * 1000)));
+            authUserService.save(authUser);
+        }
         return ResultBean.SUCCESS(authUserService.findById(id));
     }
 }

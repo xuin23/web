@@ -1,15 +1,9 @@
 package com.cloud.auth.entity;
 
-import com.cloud.common.enums.Status;
 import lombok.Data;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
-
-import java.util.Date;
 
 /**
  * 用户用户组关联
@@ -19,14 +13,7 @@ import java.util.Date;
 @Data
 @Cacheable
 @Entity(name = "auth_user_group")
-public class AuthUserGroup {
-
-    /**
-     * 权限角色关联id
-     */
-    @Id
-    @GeneratedValue
-    private Long id;
+public class AuthUserGroup extends BaseEntity {
 
     /**
      * 用户Id
@@ -37,25 +24,4 @@ public class AuthUserGroup {
      * 用户组id
      */
     private Long groupId;
-
-    /**
-     * 乐观锁版本
-     */
-    @Version
-    private Long version;
-
-    /**
-     * 状态
-     */
-    private Status status;
-
-    /**
-     * 更新日期
-     */
-    private Date updateTime;
-
-    /**
-     * 创建日期
-     */
-    private Date createTime;
 }

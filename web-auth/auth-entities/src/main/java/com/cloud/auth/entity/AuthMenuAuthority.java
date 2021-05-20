@@ -1,17 +1,9 @@
 package com.cloud.auth.entity;
 
-import com.cloud.common.enums.Status;
 import lombok.Data;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
-
-import java.io.Serializable;
-import java.util.Date;
-
 /**
  * 权限菜单关联
  *
@@ -19,16 +11,8 @@ import java.util.Date;
  */
 @Data
 @Cacheable
-@Entity(name = "auth_menu_authority")
-public class AuthMenuAuthority implements Serializable {
-
-    /**
-     * 权限菜单关联id
-     */
-    @Id
-    @GeneratedValue
-    private Long id;
-
+@Entity(name = "AUTH_MENU_AUTHORITY")
+public class AuthMenuAuthority extends BaseEntity {
 
     /**
      * 权限id
@@ -39,26 +23,4 @@ public class AuthMenuAuthority implements Serializable {
      * 菜单Id
      */
     private Long menuId;
-
-
-    /**
-     * 乐观锁版本
-     */
-    @Version
-    private Long version;
-
-    /**
-     * 状态
-     */
-    private Status status;
-
-    /**
-     * 更新日期
-     */
-    private Date updateTime;
-
-    /**
-     * 创建日期
-     */
-    private Date createTime;
 }
