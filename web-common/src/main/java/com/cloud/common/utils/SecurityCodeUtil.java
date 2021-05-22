@@ -10,24 +10,24 @@ import java.util.Random;
  */
 public class SecurityCodeUtil {
 
-    public static final String CODE_TYPE_NUM = SecurityCodeType.NUM.toString();
+    public static final String CODE_TYPE_NUM = CodeType.NUM.toString();
 
-    public static final String CODE_TYPE_CH = SecurityCodeType.CH.toString();
+    public static final String CODE_TYPE_CH = CodeType.CH.toString();
 
     /**
      * 验证码类型枚举
      */
-    private enum SecurityCodeType {
+    public static enum CodeType {
         NUM, //数字
         CH;  //全字符
 
-        public static SecurityCodeType getEnum(String type) {
-            for (SecurityCodeType value : SecurityCodeType.values()) {
+        public static CodeType getEnum(String type) {
+            for (CodeType value : CodeType.values()) {
                 if (value.toString().equals(type)) {
                     return value;
                 }
             }
-            return SecurityCodeType.NUM;
+            return CodeType.NUM;
         }
     }
 
@@ -67,7 +67,7 @@ public class SecurityCodeUtil {
 
         Objects.requireNonNull(type, "Security Code type can not null");
 
-        SecurityCodeType codeType = SecurityCodeType.getEnum(type);
+        CodeType codeType = CodeType.getEnum(type);
 
         switch (codeType) {
             case NUM:

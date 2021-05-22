@@ -1,5 +1,3 @@
-create database web;
-
 -- 用户表
 create table IF NOT EXISTS AUTH_USER
 (

@@ -32,6 +32,11 @@ public class ResultBean<T> implements Serializable {
     private String message;
 
     /**
+     * 调用时间
+     */
+    private Long time = System.currentTimeMillis();
+
+    /**
      * 返回对象
      */
     private T object;
@@ -97,6 +102,10 @@ public class ResultBean<T> implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+
+    public Long getTime() {
+        return this.time;
     }
 
     public void setMessage(String message) {
