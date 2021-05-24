@@ -1,9 +1,10 @@
 # 保存当前路径
 $path = Get-Location 
 
-Set-Location init/shell/
 # 启动并初始化基本服务 例如redis postgres
+Set-Location init/shell/
 ./baseService.ps1
+
 # 代码初始化
 Set-Location $path
 mvn clean
