@@ -1,3 +1,2 @@
 Set-Location init/shell/
-
-./dockerContainerStop.ps1
+./containerStop.ps1
