@@ -14,6 +14,13 @@
     <property name="LOG_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %X{sessionTokenId} %-5level %logger{50} %-6L -%msg%n"/>
 
+    <!--输出到logstash的appender-->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!--可以访问的logstash日志收集端口-->
+        <destination>172.17.0.1:4560</destination>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+    
     <!-- Appender to log to console -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -42,6 +49,7 @@
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
 
 </configuration>

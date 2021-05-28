@@ -4,6 +4,9 @@ import lombok.Data;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * 用户信息
@@ -12,6 +15,7 @@ import javax.persistence.Entity;
  */
 @Data
 @Cacheable
+@EntityListeners(value = AuditingEntityListener.class)
 @Entity(name = "auth_user")
 public class AuthUser extends BaseEntity {
 
