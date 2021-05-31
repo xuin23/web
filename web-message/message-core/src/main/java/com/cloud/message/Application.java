@@ -1,13 +1,16 @@
-package com.cloud.service.gateway;
+package com.cloud.message;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GatewayApp {
+@ComponentScan(basePackages = {"com.cloud"})
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApp.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
