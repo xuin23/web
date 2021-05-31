@@ -13,7 +13,6 @@ Write-Host "RabbitMQ 开启管理界面。。。。"
 docker exec -it rabbitmq /bin/bash -c "rabbitmq-plugins enable rabbitmq_management"
 
 Write-Host "Consul 服务创建中。。。。"
-mkdir -p /data/consul
 docker run -d  --restart always  -p 8500:8500 -e CONSUL_BIND_INTERFACE='eth0' --name consul consul agent -server -bootstrap -ui -client='0.0.0.0'
 
 Write-Host "Nginx 服务创建中。。。。"
@@ -33,7 +32,3 @@ docker exec -it postgres /bin/bash -c "psql -U postgres -d postgres -a -f  /sql/
 docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initTable.sql"
 docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initData.sql"
 docker exec -it postgres /bin/bash -c "rm -rf /sql"
-
-
-mkdir -p /data/elasticsearch/data
-mkdir -p /data/logstash/
