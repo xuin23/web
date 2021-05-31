@@ -10,25 +10,28 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
-
 /**
- * email 监听
+ * 邮箱数据监听
+ * 
+ * @author xulijian
  */
 @Slf4j
 @Component
 public class EmailListener {
 
     /**
-     * email 业务
+     * Email 服务
      */
     @Resource
     private EmailService emailService;
 
     /**
-     * 处理邮箱验证码消息
+     * 处理邮箱验证码消息 EMAIL_SECURITY_CODE
+     * 
+     * @author xulijian
      */
     @RabbitListener(queues = MessageConstants.EMAIL_SECURITY_CODE)
-    public void emailMessage(Message message, Channel channel) {
+    public void emailSecurityCodeListener(Message message, Channel channel) {
         String email = new String(message.getBody());
         log.info("receive email name {}", email);
         try {
