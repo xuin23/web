@@ -1,4 +1,4 @@
-package com.cloud.service.auth;
+package com.cloud.auth;
 
 
 import org.springframework.boot.SpringApplication;

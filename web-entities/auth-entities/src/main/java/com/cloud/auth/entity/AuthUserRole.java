@@ -1,6 +1,5 @@
 package com.cloud.auth.entity;
 
-import com.cloud.common.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Cacheable;
@@ -13,7 +12,7 @@ import javax.persistence.Entity;
 @Data
 @Cacheable
 @Entity(name = "auth_user_role")
-public class AuthUserRole extends BaseEntity {
+public class AuthUserRole extends BaseEntity{
 
     /**
      * 用户Id

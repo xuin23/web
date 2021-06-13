@@ -1,4 +1,4 @@
-package com.cloud.service.auth.base;
+package com.cloud.auth.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

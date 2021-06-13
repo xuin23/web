@@ -1,4 +1,4 @@
-package com.cloud.service.auth.base;
+package com.cloud.auth.base;
 
 import com.cloud.common.bean.ResultBean;
 import org.springframework.data.domain.Page;

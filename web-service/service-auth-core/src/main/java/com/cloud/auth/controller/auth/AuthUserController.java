@@ -1,7 +1,7 @@
-package com.cloud.service.auth.controller.auth;
+package com.cloud.auth.controller.auth;
 
-import com.cloud.service.auth.base.BaseController;
-import com.cloud.service.auth.service.auth.AuthUserService;
+import com.cloud.auth.base.BaseController;
+import com.cloud.auth.service.auth.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.common.bean.ResultBean;
 import lombok.extern.slf4j.Slf4j;

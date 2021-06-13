@@ -1,4 +1,4 @@
-package com.cloud.service.auth.config;
+package com.cloud.auth.config;
 
 import com.cloud.common.bean.ResultBean;
 import lombok.extern.slf4j.Slf4j;

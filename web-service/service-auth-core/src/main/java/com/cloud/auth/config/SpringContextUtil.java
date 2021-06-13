@@ -1,4 +1,4 @@
-package com.cloud.service.auth.config;
+package com.cloud.auth.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

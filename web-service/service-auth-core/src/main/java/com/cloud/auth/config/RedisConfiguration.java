@@ -1,4 +1,4 @@
-package com.cloud.service.auth.config;
+package com.cloud.auth.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
