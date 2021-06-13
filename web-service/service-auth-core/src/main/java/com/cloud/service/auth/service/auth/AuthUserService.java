@@ -1,7 +1,7 @@
 package com.cloud.service.auth.service.auth;
 
 import com.cloud.service.auth.base.BaseService;
-import com.cloud.entity.AuthUser;
+import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.repo.AuthUserRepo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

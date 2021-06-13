@@ -1,6 +1,6 @@
 package com.cloud.auth.repo;
 
-import com.cloud.entity.AuthOperationAuthority;
+import com.cloud.auth.entity.AuthOperationAuthority;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

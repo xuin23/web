@@ -1,5 +1,6 @@
-package com.cloud.entity;
+package com.cloud.auth.entity;
 
+import com.cloud.common.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Cacheable;
