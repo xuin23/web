@@ -10,13 +10,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-service</artifactId>
+    <artifactId>web-entities</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>service-gateway</module>
-        <module>service-auth-core</module>
-        <module>service-message-core</module>
+        <module>common-entities</module>
+        <module>auth-entities</module>
     </modules>
 
 </project>

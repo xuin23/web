@@ -6,17 +6,12 @@
 
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>web</artifactId>
+        <artifactId>web-common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>message-common</artifactId>
+    <description>消息-通用类</description>
 
-    <modules>
-        <module>service-gateway</module>
-        <module>service-auth-core</module>
-        <module>service-message-core</module>
-    </modules>
 
 </project>

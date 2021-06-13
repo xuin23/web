@@ -6,17 +6,20 @@
 
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>web</artifactId>
+        <artifactId>web-entities</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>web-service</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>auth-entities</artifactId>
+    <description>权限-实体</description>
 
-    <modules>
-        <module>service-gateway</module>
-        <module>service-auth-core</module>
-        <module>service-message-core</module>
-    </modules>
+    <dependencies>
+        <!--公共包-->
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>common-entities</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

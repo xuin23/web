@@ -17,10 +17,10 @@ Set-Location web-service/service-gateway/
 
 # 创建并启动auth-core容器
 Set-Location $path
-Set-Location web-auth/auth-core/
+Set-Location web-service/service-auth-core/
 ./build.ps1
 
 # 创建并启动message-core容器
 Set-Location $path
-Set-Location web-message/message-core/
+Set-Location web-message/service-message-core/
 ./build.ps1

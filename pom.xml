@@ -37,10 +37,12 @@
     </properties>
 
     <modules>
+        <!--通用模块-->
         <module>web-common</module>
+        <!--服务模块-->
         <module>web-service</module>
-        <module>web-auth</module>
-        <module>web-message</module>
+        <!--实体模块-->
+        <module>web-entities</module>
     </modules>
 
     <dependencyManagement>
