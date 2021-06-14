@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
-
+    <springProperty scope="context" name="custom.host.logstash" source="custom.host.logstash"/>
     <!-- Example for logging into the build folder of your project -->
     <property name="LOG_FILE" value="./logs/cloud/${springAppName}/${springAppName}.log"/>
 
@@ -15,9 +15,9 @@
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %X{sessionTokenId} %-5level %logger{50} %-6L -%msg%n"/>
 
     <!--输出到logstash的appender-->
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!--可以访问的logstash日志收集端口-->
-        <destination>172.17.0.1:4560</destination>
+        <destination>${custom.host.logstash}:4560</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
     
@@ -49,7 +49,7 @@
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
-        <appender-ref ref="LOGSTASH"/>
+        <appender-ref ref="logstash"/>
     </root>
 
 </configuration>

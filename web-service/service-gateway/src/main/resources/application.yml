@@ -1,3 +1,11 @@
+custom:
+  host:
+    common: 172.17.0.1
+    redis: ${custom.host.common}
+    database: ${custom.host.common}
+    rabbitmq: ${custom.host.common}
+    consul: ${custom.host.common}
+    logstash: ${custom.host.common}
 server:
   port: 8080
 spring:
@@ -15,7 +23,7 @@ spring:
           predicates:
             - Path=/auth/**
     consul:
-      host: 172.17.0.1
+      host: ${custom.host.consul}
       port: 8500
       discovery:
         enabled: true  # 启用服务发现

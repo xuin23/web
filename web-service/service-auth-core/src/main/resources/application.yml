@@ -1,5 +1,11 @@
-myserver:
-  mainhost: 172.17.0.1
+custom:
+  host:
+    common: 172.17.0.1
+    redis: ${custom.host.common}
+    database: ${custom.host.common}
+    rabbitmq: ${custom.host.common}
+    consul: ${custom.host.common}
+    logstash: ${custom.host.common}
 server:
   port: 8081
   servlet:
@@ -12,9 +18,9 @@ spring:
   redis:
     database: 0
     port: 6379
-    host: ${myserver.mainhost}
+    host: ${custom.host.redis}
   datasource:
-    url: jdbc:postgresql://${myserver.mainhost}:5432/web
+    url: jdbc:postgresql://${custom.host.database}:5432/web
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: 123456
@@ -24,13 +30,13 @@ spring:
     hibernate:
       ddl-auto: update
   rabbitmq:
-    host: ${myserver.mainhost}
+    host: ${custom.host.rabbitmq}
     port: 5672
     username: guest
     password: guest
   cloud:
     consul:
-      host: ${myserver.mainhost}
+      host: ${custom.host.consul}
       port: 8500
       discovery:
         enabled: true  # 启用服务发现
