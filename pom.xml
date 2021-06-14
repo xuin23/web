@@ -39,6 +39,8 @@
     <modules>
         <!--通用模块-->
         <module>web-common</module>
+        <!--配置模块-->
+        <module>web-config</module>
         <!--服务模块-->
         <module>web-service</module>
         <!--实体模块-->

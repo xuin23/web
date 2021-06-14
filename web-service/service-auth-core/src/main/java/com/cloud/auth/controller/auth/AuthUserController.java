@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,9 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
     private RedissonClient redissonClient;
 
     @Resource
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource
     private AuthUserService authUserService;
 
     @GetMapping(value = "/{id}")
@@ -38,14 +42,14 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
         if (!lock.isLocked()) {
             lock.lock();
         }
+        AuthUser authUser = authUserService.findById(id);
         try {
-            AuthUser authUser = authUserService.findById(id);
             if (null != authUser) {
-                log.info("{}", authUser);
-                Thread.sleep(5000);
-
+//                log.info("{}", authUser);
+//                Thread.sleep(5000);
                 authUser.setRealname(String.valueOf((int) (Math.random() * 1000)));
                 authUserService.save(authUser);
+                redisTemplate.opsForValue().set(String.valueOf(authUser.getId()), authUser);
             }
         } catch (Exception e) {
             log.error("{}", e.getMessage(), e);
@@ -53,6 +57,7 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
         } finally {
             lock.unlock();
         }
-        return ResultBean.SUCCESS(authUserService.findById(id));
+        AuthUser authUser1 = (AuthUser) redisTemplate.opsForValue().get(String.valueOf(authUser.getId()));
+        return ResultBean.SUCCESS(authUser1);
     }
 }

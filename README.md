@@ -16,6 +16,8 @@
     * web-common
         * message-common
         * service-common
+    * web-config
+        * config-redis
     * web-entities
         * common-entities
         * auth-entities

@@ -1,4 +1,4 @@
-package com.cloud.auth.config;
+package com.cloud.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -28,8 +28,16 @@ public class RedisConfiguration {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedissonConnectionFactory factory) {
 
+        System.out.println("---------------------");
+        System.out.println("-------redis---------");
+        System.out.println("-------redis---------");
+        System.out.println("---------------------");
+
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-        jackson2JsonRedisSerializer.setObjectMapper(new ObjectMapper().setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY));
+        jackson2JsonRedisSerializer.setObjectMapper(
+                new ObjectMapper()
+                        .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY)
+                        .enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL));
 
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
