@@ -26,12 +26,21 @@ import javax.annotation.Resource;
 @RequestMapping(value = "/authUser")
 public class AuthUserController extends BaseController<AuthUser, Long> {
 
+    /**
+     * RedissonClient
+     */
     @Resource
     private RedissonClient redissonClient;
 
+    /**
+     * RedisTemplate
+     */
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 用户 service
+     */
     @Resource
     private AuthUserService authUserService;
 
@@ -45,8 +54,6 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
         AuthUser authUser = authUserService.findById(id);
         try {
             if (null != authUser) {
-//                log.info("{}", authUser);
-//                Thread.sleep(5000);
                 authUser.setRealname(String.valueOf((int) (Math.random() * 1000)));
                 authUserService.save(authUser);
                 redisTemplate.opsForValue().set(String.valueOf(authUser.getId()), authUser);

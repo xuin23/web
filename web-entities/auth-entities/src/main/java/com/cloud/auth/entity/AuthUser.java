@@ -1,12 +1,14 @@
 package com.cloud.auth.entity;
 
+import com.cloud.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * 用户信息
@@ -14,8 +16,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
  * @author xulijian
  */
 @Data
-@Cacheable
+@EqualsAndHashCode(callSuper = true)
 @EntityListeners(value = AuditingEntityListener.class)
+@Cacheable
 @Entity(name = "auth_user")
 public class AuthUser extends BaseEntity {
 

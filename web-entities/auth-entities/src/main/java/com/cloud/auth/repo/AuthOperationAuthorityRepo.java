@@ -1,7 +1,7 @@
 package com.cloud.auth.repo;
 
 import com.cloud.auth.entity.AuthOperationAuthority;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @author xulijian
  */
 @Repository
-public interface AuthOperationAuthorityRepo extends JpaRepository<AuthOperationAuthority, Long> {
+public interface AuthOperationAuthorityRepo extends JpaRepositoryImplementation<AuthOperationAuthority, Long> {
 
 }

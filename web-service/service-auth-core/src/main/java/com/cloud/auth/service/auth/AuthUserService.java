@@ -3,8 +3,7 @@ package com.cloud.auth.service.auth;
 import com.cloud.auth.base.BaseService;
 import com.cloud.auth.entity.AuthUser;
 import com.cloud.auth.repo.AuthUserRepo;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,24 +22,13 @@ public class AuthUserService extends BaseService<AuthUser, Long> {
     @Resource
     private AuthUserRepo authUserRepo;
 
-
     /**
-     * 获取Repository
+     * 获得指定AuthUserRepo
      *
-     * @return JpaRepository<T, ID>
+     * @author xulijian
      */
     @Override
-    public JpaRepository<AuthUser, Long> getRepository() {
-        return authUserRepo;
-    }
-
-    /**
-     * 获取JpaSpecificationExecutor
-     *
-     * @return JpaSpecificationExecutor<AuthUser>
-     */
-    @Override
-    public JpaSpecificationExecutor<AuthUser> getSpecificationExecutor() {
+    public JpaRepositoryImplementation<AuthUser, Long> getRepository() {
         return authUserRepo;
     }
 }

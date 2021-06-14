@@ -1,22 +1,19 @@
 package com.cloud.auth.base;
 
+import com.cloud.common.entity.BaseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.metamodel.EntityType;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * 基础service(基于SpringBoot Jpa)
@@ -25,24 +22,20 @@ import java.util.Optional;
  * @param <ID> ID
  * @author xulijian
  */
-public abstract class BaseService<T, ID extends Serializable> {
+@Slf4j
+public abstract class BaseService<T extends BaseEntity, ID extends Serializable> {
 
     /**
-     * JpaRepository
+     * JpaRepository JpaSpecificationExecutor
      */
-    private JpaRepository<T, ID> repository;
-
-
-    /**
-     * JpaSpecificationExecutor
-     */
-    private JpaSpecificationExecutor<T> specification;
+    private JpaRepositoryImplementation<T, ID> repository;
 
 
     /**
      * 获取所有
      *
      * @return List<T>
+     * @author xulijian
      */
     public List<T> findAll() {
         return repository.findAll();
@@ -52,6 +45,7 @@ public abstract class BaseService<T, ID extends Serializable> {
      * 根据Id获取
      *
      * @return List<T>
+     * @author xulijian
      */
     public T findById(ID id) {
         Optional<T> byId = repository.findById(id);
@@ -64,74 +58,71 @@ public abstract class BaseService<T, ID extends Serializable> {
     /**
      * 分页查询
      *
-     * @param page 页码
-     * @param size 长度
      * @return Page<T>
+     * @author xulijian
      */
-    public Page<T> findAll(int page, int size) {
-        Specification<T> spec = (Specification<T>) (root, query, criteriaBuilder) -> {
+    public Page<T> findAll(Map<String, Object> params) {
+        int page = 0;
+        int size = 10;
+        if (null != params) {
+            if (params.get("page") instanceof Integer p) {
+                page = p;
+            }
+            if (params.get("size") instanceof Integer s) {
+                size = s;
+            }
+        }
+        Specification<T> spec = (root, query, criteriaBuilder) -> {
+            EntityType<T> model = root.getModel();
+            Class<T> javaType = model.getJavaType();
+            Field[] fields = javaType.getFields();
 
             Path<Date> createTime = root.get("createTime");
             List<Predicate> predicateList = new ArrayList<>() {{
-                add(criteriaBuilder.lessThanOrEqualTo(createTime, new Date()));
-                try {
-                    add(criteriaBuilder.greaterThanOrEqualTo(createTime, new SimpleDateFormat("yyyy-MM-dd").parse("1992-01-01")));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+//                add(criteriaBuilder.lessThanOrEqualTo(createTime, new Date()));
+//                try {
+//                    add(criteriaBuilder.greaterThanOrEqualTo(createTime, new SimpleDateFormat("yyyy-MM-dd").parse("1992-01-01")));
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
             }};
             Predicate[] pre = new Predicate[predicateList.size()];
             pre = predicateList.toArray(pre);
             return query.where(pre).getRestriction();
         };
-        return specification.findAll(spec, PageRequest.of(page, size));
+        return repository.findAll(spec, PageRequest.of(page, size));
     }
 
 
     /**
-     * 保存
+     * 保存 or 更新
      *
      * @param t t
-     * @return List<T>
+     * @return T
+     * @author xulijian
      */
     public T save(T t) {
         return repository.save(t);
     }
 
-    /**
-     * 保存
-     *
-     * @param t t
-     * @return List<T>
-     */
-    public List<T> findAll(T t) {
-        return repository.findAll(Example.of(t));
-    }
-
 
     /**
      * 获取Repository
      *
      * @return JpaRepository<T, ID>
+     * @author xulijian
      */
-    public abstract JpaRepository<T, ID> getRepository();
+    public abstract JpaRepositoryImplementation<T, ID> getRepository();
+
 
     /**
-     * 获取Repository
+     * 获得指定Repository
      *
-     * @return JpaRepository<T, ID>
+     * @author xulijian
      */
-    public abstract JpaSpecificationExecutor<T> getSpecificationExecutor();
-
-
     @Autowired
     public void setRepository() {
         repository = getRepository();
-    }
-
-    @Autowired
-    public void setSpecification() {
-        specification = getSpecificationExecutor();
     }
 
 }

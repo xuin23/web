@@ -1,6 +1,6 @@
 custom:
   host:
-    common: 172.17.0.1
+    common: localhost
     redis: ${custom.host.common}
     database: ${custom.host.common}
     rabbitmq: ${custom.host.common}
