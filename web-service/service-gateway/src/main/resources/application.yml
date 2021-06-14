@@ -10,8 +10,8 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
-        - id: auth-core
-          uri: lb://auth-core
+        - id: service-auth-core
+          uri: lb://service-auth-core
           predicates:
             - Path=/auth/**
     consul:
