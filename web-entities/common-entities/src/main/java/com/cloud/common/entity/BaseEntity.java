@@ -3,6 +3,7 @@ package com.cloud.common.entity;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 @Data
 @MappedSuperclass
+@EntityListeners(value = AuditingEntityListener.class)
 public class BaseEntity {
 
     /**
@@ -29,13 +31,13 @@ public class BaseEntity {
      */
     @Version
     @Column(name = "version")
-    private Integer version = 0;
+    private Integer version;
 
     /**
      * 状态
      */
     @Column(name = "status")
-    private Boolean status = true;
+    private Boolean status;
 
     /**
      * 更新日期

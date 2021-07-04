@@ -1,13 +1,16 @@
 package com.cloud.auth.base;
 
+import com.cloud.auth.util.BeanInfoUtil;
 import com.cloud.common.bean.ResultBean;
 import com.cloud.common.entity.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -74,8 +77,9 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
      */
     @Transactional(rollbackOn = Exception.class)
     @PostMapping(value = "/save")
-    public ResultBean<T> save(@RequestBody T t) {
+    public ResultBean<T> save(@RequestBody T t) throws Exception {
         log.info("save,{}", t);
+        System.out.println(t.getClass());
         T result;
         Long id = t.getId();
 
@@ -84,15 +88,18 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
         } else {
             T byId = baseService.findById((ID) t.getId());
             if (null != byId) {
-                Field[] declaredFields = byId.getClass().getDeclaredFields();
-                Field[] declaredFields1 = t.getClass().getDeclaredFields();
-                for (Field sourceField : declaredFields) {
-                    for (Field targetField : declaredFields1) {
-                        if (judgeAssign(targetField, sourceField, t, byId)) {
-                            break;
+                PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(t.getClass());
+                for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
+                    String name = propertyDescriptor.getName();
+                    if (!"class".equals(name)) {
+                        Object property = BeanInfoUtil.getProperty(t, name);
+                        if (null != property) {
+                            BeanInfoUtil.setProperty(byId, name, property);
                         }
                     }
                 }
+                byId.setVersion(1);
+                log.info("{}", byId);
                 result = baseService.save(byId);
             } else {
                 return ResultBean.FAIL("no data," + t.getId());
@@ -107,25 +114,25 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
      *
      * @param sourceField 数据源属性
      * @param targetField 目标源属性
-     * @param sourceBean  数据源
-     * @param targetBean  目标源
+     * @param source      数据源
+     * @param target      目标源
      * @return Boolean：是否合并
+     * @author xulijian
      */
-    private static boolean judgeAssign(Field sourceField, Field targetField, Object sourceBean, Object targetBean) {
+    private static boolean judgeAssign(Field sourceField, Field targetField, Object source, Object target) {
         try {
             if (sourceField.getName().equalsIgnoreCase(targetField.getName()) && sourceField.getType().getTypeName().equals(targetField.getType().getTypeName())) {
                 sourceField.setAccessible(true);
-                Object obj = sourceField.get(sourceBean);
+                Object obj = sourceField.get(source);
                 //集合类型非空判断
-                if (obj instanceof Collection) {
-                    Collection<?> newValue = (Collection<?>) obj;
+                if (obj instanceof Collection<?> newValue) {
                     if (newValue.size() <= 0)
                         return true;
                 }
                 //数据类型非空判断
                 if (obj != null) {
                     targetField.setAccessible(true);
-                    targetField.set(targetBean, obj);
+                    targetField.set(target, obj);
                 }
                 return true;
             }
