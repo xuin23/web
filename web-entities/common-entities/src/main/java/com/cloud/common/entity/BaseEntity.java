@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * 实体类基础数据
+ * 实体类基础数据(存储非业务操作数据)
  *
  * @author xulijian
  */

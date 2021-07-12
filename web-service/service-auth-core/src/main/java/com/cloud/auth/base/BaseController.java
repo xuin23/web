@@ -1,16 +1,13 @@
 package com.cloud.auth.base;
 
-import com.cloud.auth.util.BeanInfoUtil;
 import com.cloud.common.bean.ResultBean;
 import com.cloud.common.entity.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Collection;
@@ -44,11 +41,11 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
         return ResultBean.SUCCESS(baseService.findAll());
     }
 
-
     /**
      * 分页查询
      *
      * @return ResultBean<Page < T>>
+     * @author xulijian
      */
     @GetMapping(value = "/page")
     public ResultBean<Page<T>> findAllByPage(@RequestParam Map<String, Object> param) {
@@ -61,12 +58,12 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
      *
      * @param id ID
      * @return ResultBean<T>
+     * @author xulijian
      */
     @GetMapping(value = "/id/{id}")
     public ResultBean<T> findById(@PathVariable("id") ID id) {
         return ResultBean.SUCCESS(baseService.findById(id));
     }
-
 
     /**
      * 保存 or 更新
@@ -77,35 +74,9 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
      */
     @Transactional(rollbackOn = Exception.class)
     @PostMapping(value = "/save")
-    public ResultBean<T> save(@RequestBody T t) throws Exception {
+    public ResultBean<T> save(@RequestBody T t) {
         log.info("save,{}", t);
-        System.out.println(t.getClass());
-        T result;
-        Long id = t.getId();
-
-        if (null == id) {
-            result = baseService.save(t);
-        } else {
-            T byId = baseService.findById((ID) t.getId());
-            if (null != byId) {
-                PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(t.getClass());
-                for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-                    String name = propertyDescriptor.getName();
-                    if (!"class".equals(name)) {
-                        Object property = BeanInfoUtil.getProperty(t, name);
-                        if (null != property) {
-                            BeanInfoUtil.setProperty(byId, name, property);
-                        }
-                    }
-                }
-                byId.setVersion(1);
-                log.info("{}", byId);
-                result = baseService.save(byId);
-            } else {
-                return ResultBean.FAIL("no data," + t.getId());
-            }
-        }
-        return ResultBean.SUCCESS(result);
+        return ResultBean.SUCCESS(baseService.save(t));
     }
 
 

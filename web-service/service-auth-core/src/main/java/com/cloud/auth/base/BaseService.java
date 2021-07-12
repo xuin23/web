@@ -1,7 +1,9 @@
 package com.cloud.auth.base;
 
+import com.cloud.auth.util.BeanInfoUtil;
 import com.cloud.common.entity.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +13,7 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.metamodel.EntityType;
+import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -102,7 +105,29 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @author xulijian
      */
     public T save(T t) {
-        return repository.save(t);
+        T result;
+        Long id = t.getId();
+        if (null == id) {
+            result = repository.save(t);
+        } else {
+            T byId = findById((ID) id);
+            if (null != byId) {
+                for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
+                    String name = propertyDescriptor.getName();
+                    if (name.equals("class")) {
+                        continue;
+                    }
+                    Object property = BeanInfoUtil.getProperty(t, name);
+                    if (null == property) {
+                        BeanInfoUtil.setProperty(t, name, BeanInfoUtil.getProperty(byId, name));
+                    }
+                }
+                result = repository.save(t);
+            } else {
+                throw new RuntimeException("no data," + t.getId());
+            }
+        }
+        return result;
     }
 
 

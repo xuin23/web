@@ -1,8 +1,13 @@
 package com.cloud.auth.util;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+@Slf4j
 public class BeanInfoUtil {
 
     /**
@@ -14,11 +19,23 @@ public class BeanInfoUtil {
      * @throws Exception 异常
      * @author xulijian
      */
-    public static <T> void setProperty(T t, String field, Object... args) throws Exception {
+    public static <T> void setProperty(T t, String field, Object... args) {
         // 获取bean的某个属性的描述符
-        PropertyDescriptor propDesc = new PropertyDescriptor(field, t.getClass());
+        PropertyDescriptor propDesc = null;
+        try {
+            propDesc = new PropertyDescriptor(field, t.getClass());
+        } catch (IntrospectionException e) {
+            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
         // 写入属性值
-        propDesc.getWriteMethod().invoke(t, args);
+        Method writeMethod = propDesc.getWriteMethod();
+        try {
+            writeMethod.invoke(t, args);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            log.error("方法调用失败,{},{},{}", t, writeMethod.getName(), e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 
 
@@ -31,12 +48,23 @@ public class BeanInfoUtil {
      * @throws Exception 异常
      * @author xulijian
      */
-    public static <T> Object getProperty(T t, String field) throws Exception {
+    public static <T> Object getProperty(T t, String field) {
         // 获取Bean的某个属性的描述符
-        PropertyDescriptor proDescriptor = new PropertyDescriptor(field, t.getClass());
+        PropertyDescriptor proDescriptor = null;
+        try {
+            proDescriptor = new PropertyDescriptor(field, t.getClass());
+        } catch (IntrospectionException e) {
+            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
         // 获得用于读取属性值的方法
         Method methodGetUserName = proDescriptor.getReadMethod();
         // 读取属性值
-        return methodGetUserName.invoke(t);
+        try {
+            return methodGetUserName.invoke(t);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            log.error("方法调用失败,{},{},{}", t, methodGetUserName.getName(), e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
     }
 }
