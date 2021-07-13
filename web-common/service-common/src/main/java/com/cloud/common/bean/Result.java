@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @param <T> T
  * @author xulijian
  */
-public class ResultBean<T> implements Serializable {
+public class Result<T> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class ResultBean<T> implements Serializable {
      */
     private T object;
 
-    public ResultBean() {
+    public Result() {
     }
 
     /**
@@ -52,7 +52,7 @@ public class ResultBean<T> implements Serializable {
      * @param code   状态码
      * @param object 实体类
      */
-    public ResultBean(int code, T object) {
+    public Result(int code, T object) {
         super();
         this.code = code;
         this.object = object;
@@ -64,7 +64,7 @@ public class ResultBean<T> implements Serializable {
      * @param code    状态码
      * @param message 信息
      */
-    public ResultBean(int code, String message) {
+    public Result(int code, String message) {
         super();
         this.code = code;
         this.message = message;
@@ -78,20 +78,20 @@ public class ResultBean<T> implements Serializable {
         return RESULT_CODE_SUCCESS != code;
     }
 
-    public static <T> ResultBean<T> SUCCESS(T t) {
-        return new ResultBean<T>(RESULT_CODE_SUCCESS, t);
+    public static <T> Result<T> SUCCESS(T t) {
+        return new Result<T>(RESULT_CODE_SUCCESS, t);
     }
 
-    public static <T> ResultBean<T> SUCCESS() {
+    public static <T> Result<T> SUCCESS() {
         return SUCCESS(null);
     }
 
-    public static <T> ResultBean<T> FAIL(String message) {
-        return new ResultBean<T>(RESULT_CODE_ERROR, message);
+    public static <T> Result<T> FAIL(String message) {
+        return new Result<T>(RESULT_CODE_ERROR, message);
     }
 
-    public static <T> ResultBean<T> FAIL(int code, String message) {
-        return new ResultBean<T>(code, message);
+    public static <T> Result<T> FAIL(int code, String message) {
+        return new Result<T>(code, message);
     }
 
     public int getCode() {

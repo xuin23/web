@@ -3,7 +3,7 @@ package com.cloud.auth.controller.auth;
 import com.cloud.auth.base.BaseController;
 import com.cloud.auth.service.auth.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
-import com.cloud.common.bean.ResultBean;
+import com.cloud.common.bean.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import org.redisson.api.RLock;
@@ -44,8 +44,8 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
     @Resource
     private AuthUserService authUserService;
 
-    @GetMapping(value = "/{id}")
-    public ResultBean<AuthUser> findById(@PathVariable("id") Long id) {
+    @GetMapping(value = "/id/{id}")
+    public Result<AuthUser> findById(@PathVariable("id") Long id) {
 
         RLock lock = redissonClient.getLock(this.getClass().toString() + "findById");
         if (!lock.isLocked()) {
@@ -60,11 +60,11 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
             }
         } catch (Exception e) {
             log.error("{}", e.getMessage(), e);
-            return ResultBean.FAIL(e.getMessage());
+            return Result.FAIL(e.getMessage());
         } finally {
             lock.unlock();
         }
         AuthUser authUser1 = (AuthUser) redisTemplate.opsForValue().get(String.valueOf(authUser.getId()));
-        return ResultBean.SUCCESS(authUser1);
+        return Result.SUCCESS(authUser1);
     }
 }

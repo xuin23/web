@@ -1,5 +1,6 @@
 package com.cloud.auth.base;
 
+import com.cloud.auth.entity.PageParam;
 import com.cloud.auth.util.BeanInfoUtil;
 import com.cloud.common.entity.BaseEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -7,12 +8,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.metamodel.EntityType;
+import javax.persistence.criteria.Root;
 import java.beans.PropertyDescriptor;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -64,38 +66,41 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @return Page<T>
      * @author xulijian
      */
-    public Page<T> findAll(Map<String, Object> params) {
-        int page = 0;
-        int size = 10;
-        if (null != params) {
-            if (params.get("page") instanceof Integer p) {
-                page = p;
-            }
-            if (params.get("size") instanceof Integer s) {
-                size = s;
-            }
-        }
-        Specification<T> spec = (root, query, criteriaBuilder) -> {
-            EntityType<T> model = root.getModel();
-            Class<T> javaType = model.getJavaType();
-            Field[] fields = javaType.getFields();
-
-            Path<Date> createTime = root.get("createTime");
-            List<Predicate> predicateList = new ArrayList<>() {{
-//                add(criteriaBuilder.lessThanOrEqualTo(createTime, new Date()));
-//                try {
-//                    add(criteriaBuilder.greaterThanOrEqualTo(createTime, new SimpleDateFormat("yyyy-MM-dd").parse("1992-01-01")));
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-            }};
-            Predicate[] pre = new Predicate[predicateList.size()];
-            pre = predicateList.toArray(pre);
-            return query.where(pre).getRestriction();
-        };
-        return repository.findAll(spec, PageRequest.of(page, size));
+    public Page<T> findAll(PageParam params) {
+        return repository.findAll(
+                (root, query, criteriaBuilder) -> query.where(generateWhere(params, root, criteriaBuilder)).getRestriction(),
+                PageRequest.of(params.getPageNumber(), params.getPageSize(), Sort.by(Sort.Order.asc("createTime")))
+        );
     }
 
+    /**
+     * 生成where条件
+     *
+     * @param params          查询条件
+     * @param root            Root<T>
+     * @param criteriaBuilder SQL生成Builder
+     * @return Predicate[]
+     * @author xulijian
+     */
+    private Predicate[] generateWhere(PageParam params, Root<T> root, CriteriaBuilder criteriaBuilder) {
+        List<Predicate> predicateList = new ArrayList<>();
+
+        Map<String, Object> queryParams = params.getQueryParams();
+        if (null != queryParams) {
+            queryParams.forEach((k, v) -> {
+                Path<Object> objectPath = root.get(k);
+                Predicate equal;
+                if (objectPath.getJavaType().equals(Date.class) && v instanceof Long timestamp) {
+                    equal = criteriaBuilder.equal(objectPath, new Date(timestamp));
+                } else {
+                    equal = criteriaBuilder.equal(objectPath, v);
+                }
+                predicateList.add(equal);
+            });
+        }
+
+        return predicateList.toArray(new Predicate[0]);
+    }
 
     /**
      * 保存 or 更新
@@ -148,6 +153,40 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
     @Autowired
     public void setRepository() {
         repository = getRepository();
+    }
+
+
+    /**
+     * 判断并合并属性值
+     *
+     * @param sourceField 数据源属性
+     * @param targetField 目标源属性
+     * @param source      数据源
+     * @param target      目标源
+     * @return Boolean是否合并
+     * @author xulijian
+     */
+    private static boolean judgeAssign(Field sourceField, Field targetField, Object source, Object target) {
+        try {
+            if (sourceField.getName().equalsIgnoreCase(targetField.getName()) && sourceField.getType().getTypeName().equals(targetField.getType().getTypeName())) {
+                sourceField.setAccessible(true);
+                Object obj = sourceField.get(source);
+                //集合类型非空判断
+                if (obj instanceof Collection<?> newValue) {
+                    if (newValue.size() <= 0)
+                        return true;
+                }
+                //数据类型非空判断
+                if (obj != null) {
+                    targetField.setAccessible(true);
+                    targetField.set(target, obj);
+                }
+                return true;
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
