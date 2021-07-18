@@ -1,4 +1,4 @@
-package com.cloud.auth.entity;
+package com.cloud.common.entity;
 
 import lombok.Data;
 

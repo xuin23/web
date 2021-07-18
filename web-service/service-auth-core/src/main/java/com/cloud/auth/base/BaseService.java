@@ -1,6 +1,6 @@
 package com.cloud.auth.base;
 
-import com.cloud.auth.entity.PageParam;
+import com.cloud.common.entity.PageParam;
 import com.cloud.auth.util.BeanInfoUtil;
 import com.cloud.common.entity.BaseEntity;
 import lombok.extern.slf4j.Slf4j;

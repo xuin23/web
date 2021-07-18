@@ -1,16 +1,16 @@
 package com.cloud.auth.base;
 
-import com.cloud.auth.entity.PageParam;
 import com.cloud.common.bean.Result;
 import com.cloud.common.entity.BaseEntity;
+import com.cloud.common.entity.PageParam;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
@@ -28,7 +28,7 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
     /**
      * 基础service
      */
-    @Resource
+    @Autowired
     private BaseService<T, ID> baseService;
 
 

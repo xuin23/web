@@ -19,7 +19,7 @@ import java.util.Date;
 public class BaseEntity {
 
     /**
-     * 权限菜单关联id
+     * id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

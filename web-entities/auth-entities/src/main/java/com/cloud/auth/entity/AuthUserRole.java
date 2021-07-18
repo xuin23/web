@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.*;
 
 
 /**
@@ -32,4 +30,13 @@ public class AuthUserRole extends BaseEntity {
      */
     private Long roleId;
 
+
+    @ManyToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private AuthUser authUser;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id", insertable = false, updatable = false)
+    private AuthRole authRole;
 }
