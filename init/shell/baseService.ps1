@@ -24,9 +24,7 @@ docker stop nginx
 docker rm nginx
 docker run --restart always -d --name nginx -p 80:80 -p 443:443 -v /data/nginx/nginx/:/etc/nginx -v /data/nginx/html/:/usr/share/nginx/html nginx
 
-Write-Host "ELK 服务创建中。。。。。"
-docker run --restart always  -p 5601:5601 -p 9200:9200 -p 5044:5044 -d  --name elk sebp/elk:E1L1K4
-
+Write-Host "POSTGRES 数据初始化。。。。"
 docker cp ../sql/ postgres:/
 docker exec -it postgres /bin/bash -c "psql -U postgres -d postgres -a -f  /sql/initDatabase.sql"
 docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initTable.sql"
