@@ -11,7 +11,5 @@
     </parent>
 
     <artifactId>message-common</artifactId>
-    <description>消息-通用类</description>
-
 
 </project>

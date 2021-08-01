@@ -1,4 +1,4 @@
-package com.cloud.common.bean;
+package com.cloud.common.model;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -36,7 +36,7 @@ public class Result<T> implements Serializable {
     /**
      * 调用时间
      */
-    private Long time = System.currentTimeMillis();
+    private final Long time = System.currentTimeMillis();
 
     /**
      * 返回对象

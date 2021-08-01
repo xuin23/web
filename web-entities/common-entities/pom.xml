@@ -11,7 +11,6 @@
     </parent>
 
     <artifactId>common-entities</artifactId>
-    <description>权限-实体</description>
 
     <dependencies>
         <dependency>

@@ -1,8 +1,8 @@
 package com.cloud.auth.base;
 
-import com.cloud.common.entity.PageParam;
-import com.cloud.auth.util.BeanInfoUtil;
+import com.cloud.auth.util.BeanUtil;
 import com.cloud.common.entity.BaseEntity;
+import com.cloud.common.entity.PageParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,8 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
     /**
      * JpaRepository JpaSpecificationExecutor
      */
-    private JpaRepositoryImplementation<T, ID> repository;
+    @Autowired
+    JpaRepositoryImplementation<T, ID> repository;
 
 
     /**
@@ -110,50 +111,45 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @author xulijian
      */
     public T save(T t) {
-        T result;
         Long id = t.getId();
-        if (null == id) {
-            result = repository.save(t);
-        } else {
+        if (null != id) {
             T byId = findById((ID) id);
-            if (null != byId) {
-                for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
-                    String name = propertyDescriptor.getName();
-                    if (name.equals("class")) {
-                        continue;
-                    }
-                    Object property = BeanInfoUtil.getProperty(t, name);
-                    if (null == property) {
-                        BeanInfoUtil.setProperty(t, name, BeanInfoUtil.getProperty(byId, name));
-                    }
+            if (null == byId)
+                throw new RuntimeException("No data," + t.getId());
+
+            for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
+                String name = propertyDescriptor.getName();
+                if (name.equals("class")) {
+                    continue;
                 }
-                result = repository.save(t);
-            } else {
-                throw new RuntimeException("no data," + t.getId());
+                Object property = BeanUtil.getProperty(t, name);
+                if (null == property) {
+                    BeanUtil.setProperty(t, name, BeanUtil.getProperty(byId, name));
+                }
             }
         }
-        return result;
+        return repository.save(t);
     }
 
 
-    /**
-     * 获取Repository
-     *
-     * @return JpaRepository<T, ID>
-     * @author xulijian
-     */
-    public abstract JpaRepositoryImplementation<T, ID> getRepository();
-
-
-    /**
-     * 获得指定Repository
-     *
-     * @author xulijian
-     */
-    @Autowired
-    public void setRepository() {
-        repository = getRepository();
-    }
+//    /**
+//     * 获取Repository
+//     *
+//     * @return JpaRepository<T, ID>
+//     * @author xulijian
+//     */
+//    public abstract JpaRepositoryImplementation<T, ID> getRepository();
+//
+//
+//    /**
+//     * 获得指定Repository
+//     *
+//     * @author xulijian
+//     */
+//    @Autowired
+//    public void setRepository() {
+//        repository = getRepository();
+//    }
 
 
     /**

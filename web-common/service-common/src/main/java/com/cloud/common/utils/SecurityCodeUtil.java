@@ -17,7 +17,7 @@ public class SecurityCodeUtil {
     /**
      * 验证码类型枚举
      */
-    public static enum CodeType {
+    public enum CodeType {
         NUM, //数字
         CH;  //全字符
 

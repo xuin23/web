@@ -1,6 +1,6 @@
 package com.cloud.auth.config;
 
-import com.cloud.common.bean.Result;
+import com.cloud.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

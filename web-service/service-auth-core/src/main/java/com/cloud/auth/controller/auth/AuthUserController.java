@@ -3,7 +3,7 @@ package com.cloud.auth.controller.auth;
 import com.cloud.auth.base.BaseController;
 import com.cloud.auth.service.auth.AuthUserService;
 import com.cloud.auth.entity.AuthUser;
-import com.cloud.common.bean.Result;
+import com.cloud.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import org.redisson.api.RLock;

@@ -7,8 +7,13 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * Bean 工具类
+ *
+ * @author xulijian
+ */
 @Slf4j
-public class BeanInfoUtil {
+public class BeanUtil {
 
     /**
      * 设置bean的某个属性值
@@ -50,7 +55,7 @@ public class BeanInfoUtil {
      */
     public static <T> Object getProperty(T t, String field) {
         // 获取Bean的某个属性的描述符
-        PropertyDescriptor proDescriptor = null;
+        PropertyDescriptor proDescriptor;
         try {
             proDescriptor = new PropertyDescriptor(field, t.getClass());
         } catch (IntrospectionException e) {

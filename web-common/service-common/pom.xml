@@ -11,6 +11,5 @@
     </parent>
 
     <artifactId>service-common</artifactId>
-    <description>公共包</description>
 
 </project>
