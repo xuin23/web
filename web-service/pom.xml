@@ -15,8 +15,8 @@
 
     <modules>
         <module>service-gateway</module>
-        <module>service-auth-core</module>
-        <module>service-message-core</module>
+        <module>service-auth</module>
+        <module>service-message</module>
     </modules>
 
 </project>

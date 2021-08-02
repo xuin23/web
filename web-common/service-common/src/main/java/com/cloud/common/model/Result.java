@@ -28,6 +28,7 @@ public class Result<T> implements Serializable {
      * 返回码
      */
     private int code;
+
     /**
      * 返回信息
      */
@@ -79,7 +80,7 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> SUCCESS(T t) {
-        return new Result<T>(RESULT_CODE_SUCCESS, t);
+        return new Result<>(RESULT_CODE_SUCCESS, t);
     }
 
     public static <T> Result<T> SUCCESS() {
@@ -87,11 +88,11 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> FAIL(String message) {
-        return new Result<T>(RESULT_CODE_ERROR, message);
+        return new Result<>(RESULT_CODE_ERROR, message);
     }
 
     public static <T> Result<T> FAIL(int code, String message) {
-        return new Result<T>(code, message);
+        return new Result<>(code, message);
     }
 
     public int getCode() {

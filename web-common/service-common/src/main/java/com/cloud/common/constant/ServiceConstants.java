@@ -5,7 +5,7 @@ package com.cloud.common.constant;
  *
  * @author xulijian
  */
-public class FeignClientConstants {
+public class ServiceConstants {
 
     //权限
     public static final String AUTH_APPLICATION_NAME_CODE = "/auth";

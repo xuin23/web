@@ -21,12 +21,11 @@ public class BeanUtil {
      * @param t     bean
      * @param field 字段
      * @param args  参数
-     * @throws Exception 异常
      * @author xulijian
      */
     public static <T> void setProperty(T t, String field, Object... args) {
         // 获取bean的某个属性的描述符
-        PropertyDescriptor propDesc = null;
+        PropertyDescriptor propDesc;
         try {
             propDesc = new PropertyDescriptor(field, t.getClass());
         } catch (IntrospectionException e) {
@@ -50,7 +49,6 @@ public class BeanUtil {
      * @param t     bean
      * @param field 字段
      * @return Object
-     * @throws Exception 异常
      * @author xulijian
      */
     public static <T> Object getProperty(T t, String field) {
