@@ -18,7 +18,7 @@
         * service-common
     * web-config
         * config-redis
-    * web-entities
+    * web-entity
         * common-entities
         * auth-entities
     * web-service
@@ -44,3 +44,15 @@
 > 启动完成后会在docker中启动一个redis，一个postgres（已完成数据库初始化），一个rabbitmq，一个consul，一个nginx。另外会启动一个gateway服务，三个auth-core服务，三个message-core。待项目整体完善后使用nginx代理8080端口服务
 >
 >  数据在/data文件夹
+
+
+* com.cloud
+  * service
+    * auth
+    * message
+    * gateway
+  * common
+    * entity
+      * base
+      * auth
+    * util

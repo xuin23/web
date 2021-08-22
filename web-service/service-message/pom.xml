@@ -46,17 +46,12 @@
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>service-common</artifactId>
+            <artifactId>web-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>message-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>config-redis</artifactId>
+            <artifactId>web-frame</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

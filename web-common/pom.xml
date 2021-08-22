@@ -12,13 +12,6 @@
     <artifactId>web-common</artifactId>
     <description>消息</description>
 
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>service-common</module>
-        <module>message-common</module>
-    </modules>
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,0 +1,15 @@
+package com.cloud.eneity.auth.repo;
+
+import com.cloud.eneity.auth.entity.AuthUser;
+import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+import org.springframework.stereotype.Repository;
+
+/**
+ * 用户 repo
+ *
+ * @author xulijian
+ */
+@Repository
+public interface AuthUserRepo extends JpaRepositoryImplementation<AuthUser, Long> {
+
+}
