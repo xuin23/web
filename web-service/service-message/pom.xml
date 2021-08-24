@@ -10,8 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>message</artifactId>
-    <name>service-message</name>
+    <artifactId>service-message</artifactId>
     <description>消息-核心</description>
 
     <dependencies>
@@ -51,7 +50,12 @@
         </dependency>
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>web-frame</artifactId>
+            <artifactId>frame-spring-jpa</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>frame-spring-redis</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

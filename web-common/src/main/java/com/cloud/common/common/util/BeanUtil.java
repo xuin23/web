@@ -29,7 +29,7 @@ public class BeanUtil {
         try {
             propDesc = new PropertyDescriptor(field, t.getClass());
         } catch (IntrospectionException e) {
-//            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
+            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
             throw new RuntimeException(e);
         }
         // 写入属性值
@@ -37,7 +37,7 @@ public class BeanUtil {
         try {
             writeMethod.invoke(t, args);
         } catch (IllegalAccessException | InvocationTargetException e) {
-//            log.error("方法调用失败,{},{},{}", t, writeMethod.getName(), e.getMessage(), e);
+            log.error("方法调用失败,{},{},{}", t, writeMethod.getName(), e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }
@@ -57,7 +57,7 @@ public class BeanUtil {
         try {
             proDescriptor = new PropertyDescriptor(field, t.getClass());
         } catch (IntrospectionException e) {
-//            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
+            log.error("获取class字段失败,{},{},{}", t, field, e.getMessage(), e);
             throw new RuntimeException(e);
         }
         // 获得用于读取属性值的方法
@@ -66,7 +66,7 @@ public class BeanUtil {
         try {
             return methodGetUserName.invoke(t);
         } catch (IllegalAccessException | InvocationTargetException e) {
-//            log.error("方法调用失败,{},{},{}", t, methodGetUserName.getName(), e.getMessage(), e);
+            log.error("方法调用失败,{},{},{}", t, methodGetUserName.getName(), e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }
