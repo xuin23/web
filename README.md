@@ -14,17 +14,15 @@
 ### 2、主要模块
 
     * web-common
-        * message-common
-        * service-common
-    * web-config
-        * config-redis
     * web-entity
-        * common-entities
-        * auth-entities
+        * auth-entity
+    * web-frame
+        * frame-spring-jpa
+        * frame-spring-redis
     * web-service
-        * service-auth-core
+        * service-auth
         * service-gateway
-        * service-message-core
+        * service-message
 
 ### 3、启动
 
@@ -32,10 +30,10 @@
 
 * [安装Powershell](https://docs.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1)（就是想用Powershell）
 * 配置openjdk16 环境变量（紧跟JDK最新版）
-* 配置Maven环境变量（建议配置国内镜像 要不然maven下载Jar包速度太慢）
-* 安装Docker（建议配置国内镜像 要不然docker下载镜像速度太慢）
+* 配置Maven环境变量
+* 安装Docker
 * 安装docker-compose
-* 安装Git（一般linux都安装了）
+* 安装Git
 * git clone https://github.com/xuin23/web.git
 * cd web
 * pwsh ./init.ps1 等待启动
