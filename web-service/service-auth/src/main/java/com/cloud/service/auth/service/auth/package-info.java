@@ -1,1 +1,0 @@
-package com.cloud.service.auth.service.auth;
