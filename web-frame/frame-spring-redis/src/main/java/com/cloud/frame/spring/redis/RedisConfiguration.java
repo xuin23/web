@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.io.Serializable;
+
 /**
  * redis 配置
  *
@@ -21,14 +23,14 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfiguration {
 
     /**
-     * redisTemplate 配置
+     * Redis 模板 配置
      *
      * @param factory factory
-     * @return RedisTemplate
+     * @return {@link RedisTemplate}
      * @author xulijian
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate(RedissonConnectionFactory factory) {
+    public RedisTemplate<String, ? extends Serializable> redisTemplate(RedissonConnectionFactory factory) {
 
         log.info("Redis Init");
 

@@ -3,6 +3,7 @@ package com.cloud.eneity.auth.entity;
 import com.cloud.frame.spring.jpa.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -18,13 +19,16 @@ import javax.persistence.*;
 @Entity(name = "auth_role")
 public class AuthRole extends BaseEntity {
 
+    private static final String SEQ = "seq_auth_role";
 
     /**
      * 主键
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_auth_role_seq")
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ)
     @Column(name = "c_pk", unique = true)
+    @ColumnDefault("nextval('" + SEQ + "')")
     private Long pk;
 
     /**

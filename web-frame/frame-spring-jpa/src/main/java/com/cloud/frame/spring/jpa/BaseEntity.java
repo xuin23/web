@@ -24,7 +24,7 @@ public class BaseEntity {
      */
     @Version
     @Column(name = "c_version")
-    @ColumnDefault("0")
+    @ColumnDefault("1")
     private Long version;
 
     /**

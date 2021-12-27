@@ -4,6 +4,7 @@ import com.cloud.frame.spring.jpa.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -23,12 +24,16 @@ import javax.persistence.*;
 public class AuthUser extends BaseEntity {
 
 
+    private static final String SEQ = "seq_auth_user";
+
     /**
      * 主键
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_auth_user_seq")
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ)
     @Column(name = "c_pk", unique = true)
+    @ColumnDefault("nextval('" + SEQ + "')")
     private Long pk;
 
     /**
