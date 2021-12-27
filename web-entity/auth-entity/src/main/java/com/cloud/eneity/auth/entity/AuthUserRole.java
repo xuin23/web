@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.*;
 
 
 /**
@@ -22,14 +20,25 @@ import javax.persistence.EntityListeners;
 @Entity(name = "auth_user_role")
 public class AuthUserRole extends BaseEntity {
 
+
+    /**
+     * 主键
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_auth_user_role_seq")
+    @Column(name = "c_pk", unique = true)
+    private Long pk;
+
     /**
      * 用户Id
      */
+    @Column(name = "fk_user")
     private Long fkUser;
 
     /**
      * 角色id
      */
+    @Column(name = "fk_role")
     private Long fkRole;
 
 }

@@ -49,6 +49,7 @@ public class SecurityCodeUtil {
      *
      * @param length 验证码长度
      * @return 验证码
+     * @author xulijian
      */
     public static String generateSecurityCode(int length) {
         return generateSecurityCode(length, CODE_TYPE_NUM);
@@ -60,6 +61,7 @@ public class SecurityCodeUtil {
      * @param length 验证码长度
      * @param type   验证码类型
      * @return 验证码
+     * @author xulijian
      */
     public static String generateSecurityCode(int length, String type) {
 

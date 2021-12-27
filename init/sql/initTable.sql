@@ -1,61 +1,61 @@
--- 用户表
-create table IF NOT EXISTS AUTH_USER
-(
-    PK          serial      not null primary key,
-    ID          varchar(50) not null unique,
-    USERNAME    varchar(50) default null,
-    PASSWORD    varchar(50) default null,
-    EMAIL       varchar(50) not null unique,
-    VERSION     integer     default 0,
-    STATUS      boolean     default true,
-    UPDATE_TIME timestamp   default now(),
-    CREATE_TIME timestamp   default now()
-);
-
-comment on table AUTH_USER is '用户表';
-comment on column AUTH_USER.PK is '主键';
-comment on column AUTH_USER.ID is '用户ID';
-comment on column AUTH_USER.USERNAME is '角色名';
-comment on column AUTH_USER.PASSWORD is '密码';
-comment on column AUTH_USER.EMAIL is '邮箱';
-comment on column AUTH_USER.STATUS is '状态';
-comment on column AUTH_USER.UPDATE_TIME is '更新日期';
-comment on column AUTH_USER.CREATE_TIME is '创建日期';
-
--- 角色表
-CREATE TABLE IF NOT EXISTS AUTH_ROLE
-(
-    PK          serial      not null primary key,
-    ID          varchar(50) not null unique,
-    NAME        VARCHAR(50) not null,
-    VERSION     integer   default 0,
-    STATUS      boolean   default true,
-    UPDATE_TIME timestamp default now(),
-    CREATE_TIME timestamp default now()
-);
-comment on table AUTH_ROLE is '角色表';
-comment on column AUTH_ROLE.PK is '角色ID';
-comment on column AUTH_ROLE.NAME is '角色名';
-comment on column AUTH_ROLE.STATUS is '状态';
-comment on column AUTH_ROLE.UPDATE_TIME is '更新日期';
-comment on column AUTH_ROLE.CREATE_TIME is '创建日期';
-
-
--- 用户角色关联表
-CREATE TABLE IF NOT EXISTS AUTH_USER_ROLE
-(
-    PK          serial not null primary key,
-    FK_ROLE     bigint NOT NULL,
-    FK_USER     bigint NOT NULL,
-    VERSION     bigint    default 0,
-    STATUS      boolean   default true,
-    UPDATE_TIME timestamp DEFAULT NOW(),
-    CREATE_TIME timestamp DEFAULT NOW()
-);
-comment on table AUTH_USER_ROLE is '用户角色关联表';
-comment on column AUTH_USER_ROLE.FK_ROLE is '角色ID';
-comment on column AUTH_USER_ROLE.FK_USER is '用户ID';
-comment on column AUTH_USER_ROLE.CREATE_TIME is '创建日期';
+-- -- 用户表
+-- create table IF NOT EXISTS AUTH_USER
+-- (
+--     PK          serial      not null primary key,
+--     ID          varchar(50) not null unique,
+--     USERNAME    varchar(50) default null,
+--     PASSWORD    varchar(50) default null,
+--     EMAIL       varchar(50) not null unique,
+--     VERSION     integer     default 0,
+--     STATUS      boolean     default true,
+--     UPDATE_TIME timestamp   default now(),
+--     CREATE_TIME timestamp   default now()
+-- );
+--
+-- comment on table AUTH_USER is '用户表';
+-- comment on column AUTH_USER.PK is '主键';
+-- comment on column AUTH_USER.ID is '用户ID';
+-- comment on column AUTH_USER.USERNAME is '角色名';
+-- comment on column AUTH_USER.PASSWORD is '密码';
+-- comment on column AUTH_USER.EMAIL is '邮箱';
+-- comment on column AUTH_USER.STATUS is '状态';
+-- comment on column AUTH_USER.UPDATE_TIME is '更新日期';
+-- comment on column AUTH_USER.CREATE_TIME is '创建日期';
+--
+-- -- 角色表
+-- CREATE TABLE IF NOT EXISTS AUTH_ROLE
+-- (
+--     PK          serial      not null primary key,
+--     ID          varchar(50) not null unique,
+--     NAME        VARCHAR(50) not null,
+--     VERSION     integer   default 0,
+--     STATUS      boolean   default true,
+--     UPDATE_TIME timestamp default now(),
+--     CREATE_TIME timestamp default now()
+-- );
+-- comment on table AUTH_ROLE is '角色表';
+-- comment on column AUTH_ROLE.PK is '角色ID';
+-- comment on column AUTH_ROLE.NAME is '角色名';
+-- comment on column AUTH_ROLE.STATUS is '状态';
+-- comment on column AUTH_ROLE.UPDATE_TIME is '更新日期';
+-- comment on column AUTH_ROLE.CREATE_TIME is '创建日期';
+--
+--
+-- -- 用户角色关联表
+-- CREATE TABLE IF NOT EXISTS AUTH_USER_ROLE
+-- (
+--     PK          serial not null primary key,
+--     FK_ROLE     bigint NOT NULL,
+--     FK_USER     bigint NOT NULL,
+--     VERSION     bigint    default 0,
+--     STATUS      boolean   default true,
+--     UPDATE_TIME timestamp DEFAULT NOW(),
+--     CREATE_TIME timestamp DEFAULT NOW()
+-- );
+-- comment on table AUTH_USER_ROLE is '用户角色关联表';
+-- comment on column AUTH_USER_ROLE.FK_ROLE is '角色ID';
+-- comment on column AUTH_USER_ROLE.FK_USER is '用户ID';
+-- comment on column AUTH_USER_ROLE.CREATE_TIME is '创建日期';
 
 --
 -- -- 权限操作关联表

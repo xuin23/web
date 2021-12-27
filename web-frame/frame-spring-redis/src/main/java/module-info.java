@@ -1,7 +1,9 @@
 module web.frame.spring.redis {
 
-    requires spring.data.redis;
+    requires static lombok;
+    requires org.slf4j;
     requires redisson.spring.data23;
+    requires spring.data.redis;
     requires spring.context;
     requires com.fasterxml.jackson.databind;
 

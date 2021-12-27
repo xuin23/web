@@ -20,25 +20,17 @@ import java.util.Date;
 public class BaseEntity {
 
     /**
-     * 主键
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "pk")
-    private Long pk;
-
-    /**
      * 版本
      */
     @Version
-    @Column(name = "version")
+    @Column(name = "c_version")
     @ColumnDefault("0")
     private Long version;
 
     /**
      * 状态
      */
-    @Column(name = "status")
+    @Column(name = "c_status")
     @ColumnDefault("true")
     private Boolean status;
 
@@ -46,16 +38,16 @@ public class BaseEntity {
      * 更新日期
      */
     @LastModifiedDate
-    @Column(name = "update_Time")
-    @ColumnDefault("NOW()")
-    private Date updateTime;
+    @Column(name = "c_update")
+    @ColumnDefault("now()")
+    private Date update;
 
     /**
      * 创建日期
      */
     @CreatedDate
-    @Column(name = "create_Time")
-    @ColumnDefault("NOW()")
-    private Date createTime;
+    @Column(name = "c_create")
+    @ColumnDefault("now()")
+    private Date create;
 
 }

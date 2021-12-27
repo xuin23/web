@@ -27,13 +27,13 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.parameters>true</maven.compiler.parameters>
 
-        <java.version>16</java.version>
+        <java.version>17</java.version>
 
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
 
         <redisson.verion>3.15.5</redisson.verion>
         <logstash.version>6.6</logstash.version>

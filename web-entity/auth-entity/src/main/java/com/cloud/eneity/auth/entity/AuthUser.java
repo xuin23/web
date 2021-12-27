@@ -6,9 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
+import javax.persistence.*;
 
 
 /**
@@ -24,24 +22,37 @@ import javax.persistence.EntityListeners;
 @Entity(name = "auth_user")
 public class AuthUser extends BaseEntity {
 
+
+    /**
+     * 主键
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "table_auth_user_seq")
+    @Column(name = "c_pk", unique = true)
+    private Long pk;
+
     /**
      * 用户Id
      */
+    @Column(name = "c_id", unique = true)
     private String id;
 
     /**
      * 角色名
      */
-    private String username;
+    @Column(name = "c_name")
+    private String name;
 
     /**
      * 密码
      */
+    @Column(name = "c_password")
     private String password;
 
     /**
      * 邮箱
      */
+    @Column(name = "c_email")
     private String email;
 
 }

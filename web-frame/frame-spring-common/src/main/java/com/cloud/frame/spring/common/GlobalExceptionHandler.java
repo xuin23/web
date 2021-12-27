@@ -1,4 +1,4 @@
-package com.cloud.service.auth.config;
+package com.cloud.frame.spring.common;
 
 import com.cloud.common.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    public GlobalExceptionHandler() {
+        log.info("GlobalExceptionHandler Init");
+    }
 
     /**
      * 默认异常处理

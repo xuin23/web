@@ -1,6 +1,7 @@
 package com.cloud.service.auth.base;
 
 import com.cloud.common.common.util.BeanUtil;
+import com.cloud.common.common.util.ReflectUtil;
 import com.cloud.frame.spring.jpa.BaseEntity;
 import com.cloud.frame.spring.jpa.PageParam;
 import lombok.extern.slf4j.Slf4j;
@@ -111,11 +112,11 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @author xulijian
      */
     public T save(T t) {
-        Long id = t.getPk();
+        Long id = (Long) ReflectUtil.invokeMethod(t, "getPk");
         if (null != id) {
             T byId = findById((ID) id);
             if (null == byId)
-                throw new RuntimeException("No data," + t.getPk());
+                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getPk"));
 
             for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
                 String name = propertyDescriptor.getName();
