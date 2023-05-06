@@ -30,12 +30,12 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.parameters>true</maven.compiler.parameters>
+
         <java.version>17</java.version>
 
         <spring-cloud.version>2021.0.0</spring-cloud.version>
-
         <redisson.verion>3.15.5</redisson.verion>
-        <logstash.version>6.6</logstash.version>
+        <logstash.version>6.4</logstash.version>
 
     </properties>
 
@@ -67,7 +67,7 @@
             <dependency>
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
-                <version>${logstash.version}</version>
+                <version>6.6</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

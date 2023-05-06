@@ -55,6 +55,11 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
             if (null != authUser) {
                 authUser.setName(String.valueOf((int) (Math.random() * 1000)));
                 authUserService.save(authUser);
+                authUser.setId(null);
+                authUserService.save(authUser);
+                authUserService.save(authUser);
+                authUserService.save(authUser);
+                authUserService.save(authUser);
                 redisTemplate.opsForValue().set(String.valueOf(authUser.getId()), authUser);
             }
         } catch (Exception e) {
