@@ -6,6 +6,7 @@ custom:
     rabbitmq: ${custom.host.common}
     consul: ${custom.host.common}
     logstash: ${custom.host.common}
+    elasticsearch: ${custom.host.common}
 server:
   port: 8081
   servlet:
@@ -56,3 +57,9 @@ management:
 logging:
   level:
     com.cloud: debug
+elasticsearch:
+  host: ${custom.host.elasticsearch}
+  port: 9200
+  connTimeout: 3000
+  socketTimeout: 5000
+  connectionRequestTimeout: 500

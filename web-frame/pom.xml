@@ -14,13 +14,13 @@
     <packaging>pom</packaging>
 
     <modules>
-
         <module>frame-spring-common</module>
 
         <module>frame-spring-jpa</module>
 
         <module>frame-spring-redis</module>
 
+        <module>frame-spring-elasticsearch</module>
     </modules>
 
 </project>

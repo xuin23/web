@@ -1,7 +1,7 @@
 package com.cloud.service.auth.service.auth;
 
-import com.cloud.eneity.auth.entity.AuthUser;
 import com.cloud.service.auth.base.BaseService;
+import com.cloud.service.auth.entity.AuthUser;
 import org.springframework.stereotype.Service;
 
 /**

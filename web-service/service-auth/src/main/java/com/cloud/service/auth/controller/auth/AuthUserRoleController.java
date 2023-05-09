@@ -1,7 +1,7 @@
 package com.cloud.service.auth.controller.auth;
 
-import com.cloud.eneity.auth.entity.AuthUserRole;
 import com.cloud.service.auth.base.BaseController;
+import com.cloud.service.auth.entity.AuthUserRole;
 import com.cloud.service.auth.service.auth.AuthUserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -17,7 +17,6 @@
         <module>service-gateway</module>
         <module>service-auth</module>
         <module>service-message</module>
-<!--        <module>service-test</module>-->
     </modules>
 
 </project>

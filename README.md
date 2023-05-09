@@ -14,8 +14,6 @@
 ### 2、主要模块
 
     * web-common
-    * web-entity
-        * auth-entity
     * web-frame
         * frame-spring-jpa
         * frame-spring-redis

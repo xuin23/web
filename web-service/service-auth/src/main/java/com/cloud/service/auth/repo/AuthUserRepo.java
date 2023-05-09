@@ -1,6 +1,6 @@
-package com.cloud.eneity.auth.repo;
+package com.cloud.service.auth.repo;
 
-import com.cloud.eneity.auth.entity.AuthUser;
+import com.cloud.service.auth.entity.AuthUser;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 

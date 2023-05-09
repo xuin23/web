@@ -1,4 +1,4 @@
-package com.cloud.eneity.auth.entity;
+package com.cloud.service.auth.entity;
 
 import com.cloud.frame.spring.jpa.BaseEntity;
 import lombok.Data;
