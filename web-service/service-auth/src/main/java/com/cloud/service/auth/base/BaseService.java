@@ -112,11 +112,11 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @author xulijian
      */
     public T save(T t) {
-        Long id = (Long) ReflectUtil.invokeMethod(t, "getPk");
+        Long id = (Long) ReflectUtil.invokeMethod(t, "getId");
         if (null != id) {
             T byId = findById((ID) id);
             if (null == byId)
-                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getPk"));
+                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getId"));
 
             for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
                 String name = propertyDescriptor.getName();

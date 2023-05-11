@@ -3,6 +3,7 @@ package com.cloud.service.auth.entity;
 import com.cloud.frame.spring.jpa.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -27,15 +28,16 @@ public class AuthRole extends BaseEntity {
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ)
-    @Column(name = "c_pk", unique = true)
+    @Column(name = "c_id", unique = true)
     @ColumnDefault("nextval('" + SEQ + "')")
-    private Long pk;
+    @Getter
+    private Long id;
 
     /**
      * 角色id
      */
-    @Column(name = "c_id", unique = true)
-    private String id;
+    @Column(name = "c_rid")
+    private String rid;
 
     /**
      * 角色名
