@@ -5,6 +5,7 @@ import com.cloud.service.auth.entity.AuthUser;
 import com.cloud.service.auth.repo.AuthUserRepo;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 @Component
 public class DataBaseInitListener implements ApplicationListener<ApplicationStartedEvent> {
 
+    @Lazy
     @Resource
     AuthUserRepo authUserRepo;
 
@@ -25,12 +27,6 @@ public class DataBaseInitListener implements ApplicationListener<ApplicationStar
             authUser.setEmail("xuin23@outlook.com");
             authUser.setPassword(DigestUtil.encodeByMd5("admin"));
             authUserRepo.save(authUser);
-        }else {
-            AuthUser byId = authUserRepo.getById(1L);
-            byId.setName("haohao");
-            authUserRepo.save(byId);
-            System.out.println(byId.getId());
         }
-
     }
 }

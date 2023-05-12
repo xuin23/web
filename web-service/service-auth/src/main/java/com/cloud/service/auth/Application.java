@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @ComponentScan(basePackages = {"com.cloud"})
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableJpaAuditing
+@EnableTransactionManagement
 public class Application {
 
     public static void main(String[] args) {

@@ -18,7 +18,7 @@ import java.util.Date;
  * @author xulijian
  * @since 20210823
  */
-@Getter
+@Data
 @MappedSuperclass
 @EntityListeners(value = AuditingEntityListener.class)
 public class BaseEntity {
@@ -28,7 +28,6 @@ public class BaseEntity {
      */
     @Version
     @Column(name = "c_revision")
-    @ColumnDefault("1")
     private Long revision;
 
     /**
@@ -43,7 +42,6 @@ public class BaseEntity {
      * 更新人
      */
     @Column(name = "c_updated")
-    @ColumnDefault("'admin'")
     @LastModifiedBy
     private String updated;
 
@@ -59,7 +57,6 @@ public class BaseEntity {
      * 创建人
      */
     @Column(name = "c_create", updatable = false, insertable = false)
-    @ColumnDefault("'admin'")
     @CreatedBy
     private String created;
 

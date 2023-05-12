@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
 
@@ -73,7 +72,6 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
      * @return T
      * @author xulijian
      */
-    @Transactional(rollbackOn = Exception.class)
     @PostMapping(value = "/save")
     public Result<T> save(@RequestBody T t) {
         log.info("save,{}", t);

@@ -112,23 +112,23 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
      * @author xulijian
      */
     public T save(T t) {
-        Long id = (Long) ReflectUtil.invokeMethod(t, "getId");
-        if (null != id) {
-            T byId = findById((ID) id);
-            if (null == byId)
-                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getId"));
-
-            for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
-                String name = propertyDescriptor.getName();
-                if (name.equals("class")) {
-                    continue;
-                }
-                Object property = BeanUtil.getProperty(t, name);
-                if (null == property) {
-                    BeanUtil.setProperty(t, name, BeanUtil.getProperty(byId, name));
-                }
-            }
-        }
+//        Long id = (Long) ReflectUtil.invokeMethod(t, "getId");
+//        if (null != id) {
+//            T byId = findById((ID) id);
+//            if (null == byId)
+//                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getId"));
+//
+//            for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
+//                String name = propertyDescriptor.getName();
+//                if (name.equals("class")) {
+//                    continue;
+//                }
+//                Object property = BeanUtil.getProperty(t, name);
+//                if (null == property) {
+//                    BeanUtil.setProperty(t, name, BeanUtil.getProperty(byId, name));
+//                }
+//            }
+//        }
         return repository.save(t);
     }
 

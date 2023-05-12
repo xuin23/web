@@ -6,6 +6,7 @@ module web.frame.spring.redis {
     requires spring.data.redis;
     requires spring.context;
     requires org.slf4j;
+    requires java.annotation;
 
     exports com.cloud.frame.spring.redis;
 }

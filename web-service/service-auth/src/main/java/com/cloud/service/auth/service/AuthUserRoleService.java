@@ -1,4 +1,4 @@
-package com.cloud.service.auth.service.auth;
+package com.cloud.service.auth.service;
 
 import com.cloud.service.auth.base.BaseService;
 import com.cloud.service.auth.entity.AuthUserRole;
