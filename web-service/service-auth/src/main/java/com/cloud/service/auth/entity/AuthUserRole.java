@@ -1,6 +1,6 @@
 package com.cloud.service.auth.entity;
 
-import com.cloud.frame.spring.jpa.BaseEntity;
+import com.cloud.service.auth.base.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -40,5 +40,6 @@ public class AuthUserRole extends BaseEntity implements Serializable {
      */
     @Column(name = "fk_role")
     private Long fkRole;
+
 
 }

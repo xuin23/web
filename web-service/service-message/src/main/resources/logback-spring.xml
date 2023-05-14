@@ -17,7 +17,7 @@
     <!--输出到logstash的appender-->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <!--可以访问的logstash日志收集端口-->
-        <destination>${custom.host.logstash}:4560</destination>
+        <destination>${custom.host.logstash}:50000</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 

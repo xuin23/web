@@ -1,6 +1,6 @@
 package com.cloud.service.auth.entity;
 
-import com.cloud.frame.spring.jpa.BaseEntity;
+import com.cloud.service.auth.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -21,10 +21,10 @@ import jakarta.persistence.*;
 @EntityListeners(value = AuditingEntityListener.class)
 @Cacheable
 @Entity(name = "auth_user")
-public class AuthUser extends BaseEntity {
+public class User extends BaseEntity {
 
 
-    private static final String SEQ = "seq_auth_user";
+    private static final String SEQ = "seq_user";
 
     /**
      * 主键

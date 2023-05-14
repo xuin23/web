@@ -1,7 +1,6 @@
 package com.cloud.service.auth.base;
 
 import com.cloud.common.common.model.Result;
-import com.cloud.frame.spring.jpa.BaseEntity;
 import com.cloud.frame.spring.jpa.PageParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

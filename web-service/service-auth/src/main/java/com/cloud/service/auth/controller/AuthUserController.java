@@ -3,7 +3,7 @@ package com.cloud.service.auth.controller;
 import com.cloud.common.common.model.Result;
 import com.cloud.common.common.util.DigestUtil;
 import com.cloud.service.auth.base.BaseController;
-import com.cloud.service.auth.entity.AuthUser;
+import com.cloud.service.auth.entity.User;
 import com.cloud.service.auth.service.AuthUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ import jakarta.annotation.Resource;
 @RestController
 @RequestMapping(value = "/authUser")
 @Transactional
-public class AuthUserController extends BaseController<AuthUser, Long> {
+public class AuthUserController extends BaseController<User, Long> {
 
     /**
      * RedissonClient
@@ -58,25 +58,25 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
         if (!lock.isLocked()) {
             lock.lock();
         }
-        AuthUser authUser = authUserService.findById(id);
+        User user = authUserService.findById(id);
         try {
-            if (null != authUser) {
-                authUser.setName(String.valueOf((int) (Math.random() * 1000)));
-                authUserService.save(authUser);
-                redisTemplate.opsForValue().set(String.valueOf(authUser.getId()), objectMapper.writeValueAsString(authUser));
-                AuthUser authUser1 = objectMapper.readValue(String.valueOf(redisTemplate.opsForValue().get(String.valueOf(authUser.getId()))), AuthUser.class);
-                System.out.println(authUser1);
+            if (null != user) {
+                user.setName(String.valueOf((int) (Math.random() * 1000)));
+                authUserService.save(user);
+                redisTemplate.opsForValue().set(String.valueOf(user.getId()), objectMapper.writeValueAsString(user));
+                User user1 = objectMapper.readValue(String.valueOf(redisTemplate.opsForValue().get(String.valueOf(user.getId()))), User.class);
+                System.out.println(user1);
             }
-            AuthUser authUser2 = new AuthUser();
-            authUser2.setUid("admin");
-            authUser2.setName("系统管理员" + (int) (Math.random() * 1000));
-            authUser2.setEmail("xuin23@outlook.com");
-            authUser2.setPassword(DigestUtil.encodeByMd5("admin"));
-            authUserService.save(authUser2);
+            User user2 = new User();
+            user2.setUid("admin");
+            user2.setName("系统管理员" + (int) (Math.random() * 1000));
+            user2.setEmail("xuin23@outlook.com");
+            user2.setPassword(DigestUtil.encodeByMd5("admin"));
+            authUserService.save(user2);
             return Result.SUCCESS(authUserService.findAllByCreate());
         } catch (Exception e) {
             log.error("{}", e.getMessage(), e);
-            return Result.FAIL(e.getMessage());
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }

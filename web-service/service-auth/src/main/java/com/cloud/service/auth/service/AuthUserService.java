@@ -1,7 +1,7 @@
 package com.cloud.service.auth.service;
 
 import com.cloud.service.auth.base.BaseService;
-import com.cloud.service.auth.entity.AuthUser;
+import com.cloud.service.auth.entity.User;
 import com.cloud.service.auth.repo.AuthUserRepo;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +16,12 @@ import java.util.List;
  * @author xulijian
  */
 @Service
-public class AuthUserService extends BaseService<AuthUser, Long> {
+public class AuthUserService extends BaseService<User, Long> {
 
     @Resource
     AuthUserRepo authUserRepo;
 
-    public List<AuthUser> findAllByCreate() {
+    public List<User> findAllByCreate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             return authUserRepo.findAllByCreate(simpleDateFormat.parse("2022-01-01"), simpleDateFormat.parse("2023-09-09"));

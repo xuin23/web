@@ -31,6 +31,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+  elasticsearch:
+    uris: http://${custom.host.elasticsearch}:9200
   cloud:
     consul:
       host: ${custom.host.consul}
@@ -58,9 +60,3 @@ management:
 logging:
   level:
     com.cloud: debug
-elasticsearch:
-  host: ${custom.host.elasticsearch}
-  port: 9200
-  connTimeout: 3000
-  socketTimeout: 5000
-  connectionRequestTimeout: 500

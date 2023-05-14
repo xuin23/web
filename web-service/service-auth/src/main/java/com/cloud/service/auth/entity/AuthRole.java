@@ -1,13 +1,11 @@
 package com.cloud.service.auth.entity;
 
-import com.cloud.frame.spring.jpa.BaseEntity;
+import com.cloud.service.auth.base.BaseEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import jakarta.persistence.*;
 
 
 /**
@@ -30,7 +28,6 @@ public class AuthRole extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ)
     @Column(name = "c_id", unique = true)
     @ColumnDefault("nextval('" + SEQ + "')")
-    @Getter
     private Long id;
 
     /**

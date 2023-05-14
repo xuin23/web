@@ -1,6 +1,5 @@
 package com.cloud.service.auth.base;
 
-import com.cloud.frame.spring.jpa.BaseEntity;
 import com.cloud.frame.spring.jpa.PageParam;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Path;
@@ -67,7 +66,7 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
     public Page<T> findAll(PageParam params) {
         return repository.findAll(
                 (root, query, criteriaBuilder) -> query.where(generateWhere(params, root, criteriaBuilder)).getRestriction(),
-                PageRequest.of(params.getPageNumber(), params.getPageSize(), Sort.by(Sort.Order.asc("createTime")))
+                PageRequest.of(params.getPageNumber(), params.getPageSize(), Sort.by(Sort.Order.asc("c_create")))
         );
     }
 

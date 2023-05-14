@@ -1,4 +1,4 @@
-package com.cloud.frame.spring.jpa;
+package com.cloud.service.auth.base;
 
 import lombok.Data;
 import lombok.Getter;
@@ -59,7 +59,7 @@ public class BaseEntity {
     /**
      * 创建人
      */
-    @Column(name = "c_create", updatable = false, insertable = false)
+    @Column(name = "c_created", updatable = false, insertable = false)
     @CreatedBy
     private String created;
 
