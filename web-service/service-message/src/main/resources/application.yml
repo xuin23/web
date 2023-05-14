@@ -1,6 +1,6 @@
 custom:
   host:
-    common: 192.168.1.203
+    common: com.xuin23.com
     redis: ${custom.host.common}
     rabbitmq: ${custom.host.common}
     consul: ${custom.host.common}
@@ -10,12 +10,13 @@ server:
   servlet:
     context-path: /@pom.artifactId@
 spring:
+  data:
+    redis:
+      database: 0
+      port: 6379
+      host: ${custom.host.redis}
   application:
     name: @pom.name@
-  redis:
-    database: 0
-    port: 6379
-    host: ${custom.host.redis}
   rabbitmq:
     host: ${custom.host.rabbitmq}
     port: 5672

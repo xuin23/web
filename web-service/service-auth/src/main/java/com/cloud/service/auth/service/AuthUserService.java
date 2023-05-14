@@ -5,7 +5,7 @@ import com.cloud.service.auth.entity.AuthUser;
 import com.cloud.service.auth.repo.AuthUserRepo;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;

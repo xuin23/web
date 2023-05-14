@@ -34,3 +34,34 @@ services:
       - elasticsearch:es #可以用es这个域名访问elasticsearch服务
     ports:
       - 4560:4560
+#  redis:
+#    image: redis
+#    container_name: redis
+#    volumes:
+#      - ./redis/data:/data/redis/data #挂载logstash的配置文件
+#    depends_on:
+#      - elasticsearch #kibana在elasticsearch启动之后再启动
+#    links:
+#      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+#    ports:
+#      - 6379:6379
+#  postgres:
+#    image: postgres
+#    container_name: postgres
+#    volumes:
+#      - ./postgres/data:/var/lib/postgresql/data
+#    environment:
+#      - "POSTGRES_PASSWORD : 123456"
+#    ports:
+#      - 5432:5432
+#  rabbitmq:
+#    image: rabbitmq
+#    container_name: rabbitmq
+#    volumes:
+#      - ./rabbitmq/data:/var/lib/rabbitmq
+#    ports:
+#      - 5672:5672
+#      - 5671:5671
+#      - 15672:15672
+#      - 25672:25672
+#      - 4369:4369

@@ -7,7 +7,6 @@ import com.cloud.service.auth.entity.AuthUser;
 import com.cloud.service.auth.service.AuthUserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * 用户 Controller
@@ -42,8 +41,6 @@ public class AuthUserController extends BaseController<AuthUser, Long> {
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-    @Resource
-    RestHighLevelClient restHighLevelClient;
 
     /**
      * 用户 service

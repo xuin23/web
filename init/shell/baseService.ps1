@@ -25,8 +25,8 @@ docker run -d  --restart always  -p 8500:8500 -e CONSUL_BIND_INTERFACE='eth0' --
 #docker run --restart always -d --name nginx -p 80:80 -p 443:443 -v /data/nginx/nginx/:/etc/nginx -v /data/nginx/html/:/usr/share/nginx/html nginx
 
 #Write-Host "POSTGRES 数据初始化。。。。"
-docker cp ../sql/ postgres:/
-docker exec -it postgres /bin/bash -c "psql -U postgres -d postgres -a -f  /sql/initDatabase.sql"
-docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initTable.sql"
-docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initData.sql"
-docker exec -it postgres /bin/bash -c "rm -rf /sql"
+# docker cp ../sql/ postgres:/
+# docker exec -it postgres /bin/bash -c "psql -U postgres -d postgres -a -f  /sql/initDatabase.sql"
+# docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initTable.sql"
+# docker exec -it postgres /bin/bash -c "psql -U postgres -d web -a -f /sql/initData.sql"
+# docker exec -it postgres /bin/bash -c "rm -rf /sql"

@@ -1,6 +1,6 @@
 custom:
   host:
-    common: 192.168.1.203
+    common: com.xuin23.com
     redis: ${custom.host.common}
     database: ${custom.host.common}
     rabbitmq: ${custom.host.common}
@@ -8,7 +8,7 @@ custom:
     logstash: ${custom.host.common}
     elasticsearch: ${custom.host.common}
 server:
-  port: 8081
+  port: 8083
   servlet:
     context-path: /@pom.artifactId@
 spring:
@@ -16,10 +16,6 @@ spring:
     name: @pom.name@
   jackson:
     serialization: { WRITE_DATES_AS_TIMESTAMPS: true }
-  redis:
-    database: 0
-    port: 6379
-    host: ${custom.host.redis}
   datasource:
     url: jdbc:postgresql://${custom.host.database}:5432/postgres
     driver-class-name: org.postgresql.Driver
@@ -49,6 +45,11 @@ spring:
         health-check-path: ${server.servlet.context-path}/actuator/info # 健康检查的路径
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
         service-name: ${spring.application.name} # 注册服务名
+  data:
+    redis:
+      host: ${custom.host.redis}
+      database: 0
+      port: 6379
 management:
   endpoints:
     web:

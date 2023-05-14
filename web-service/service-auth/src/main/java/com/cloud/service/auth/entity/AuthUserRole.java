@@ -4,7 +4,7 @@ import com.cloud.frame.spring.jpa.BaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 
