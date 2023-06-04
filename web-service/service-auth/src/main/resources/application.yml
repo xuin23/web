@@ -33,6 +33,8 @@ spring:
     password: guest
   elasticsearch:
     uris: http://${custom.host.elasticsearch}:9200
+    username: elastic
+    password: changeme
   cloud:
     consul:
       host: ${custom.host.consul}
