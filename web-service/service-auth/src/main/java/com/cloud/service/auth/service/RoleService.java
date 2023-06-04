@@ -1,7 +1,7 @@
 package com.cloud.service.auth.service;
 
 import com.cloud.service.auth.base.BaseService;
-import com.cloud.service.auth.entity.Role;
+import com.cloud.service.auth.entity.T_Role;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
  * @author xulijian
  */
 @Service
-public class RoleService extends BaseService<Role, Long> {
+public class RoleService extends BaseService<T_Role, Long> {
 
 }

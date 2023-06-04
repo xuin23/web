@@ -20,7 +20,7 @@ import jakarta.persistence.*;
 @EntityListeners(value = AuditingEntityListener.class)
 @Cacheable
 @Entity(name = "t_user")
-public class User extends TableEntity {
+public class T_User extends TableEntity {
 
 
     /**

@@ -1,13 +1,11 @@
 package com.cloud.service.auth.entity;
 
 import com.cloud.service.auth.base.StructureEntity;
-import com.cloud.service.auth.base.TableEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import jakarta.persistence.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 
@@ -22,7 +20,7 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 @Cacheable
 @Entity(name = "structure_user_role")
-public class UserRole extends StructureEntity implements Serializable {
+public class Structure_user_role extends StructureEntity implements Serializable {
 
     /**
      * 用户Id

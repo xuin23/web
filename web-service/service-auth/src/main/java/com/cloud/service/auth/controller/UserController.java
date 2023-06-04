@@ -1,9 +1,8 @@
 package com.cloud.service.auth.controller;
 
 import com.cloud.common.common.model.Result;
-import com.cloud.common.common.util.DigestUtil;
 import com.cloud.service.auth.base.BaseController;
-import com.cloud.service.auth.entity.User;
+import com.cloud.service.auth.entity.T_User;
 import com.cloud.service.auth.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/user")
 @Transactional
-public class UserController extends BaseController<User, Long> {
+public class UserController extends BaseController<T_User, Long> {
 
     /**
      * RedissonClient
@@ -60,7 +59,7 @@ public class UserController extends BaseController<User, Long> {
         if (!lock.isLocked()) {
             lock.lock();
         }
-        List<User> allByCreate = userService.findAllByCreate();
+        List<T_User> allByCreate = userService.findAllByCreate();
         try {
 //            if (null != user) {
 //                user.setC_name(String.valueOf((int) (Math.random() * 1000)));

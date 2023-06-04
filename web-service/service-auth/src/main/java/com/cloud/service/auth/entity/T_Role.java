@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(value = AuditingEntityListener.class)
 @Cacheable
 @Entity(name = "t_role")
-public class Role extends TableEntity {
+public class T_Role extends TableEntity {
 
     /**
      * 主键
