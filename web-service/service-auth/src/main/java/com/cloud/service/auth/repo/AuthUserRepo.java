@@ -17,9 +17,9 @@ import java.util.List;
 public interface AuthUserRepo extends JpaRepositoryImplementation<User, Long> {
 
     @Query("""
-            from auth_user
-             where create between ?1 and ?2
-             order by create desc
+            from t_user 
+             where c_create between ?1 and ?2
+             order by c_create desc
             """)
     List<User> findAllByCreate(Date startDate, Date endDate);
 

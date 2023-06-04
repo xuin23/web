@@ -16,7 +16,7 @@ import java.util.List;
  * @author xulijian
  */
 @Service
-public class AuthUserService extends BaseService<User, Long> {
+public class UserService extends BaseService<User, Long> {
 
     @Resource
     AuthUserRepo authUserRepo;

@@ -33,152 +33,152 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
     JpaRepositoryImplementation<T, ID> repository;
 
 
-    /**
-     * 获取所有
-     *
-     * @return List<T>
-     * @author xulijian
-     */
-    public List<T> findAll() {
-        return repository.findAll();
-    }
-
-    /**
-     * 根据Id获取
-     *
-     * @return List<T>
-     * @author xulijian
-     */
-    public T findById(ID id) {
-        Optional<T> byId = repository.findById(id);
-        if (byId.isEmpty()) {
-            return null;
-        }
-        return byId.get();
-    }
-
-    /**
-     * 分页查询
-     *
-     * @return Page<T>
-     * @author xulijian
-     */
-    public Page<T> findAll(PageParam params) {
-        return repository.findAll(
-                (root, query, criteriaBuilder) -> query.where(generateWhere(params, root, criteriaBuilder)).getRestriction(),
-                PageRequest.of(params.getPageNumber(), params.getPageSize(), Sort.by(Sort.Order.asc("c_create")))
-        );
-    }
-
-    /**
-     * 生成where条件
-     *
-     * @param params          查询条件
-     * @param root            Root<T>
-     * @param criteriaBuilder SQL生成Builder
-     * @return Predicate[]
-     * @author xulijian
-     */
-    private Predicate[] generateWhere(PageParam params, Root<T> root, CriteriaBuilder criteriaBuilder) {
-        List<Predicate> predicateList = new ArrayList<>();
-
-        Map<String, Object> queryParams = params.getQueryParams();
-        if (null != queryParams) {
-            queryParams.forEach((k, v) -> {
-                Path<Object> objectPath = root.get(k);
-                Predicate equal;
-                if (objectPath.getJavaType().equals(Date.class) && v instanceof Long timestamp) {
-                    equal = criteriaBuilder.equal(objectPath, new Date(timestamp));
-                } else {
-                    equal = criteriaBuilder.equal(objectPath, v);
-                }
-                predicateList.add(equal);
-            });
-        }
-
-        return predicateList.toArray(new Predicate[0]);
-    }
-
-    /**
-     * 保存 or 更新
-     *
-     * @param t t
-     * @return T
-     * @author xulijian
-     */
-    public T save(T t) {
-//        Long id = (Long) ReflectUtil.invokeMethod(t, "getId");
-//        if (null != id) {
-//            T byId = findById((ID) id);
-//            if (null == byId)
-//                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getId"));
-//
-//            for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
-//                String name = propertyDescriptor.getName();
-//                if (name.equals("class")) {
-//                    continue;
-//                }
-//                Object property = BeanUtil.getProperty(t, name);
-//                if (null == property) {
-//                    BeanUtil.setProperty(t, name, BeanUtil.getProperty(byId, name));
-//                }
-//            }
-//        }
-        return repository.save(t);
-    }
-
-
 //    /**
-//     * 获取Repository
+//     * 获取所有
 //     *
-//     * @return JpaRepository<T, ID>
+//     * @return List<T>
 //     * @author xulijian
 //     */
-//    public abstract JpaRepositoryImplementation<T, ID> getRepository();
-//
-//
-//    /**
-//     * 获得指定Repository
-//     *
-//     * @author xulijian
-//     */
-//    @Autowired
-//    public void setRepository() {
-//        repository = getRepository();
+//    public List<T> findAll() {
+//        return repository.findAll();
 //    }
-
-
-    /**
-     * 判断并合并属性值
-     *
-     * @param sourceField 数据源属性
-     * @param targetField 目标源属性
-     * @param source      数据源
-     * @param target      目标源
-     * @return Boolean是否合并
-     * @author xulijian
-     */
-    private static boolean judgeAssign(Field sourceField, Field targetField, Object source, Object target) {
-        try {
-            if (sourceField.getName().equalsIgnoreCase(targetField.getName()) && sourceField.getType().getTypeName().equals(targetField.getType().getTypeName())) {
-                sourceField.setAccessible(true);
-                Object obj = sourceField.get(source);
-                //集合类型非空判断
-                if (obj instanceof Collection<?> newValue) {
-                    if (newValue.size() <= 0)
-                        return true;
-                }
-                //数据类型非空判断
-                if (obj != null) {
-                    targetField.setAccessible(true);
-                    targetField.set(target, obj);
-                }
-                return true;
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
+//
+//    /**
+//     * 根据Id获取
+//     *
+//     * @return List<T>
+//     * @author xulijian
+//     */
+//    public T findById(ID id) {
+//        Optional<T> byId = repository.findById(id);
+//        if (byId.isEmpty()) {
+//            return null;
+//        }
+//        return byId.get();
+//    }
+//
+//    /**
+//     * 分页查询
+//     *
+//     * @return Page<T>
+//     * @author xulijian
+//     */
+//    public Page<T> findAll(PageParam params) {
+//        return repository.findAll(
+//                (root, query, criteriaBuilder) -> query.where(generateWhere(params, root, criteriaBuilder)).getRestriction(),
+//                PageRequest.of(params.getPageNumber(), params.getPageSize(), Sort.by(Sort.Order.asc("c_create")))
+//        );
+//    }
+//
+//    /**
+//     * 生成where条件
+//     *
+//     * @param params          查询条件
+//     * @param root            Root<T>
+//     * @param criteriaBuilder SQL生成Builder
+//     * @return Predicate[]
+//     * @author xulijian
+//     */
+//    private Predicate[] generateWhere(PageParam params, Root<T> root, CriteriaBuilder criteriaBuilder) {
+//        List<Predicate> predicateList = new ArrayList<>();
+//
+//        Map<String, Object> queryParams = params.getQueryParams();
+//        if (null != queryParams) {
+//            queryParams.forEach((k, v) -> {
+//                Path<Object> objectPath = root.get(k);
+//                Predicate equal;
+//                if (objectPath.getJavaType().equals(Date.class) && v instanceof Long timestamp) {
+//                    equal = criteriaBuilder.equal(objectPath, new Date(timestamp));
+//                } else {
+//                    equal = criteriaBuilder.equal(objectPath, v);
+//                }
+//                predicateList.add(equal);
+//            });
+//        }
+//
+//        return predicateList.toArray(new Predicate[0]);
+//    }
+//
+//    /**
+//     * 保存 or 更新
+//     *
+//     * @param t t
+//     * @return T
+//     * @author xulijian
+//     */
+//    public T save(T t) {
+////        Long id = (Long) ReflectUtil.invokeMethod(t, "getId");
+////        if (null != id) {
+////            T byId = findById((ID) id);
+////            if (null == byId)
+////                throw new RuntimeException("No data," + ReflectUtil.invokeMethod(t, "getId"));
+////
+////            for (PropertyDescriptor propertyDescriptor : BeanUtils.getPropertyDescriptors(t.getClass())) {
+////                String name = propertyDescriptor.getName();
+////                if (name.equals("class")) {
+////                    continue;
+////                }
+////                Object property = BeanUtil.getProperty(t, name);
+////                if (null == property) {
+////                    BeanUtil.setProperty(t, name, BeanUtil.getProperty(byId, name));
+////                }
+////            }
+////        }
+//        return repository.save(t);
+//    }
+//
+//
+////    /**
+////     * 获取Repository
+////     *
+////     * @return JpaRepository<T, ID>
+////     * @author xulijian
+////     */
+////    public abstract JpaRepositoryImplementation<T, ID> getRepository();
+////
+////
+////    /**
+////     * 获得指定Repository
+////     *
+////     * @author xulijian
+////     */
+////    @Autowired
+////    public void setRepository() {
+////        repository = getRepository();
+////    }
+//
+//
+//    /**
+//     * 判断并合并属性值
+//     *
+//     * @param sourceField 数据源属性
+//     * @param targetField 目标源属性
+//     * @param source      数据源
+//     * @param target      目标源
+//     * @return Boolean是否合并
+//     * @author xulijian
+//     */
+//    private static boolean judgeAssign(Field sourceField, Field targetField, Object source, Object target) {
+//        try {
+//            if (sourceField.getName().equalsIgnoreCase(targetField.getName()) && sourceField.getType().getTypeName().equals(targetField.getType().getTypeName())) {
+//                sourceField.setAccessible(true);
+//                Object obj = sourceField.get(source);
+//                //集合类型非空判断
+//                if (obj instanceof Collection<?> newValue) {
+//                    if (newValue.size() <= 0)
+//                        return true;
+//                }
+//                //数据类型非空判断
+//                if (obj != null) {
+//                    targetField.setAccessible(true);
+//                    targetField.set(target, obj);
+//                }
+//                return true;
+//            }
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
 
 }

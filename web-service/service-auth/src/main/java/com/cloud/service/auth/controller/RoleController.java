@@ -1,8 +1,8 @@
 package com.cloud.service.auth.controller;
 
 import com.cloud.service.auth.base.BaseController;
-import com.cloud.service.auth.entity.AuthUserRole;
-import com.cloud.service.auth.service.AuthUserRoleService;
+import com.cloud.service.auth.entity.Role;
+import com.cloud.service.auth.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +16,13 @@ import jakarta.annotation.Resource;
  */
 @Slf4j
 @RestController
-@RequestMapping(value = "/authUserRole")
-public class AuthUserRoleController extends BaseController<AuthUserRole, Long> {
+@RequestMapping(value = "/role")
+public class RoleController extends BaseController<Role, Long> {
 
     /**
      * 用户角色关联 Service
      */
     @Resource
-    private AuthUserRoleService authUserRoleService;
+    private RoleService roleService;
 
 }

@@ -21,7 +21,7 @@ import java.util.List;
  * @author xulijian
  */
 @Slf4j
-public abstract class BaseController<T extends BaseEntity, ID extends Serializable> {
+public abstract class BaseController<T extends TableEntity, ID extends Serializable> {
 
     /**
      * 基础service
@@ -29,51 +29,51 @@ public abstract class BaseController<T extends BaseEntity, ID extends Serializab
     @Autowired
     private BaseService<T, ID> baseService;
 
-
-    /**
-     * @return ResultBean<List < T>>
-     * @author xulijian
-     */
-    @GetMapping(value = "")
-    public Result<List<T>> findAll() {
-        log.info("findAll");
-        return Result.SUCCESS(baseService.findAll());
-    }
-
-    /**
-     * 分页查询
-     *
-     * @return ResultBean<Page < T>>
-     * @author xulijian
-     */
-    @PostMapping(value = "/page")
-    public Result<Page<T>> findAllByPage(@RequestBody(required = false) PageParam param) {
-        log.info("findAllByPage ,{}", param);
-        return Result.SUCCESS(baseService.findAll(param));
-    }
-
-    /**
-     * 根据ID查询
-     *
-     * @param id ID
-     * @return ResultBean<T>
-     * @author xulijian
-     */
-    @GetMapping(value = "/id/{id}")
-    public Result<T> findById(@PathVariable("id") ID id) {
-        return Result.SUCCESS(baseService.findById(id));
-    }
-
-    /**
-     * 保存 or 更新
-     *
-     * @param t t
-     * @return T
-     * @author xulijian
-     */
-    @PostMapping(value = "/save")
-    public Result<T> save(@RequestBody T t) {
-        log.info("save,{}", t);
-        return Result.SUCCESS(baseService.save(t));
-    }
+//
+//    /**
+//     * @return ResultBean<List < T>>
+//     * @author xulijian
+//     */
+//    @GetMapping(value = "")
+//    public Result<List<T>> findAll() {
+//        log.info("findAll");
+//        return Result.SUCCESS(baseService.findAll());
+//    }
+//
+//    /**
+//     * 分页查询
+//     *
+//     * @return ResultBean<Page < T>>
+//     * @author xulijian
+//     */
+//    @PostMapping(value = "/page")
+//    public Result<Page<T>> findAllByPage(@RequestBody(required = false) PageParam param) {
+//        log.info("findAllByPage ,{}", param);
+//        return Result.SUCCESS(baseService.findAll(param));
+//    }
+//
+//    /**
+//     * 根据ID查询
+//     *
+//     * @param id ID
+//     * @return ResultBean<T>
+//     * @author xulijian
+//     */
+//    @GetMapping(value = "/id/{id}")
+//    public Result<T> findById(@PathVariable("id") ID id) {
+//        return Result.SUCCESS(baseService.findById(id));
+//    }
+//
+//    /**
+//     * 保存 or 更新
+//     *
+//     * @param t t
+//     * @return T
+//     * @author xulijian
+//     */
+//    @PostMapping(value = "/save")
+//    public Result<T> save(@RequestBody T t) {
+//        log.info("save,{}", t);
+//        return Result.SUCCESS(baseService.save(t));
+//    }
 }

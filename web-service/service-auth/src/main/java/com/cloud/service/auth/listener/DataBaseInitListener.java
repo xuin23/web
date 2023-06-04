@@ -22,10 +22,10 @@ public class DataBaseInitListener implements ApplicationListener<ApplicationStar
 
         if (authUserRepo.count()==0L) {
             User user = new User();
-            user.setUid("admin");
-            user.setName("系统管理员");
-            user.setEmail("xuin23@outlook.com");
-            user.setPassword(DigestUtil.encodeByMd5("admin"));
+            user.setC_id("admin");
+            user.setC_name("系统管理员");
+            user.setC_email("xuin23@outlook.com");
+            user.setC_password(DigestUtil.encodeByMd5("admin"));
             authUserRepo.save(user);
         }
     }
