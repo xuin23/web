@@ -1,12 +1,13 @@
 package com.cloud.service.auth.entity;
 
 import com.cloud.service.auth.base.TableEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.*;
+import java.util.List;
 
 
 /**
@@ -47,9 +48,9 @@ public class T_User extends TableEntity {
     @Column(name = "c_email")
     private String c_email;
 
-//
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinTable(name = "structure_user_role", joinColumns = @JoinColumn(name = "c_id"), inverseJoinColumns = @JoinColumn(name = "fk_user"))
-//    private List<UserRole> userRoles;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "structure_user_role", joinColumns = @JoinColumn(name = "c_pk"), inverseJoinColumns = @JoinColumn(name = "fk_user"))
+    private List<Structure_user_role> userRoles;
 
 }
