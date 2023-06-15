@@ -1,6 +1,6 @@
 package com.cloud.service.auth.repo;
 
-import com.cloud.service.auth.entity.Structure_user_role;
+import com.cloud.service.auth.entity.Struct_user_role;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @author xulijian
  */
 @Repository
-public interface UserRoleRepo extends JpaRepositoryImplementation<Structure_user_role, Long> {
+public interface UserRoleRepo extends JpaRepositoryImplementation<Struct_user_role, Long> {
 
 }
