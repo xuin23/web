@@ -1,4 +1,4 @@
-package com.cloud.common.common.constant;
+package com.cloud.common.constant;
 
 /**
  * Feign 产量

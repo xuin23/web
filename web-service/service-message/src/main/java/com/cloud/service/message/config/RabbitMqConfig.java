@@ -1,6 +1,6 @@
 package com.cloud.service.message.config;
 
-import com.cloud.common.message.common.constant.MessageConstants;
+import com.cloud.common.message.constant.MessageConstants;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;

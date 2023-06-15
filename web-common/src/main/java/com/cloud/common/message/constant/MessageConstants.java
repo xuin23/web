@@ -1,4 +1,4 @@
-package com.cloud.common.message.common.constant;
+package com.cloud.common.message.constant;
 
 /**
  * message 常量

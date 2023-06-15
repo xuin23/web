@@ -1,6 +1,6 @@
 package com.cloud.service.message.consumer.listener;
 
-import com.cloud.common.message.common.constant.MessageConstants;
+import com.cloud.common.message.constant.MessageConstants;
 import com.cloud.service.message.service.EmailService;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;

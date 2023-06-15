@@ -1,8 +1,8 @@
 package com.cloud.service.message.service.impl;
 
-import com.cloud.common.common.util.SecurityCodeUtil;
-import com.cloud.common.message.common.constant.MessageConstants;
-import com.cloud.common.message.common.model.EmailModel;
+import com.cloud.common.util.SecurityCodeUtil;
+import com.cloud.common.message.constant.MessageConstants;
+import com.cloud.common.message.model.EmailModel;
 import com.cloud.service.message.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

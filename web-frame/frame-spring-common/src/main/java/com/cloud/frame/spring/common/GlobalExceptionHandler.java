@@ -1,6 +1,6 @@
 package com.cloud.frame.spring.common;
 
-import com.cloud.common.common.model.Result;
+import com.cloud.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.cloud.common.common.model;
+package com.cloud.common.model;
 
 import java.io.Serial;
 import java.io.Serializable;

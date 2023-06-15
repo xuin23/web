@@ -1,4 +1,4 @@
-package com.cloud.common.common.util;
+package com.cloud.common.util;
 
 import java.util.Objects;
 import java.util.Random;

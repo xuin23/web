@@ -1,4 +1,4 @@
-package com.cloud.common.common.util;
+package com.cloud.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 
