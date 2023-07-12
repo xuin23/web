@@ -3,6 +3,7 @@ package com.cloud.service.auth.controller;
 import com.cloud.common.common.model.Result;
 import com.cloud.service.auth.base.BaseController;
 import com.cloud.service.auth.entity.T_User;
+import com.cloud.service.auth.remote.DemoClient;
 import com.cloud.service.auth.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,14 @@ public class UserController extends BaseController<T_User, Long> {
 
     @Resource
     private ObjectMapper objectMapper;
+
+    @Resource
+    private DemoClient demoClient;
+
+    @GetMapping
+    public Result demo() {
+        return Result.SUCCESS(demoClient.random());
+    }
 
     @GetMapping(value = "/id/{id}")
     public Result findById(@PathVariable("id") Long id) {

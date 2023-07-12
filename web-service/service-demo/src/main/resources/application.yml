@@ -1,13 +1,13 @@
 custom:
   host:
-    common: 172.17.0.1
+    common: com.xuin23.com
     redis: ${custom.host.common}
     database: ${custom.host.common}
     rabbitmq: ${custom.host.common}
     consul: ${custom.host.common}
     logstash: ${custom.host.common}
 server:
-  port: 8080
+  port: 8088
 spring:
   application:
     name: @pom.artifactId@
