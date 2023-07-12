@@ -19,8 +19,8 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Cacheable
-@Entity(name = "structure_user_role")
-public class Structure_user_role extends StructureEntity implements Serializable {
+@Entity(name = "struct_user_role")
+public class Struct_user_role extends StructureEntity implements Serializable {
 
     /**
      * 用户Id

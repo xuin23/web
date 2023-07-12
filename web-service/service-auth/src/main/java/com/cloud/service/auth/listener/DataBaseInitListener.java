@@ -1,6 +1,6 @@
 package com.cloud.service.auth.listener;
 
-import com.cloud.common.common.util.DigestUtil;
+import com.cloud.common.util.DigestUtil;
 import com.cloud.service.auth.entity.T_User;
 import com.cloud.service.auth.repo.UserRepo;
 import org.springframework.boot.context.event.ApplicationStartedEvent;

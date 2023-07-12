@@ -10,10 +10,10 @@ custom:
 server:
   port: 8083
   servlet:
-    context-path: /@pom.artifactId@
+    context-path: /auth
 spring:
   application:
-    name: @pom.name@
+    name: @pom.artifactId@
   jackson:
     serialization: { WRITE_DATES_AS_TIMESTAMPS: true }
   datasource:

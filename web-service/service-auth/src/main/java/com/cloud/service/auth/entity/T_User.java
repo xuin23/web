@@ -50,7 +50,7 @@ public class T_User extends TableEntity {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "structure_user_role", joinColumns = @JoinColumn(name = "c_pk"), inverseJoinColumns = @JoinColumn(name = "fk_user"))
-    private List<Structure_user_role> userRoles;
+    @JoinTable(name = "struct_user_role", joinColumns = @JoinColumn(name = "c_pk"), inverseJoinColumns = @JoinColumn(name = "fk_user"))
+    private List<Struct_user_role> userRoles;
 
 }

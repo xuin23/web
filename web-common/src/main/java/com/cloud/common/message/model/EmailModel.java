@@ -1,4 +1,4 @@
-package com.cloud.common.message.common.model;
+package com.cloud.common.message.model;
 
 import lombok.Data;
 

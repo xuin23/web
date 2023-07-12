@@ -1,6 +1,6 @@
 package com.cloud.service.auth.controller;
 
-import com.cloud.common.common.model.Result;
+import com.cloud.common.model.Result;
 import com.cloud.service.auth.base.BaseController;
 import com.cloud.service.auth.entity.T_User;
 import com.cloud.service.auth.remote.DemoClient;

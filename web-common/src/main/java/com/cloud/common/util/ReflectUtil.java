@@ -1,4 +1,4 @@
-package com.cloud.common.common.util;
+package com.cloud.common.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

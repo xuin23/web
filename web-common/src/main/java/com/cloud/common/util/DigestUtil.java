@@ -1,4 +1,4 @@
-package com.cloud.common.common.util;
+package com.cloud.common.util;
 
 import java.security.MessageDigest;
 import java.util.Objects;
