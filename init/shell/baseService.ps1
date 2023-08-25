@@ -4,7 +4,7 @@ docker run -d  --restart always -p 6379:6379   --name redis <#-v /data/redis/dat
 
 Write-Host "POSTGRES 服务创建中。。。。"
 mkdir -p /data/postgres
-docker run -d  --restart always --name postgres -p 5432:5432  -e POSTGRES_PASSWORD=123456 <#-v /data/postgres:/var/lib/postgresql/data#>  postgres
+docker run -d  --restart always --name postgres -p 5432:5432  -e POSTGRES_PASSWORD=postgres <#-v /data/postgres:/var/lib/postgresql/data#>  postgres
 
 Write-Host "RabbitMQ 创建中。。。"
 mkdir -p /data/rabbitmq

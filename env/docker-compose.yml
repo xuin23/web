@@ -106,6 +106,40 @@ services:
       - elasticsearch
     restart: unless-stopped
 
+  postgres:
+    image: postgres
+#    build:
+#      context: postgres/
+#      args:
+#        POSTGRES_VERSION: ${POSTGRES_VERSION}
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+    restart: always
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    restart: always
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - 5672:5672
+      - 5671:5671
+      - 15672:15672
+      - 25672:25672
+      - 4369:4369
+    restart: always
+
+  consul:
+    image: hashicorp/consul
+    ports:
+      - 8500:8500
+    restart: always
+
 networks:
   elk:
     driver: bridge
