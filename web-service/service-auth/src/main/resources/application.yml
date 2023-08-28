@@ -20,7 +20,7 @@ spring:
     url: jdbc:postgresql://${custom.host.database}:5432/postgres
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 123456
+    password: postgres
   jpa:
     show-sql: true
     database: postgresql
