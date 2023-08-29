@@ -2,6 +2,7 @@ package com.cloud.frame.spring.common;
 
 import com.cloud.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @ControllerAdvice
+@Configuration
 public class GlobalExceptionHandler {
 
     public GlobalExceptionHandler() {
@@ -28,7 +30,7 @@ public class GlobalExceptionHandler {
      */
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
-    public Result<Object> defaultErrorHandler(Exception e) {
+    public Result<Object> exceptionHandler(Exception e) {
         log.error("", e);
         return Result.FAIL(e.getMessage());
     }

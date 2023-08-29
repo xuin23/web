@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>frame-spring-redis</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

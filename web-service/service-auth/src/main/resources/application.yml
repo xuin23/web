@@ -54,6 +54,7 @@ spring:
       host: ${custom.host.redis}
       database: 0
       port: 6379
+      client-type: jedis
 management:
   endpoints:
     web:
@@ -62,3 +63,5 @@ management:
 logging:
   level:
     com.cloud: debug
+    org.springframework.cloud.openfeign: debug
+    org.springframework.cloud.sleuth: debug
