@@ -1,6 +1,7 @@
 package com.cloud.service.auth.controller;
 
 import com.cloud.common.model.Result;
+import com.cloud.frame.spring.common.Timing;
 import com.cloud.service.auth.base.BaseController;
 import com.cloud.service.auth.entity.T_User;
 import com.cloud.service.auth.remote.DemoClient;
@@ -56,6 +57,7 @@ public class UserController extends BaseController<T_User, Long> {
     @Resource
     private DemoClient demoClient;
 
+    @Timing
     @GetMapping
     public Result demo() {
         return Result.SUCCESS(demoClient.random());
