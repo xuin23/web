@@ -106,8 +106,20 @@ services:
       - elasticsearch
     restart: unless-stopped
 
-  postgres:
-    image: postgres
+#  postgres:
+#    image: postgres
+##    build:
+##      context: postgres/
+##      args:
+##        POSTGRES_VERSION: ${POSTGRES_VERSION}
+#    ports:
+#      - 5432:5432
+#    environment:
+#      POSTGRES_PASSWORD: postgres
+#    restart: always
+
+  timescaledb:
+    image: timescale/timescaledb-postgis:latest-pg12
 #    build:
 #      context: postgres/
 #      args:
@@ -116,7 +128,7 @@ services:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: postgres
-    restart: always
+    restart: unless-stopped
 
   redis:
     image: redis
@@ -132,13 +144,13 @@ services:
       - 15672:15672
       - 25672:25672
       - 4369:4369
-    restart: always
+    restart: unless-stopped
 
   consul:
     image: hashicorp/consul
     ports:
       - 8500:8500
-    restart: always
+    restart: unless-stopped
 #
 #  zookeeper:
 #    container_name: zookeeper
@@ -173,7 +185,6 @@ services:
 #    depends_on:
 #      - zookeeper
 #      - kafka
-
 
 networks:
   elk:
