@@ -1,0 +1,62 @@
+custom:
+  host:
+    common: com.xuin23.com
+    redis: ${custom.host.common}
+    rabbitmq: ${custom.host.common}
+    consul: ${custom.host.common}
+    logstash: ${custom.host.common}
+server:
+  port: 8081
+  servlet:
+    context-path: /@pom.artifactId@
+spring:
+  data:
+    redis:
+      database: 0
+      port: 6379
+      host: ${custom.host.redis}
+  application:
+    name: @pom.name@
+  rabbitmq:
+    host: ${custom.host.rabbitmq}
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual
+        concurrency: 1
+        max-concurrency: 1
+        retry:
+          enabled: true
+  mail:
+    host: smtp.qq.com
+    username: 1486204732@qq.com #邮箱
+    password: afrgchyablxhjcba #授权码
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  cloud:
+    consul:
+      host: ${custom.host.consul}
+      port: 8500
+      discovery:
+        enabled: true  # 启用服务发现
+        register: true # 启用服务注册
+        deregister: true # 服务停止时取消注册
+        prefer-ip-address: true # 表示注册时使用IP而不是hostname
+        health-check-interval: 30s # 执行监控检查的频率
+        health-check-critical-timeout: 30s # 设置健康检查失败多长时间后，取消注册
+        health-check-path: /${server.servlet.context-path}/actuator/info # 健康检查的路径
+        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
+        service-name: ${spring.application.name} # 注册服务名
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

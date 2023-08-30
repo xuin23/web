@@ -6,29 +6,7 @@ custom:
     rabbitmq: ${custom.host.common}
     consul: ${custom.host.common}
     logstash: ${custom.host.common}
-server:
-  port: 8088
-  servlet:
-    context-path: /demo
+    elasticsearch: ${custom.host.common}
 spring:
-  application:
-    name: @pom.artifactId@
-  cloud:
-    consul:
-      host: ${custom.host.consul}
-      port: 8500
-      discovery:
-        enabled: true  # 启用服务发现
-        register: true # 启用服务注册
-        deregister: true # 服务停止时取消注册
-        prefer-ip-address: true # 表示注册时使用IP而不是hostname
-        health-check-interval: 30s # 执行监控检查的频率
-        health-check-critical-timeout: 30s # 设置健康检查失败多长时间后，取消注册
-        health-check-path: /actuator/info # 健康检查的路径
-        instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
-        service-name: ${spring.application.name} # 注册服务名
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  profiles:
+    active: @env@
