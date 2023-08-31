@@ -2,7 +2,7 @@ package com.cloud.frame.spring.common;
 
 import com.cloud.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author xulijian
  */
 @Slf4j
+@Component
 @ControllerAdvice
-@Configuration
 public class GlobalExceptionHandler {
 
     public GlobalExceptionHandler() {

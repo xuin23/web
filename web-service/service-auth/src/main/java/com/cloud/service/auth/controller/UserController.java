@@ -2,15 +2,15 @@ package com.cloud.service.auth.controller;
 
 import com.cloud.common.model.Result;
 import com.cloud.frame.spring.common.Timing;
+import com.cloud.frame.spring.redis.RedisLock;
 import com.cloud.service.auth.base.BaseController;
 import com.cloud.service.auth.entity.T_User;
 import com.cloud.service.auth.producer.KafkaProducer;
 import com.cloud.service.auth.remote.DemoClient;
 import com.cloud.service.auth.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.annotation.Resource;
-
 import java.util.List;
 
 /**
  * 用户 Controller
- * 
+ *
  * @author xulijian
  */
 @Slf4j
@@ -32,12 +30,6 @@ import java.util.List;
 @RequestMapping(value = "/user")
 @Transactional
 public class UserController extends BaseController<T_User, Long> {
-
-    /**
-     * RedissonClient
-     */
-    @Resource
-    private RedissonClient redissonClient;
 
     /**
      * RedisTemplate
@@ -62,6 +54,7 @@ public class UserController extends BaseController<T_User, Long> {
     private KafkaProducer kafkaProducer;
 
     @Timing
+    @RedisLock
     @GetMapping
     public Result demo() {
         kafkaProducer.sendMessage("web-log", "a" + Math.random());
@@ -71,10 +64,6 @@ public class UserController extends BaseController<T_User, Long> {
     @GetMapping(value = "/id/{id}")
     public Result findById(@PathVariable("id") Long id) {
 
-        RLock lock = redissonClient.getLock(this.getClass().toString() + "findById");
-        if (!lock.isLocked()) {
-            lock.lock();
-        }
         List<T_User> allByCreate = userService.findAllByCreate();
         try {
 //            if (null != user) {
@@ -94,8 +83,6 @@ public class UserController extends BaseController<T_User, Long> {
         } catch (Exception e) {
             log.error("{}", e.getMessage(), e);
             throw new RuntimeException(e);
-        } finally {
-            lock.unlock();
         }
     }
 }
