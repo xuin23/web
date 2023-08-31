@@ -23,3 +23,8 @@ spring:
         service-name: ${spring.application.name} # 注册服务名
   kafka:
     bootstrap-servers: com.xuin23.com:9092
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
