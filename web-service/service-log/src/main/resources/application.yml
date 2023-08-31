@@ -1,0 +1,12 @@
+custom:
+  host:
+    common: com.xuin23.com
+    redis: ${custom.host.common}
+    database: ${custom.host.common}
+    rabbitmq: ${custom.host.common}
+    consul: ${custom.host.common}
+    logstash: ${custom.host.common}
+    elasticsearch: ${custom.host.common}
+spring:
+  profiles:
+    active: @env@

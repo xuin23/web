@@ -4,6 +4,7 @@ import com.cloud.common.model.Result;
 import com.cloud.frame.spring.common.Timing;
 import com.cloud.service.auth.base.BaseController;
 import com.cloud.service.auth.entity.T_User;
+import com.cloud.service.auth.producer.KafkaProducer;
 import com.cloud.service.auth.remote.DemoClient;
 import com.cloud.service.auth.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,9 +58,13 @@ public class UserController extends BaseController<T_User, Long> {
     @Resource
     private DemoClient demoClient;
 
+    @Resource
+    private KafkaProducer kafkaProducer;
+
     @Timing
     @GetMapping
     public Result demo() {
+        kafkaProducer.sendMessage("web-log", "a" + Math.random());
         return Result.SUCCESS(demoClient.random());
     }
 

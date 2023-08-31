@@ -17,6 +17,7 @@
         <module>service-gateway</module>
         <module>service-auth</module>
         <module>service-message</module>
+        <module>service-log</module>
         <module>service-demo</module>
     </modules>
 
