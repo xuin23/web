@@ -37,4 +37,5 @@ release.properties
 
 logs/
 
-init/elk/elasticsearch/data/
+.gradle
+buildSrc
