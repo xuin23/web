@@ -134,7 +134,7 @@ services:
     image: redis
     ports:
       - 6379:6379
-    restart: always
+    restart: unless-stopped
 
   rabbitmq:
     image: rabbitmq
@@ -159,7 +159,7 @@ services:
       - 2181:2181
     networks:
       - kafka
-    restart: always
+    restart: unless-stopped
 
   kafka:
     image: bitnami/kafka
@@ -173,7 +173,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_LOG_RETENTION_BYTES: 10737418240
-    restart: always
+    restart: unless-stopped
     depends_on:
       - zookeeper
     networks:
@@ -191,6 +191,7 @@ services:
       - kafka
     networks:
       - kafka
+    restart: unless-stopped
 
 networks:
   elk:
@@ -200,3 +201,5 @@ networks:
 
 volumes:
   elasticsearch:
+  postgres:
+  redis:
