@@ -1,6 +1,6 @@
 custom:
   host:
-    common: com.xuin23.com
+    common: xuin23.com
     redis: ${custom.host.common}
     database: ${custom.host.common}
     rabbitmq: ${custom.host.common}

@@ -22,7 +22,7 @@ spring:
         instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} # 服务注册标识，格式为：应用名称+服务器IP+端口
         service-name: ${spring.application.name} # 注册服务名
   kafka:
-    bootstrap-servers: com.xuin23.com:9092
+    bootstrap-servers: xuin23.com:9092
 management:
   endpoints:
     web:
