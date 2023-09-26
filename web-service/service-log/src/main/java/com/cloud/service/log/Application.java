@@ -14,7 +14,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @KafkaListener(topics = "web-log", groupId = "my-group")
+    @KafkaListener(topics = "service-log", groupId = "my-group")
     public void listen(String message) {
         System.out.println("Received message: " + message);
     }
