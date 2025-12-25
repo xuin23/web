@@ -1,2 +1,0 @@
-com.cloud.frame.spring.redis.RedisConfiguration
-com.cloud.frame.spring.redis.RedisLockAop

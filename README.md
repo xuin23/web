@@ -1,56 +1,79 @@
-# Spring Cloud 微服务项目简单搭建
+# xu-admin-quarkus
 
-## 基本架构
+This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-### 1、基本架构
+If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
-    * OpenJDK 17
-    * Spring Boot
-    * Spring Cloud
-    * Postgres
-    * Rabbitmq
-    * Redis
+## Running the application in dev mode
 
-### 2、主要模块
+You can run your application in dev mode that enables live coding using:
 
-    * web-common
-    * web-frame
-        * frame-spring-jpa
-        * frame-spring-redis
-    * web-service
-        * service-auth
-        * service-gateway
-        * service-message
+```shell script
+./mvnw quarkus:dev
+```
 
-[//]: # (### 3、启动)
+> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
 
-[//]: # ()
-[//]: # (#### Ubuntu 20 环境)
+## Packaging and running the application
 
-[//]: # ()
-[//]: # (* [安装Powershell]&#40;https://docs.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.2&#41; （就是想用Powershell）)
+The application can be packaged using:
 
-[//]: # (* 配置openjdk17 环境变量（紧跟JDK最新版）)
+```shell script
+./mvnw package
+```
 
-[//]: # (* 配置Maven环境变量)
+It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
+Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
 
-[//]: # (* 安装Docker)
+The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
-[//]: # (* 安装docker-compose)
+If you want to build an _über-jar_, execute the following command:
 
-[//]: # (* 安装Git)
+```shell script
+./mvnw package -Dquarkus.package.jar.type=uber-jar
+```
 
-[//]: # (* git clone https://github.com/xuin23/web.git)
+The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
 
-[//]: # (* cd web)
+## Creating a native executable
 
-[//]: # (* pwsh ./init.ps1 等待启动)
+You can create a native executable using:
 
-[//]: # (* 启动完成后 执行curl http://localhost:8080/auth/authUser 若返回一串json数据即代表服务整体启动成功)
+```shell script
+./mvnw package -Dnative
+```
 
-[//]: # ()
-[//]: # (> 启动完成后会在docker中启动一个redis，一个postgres（已完成数据库初始化），一个rabbitmq，一个consul，一个nginx。另外会启动一个gateway服务，三个auth-core服务，三个message-core。待项目整体完善后使用nginx代理8080端口服务)
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
 
-[//]: # (>)
+```shell script
+./mvnw package -Dnative -Dquarkus.native.container-build=true
+```
 
-[//]: # (>  数据在/data文件夹)
+You can then execute your native executable with: `./target/xu-admin-quarkus-1.0-SNAPSHOT-runner`
+
+If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+
+## Related Guides
+
+- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
+- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and Jakarta Persistence
+- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
+- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
+- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
+
+## Provided Code
+
+### Hibernate ORM
+
+Create your first JPA entity
+
+[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+
+[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
+
+
+### REST
+
+Easily start your REST Web Services
+
+[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
